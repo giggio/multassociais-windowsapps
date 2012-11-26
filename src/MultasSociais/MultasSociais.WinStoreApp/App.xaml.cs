@@ -1,5 +1,4 @@
 ﻿using MultasSociais.WinStoreApp.Common;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,15 +19,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace MultasSociais.WinStoreApp
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
-    sealed partial class App : Application
+    sealed partial class App
     {
-        /// <summary>
-        /// Initializes the singleton Application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
         public App()
         {
             this.InitializeComponent();
@@ -43,7 +35,7 @@ namespace MultasSociais.WinStoreApp
         /// <param name="args">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

@@ -1,42 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity Name="2f909005-1410-49db-88c4-ec448abbf416"
-            Publisher="CN=Giovanni"
-            Version="1.0.0.0" />
-
+  <Identity Name="2f909005-1410-49db-88c4-ec448abbf416" Publisher="CN=Giovanni" Version="1.0.0.0" />
   <Properties>
-    <DisplayName>MultasSociais.WinStoreApp</DisplayName>
-    <PublisherDisplayName>Giovanni</PublisherDisplayName>
+    <DisplayName>Multas Sociais</DisplayName>
+    <PublisherDisplayName>Giovanni Bassi</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="MultasSociais.WinStoreApp.App">
-        <VisualElements
-            DisplayName="MultasSociais.WinStoreApp"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
-            Description="MultasSociais.WinStoreApp"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MultasSociais.WinStoreApp.App">
+      <VisualElements DisplayName="Multas Sociais" Logo="Assets\logo.png" SmallLogo="Assets\SmallLogo.png" Description="O Multas Sociais é um site com fins estritamente educacionais e de conscientização da população. As multas sociais criadas aqui são fictícias. Essa é a aplicação para Windows 8 deste site." ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="logoOnly" WideLogo="Assets\logo-invertido-wide.png" ShortName="Multas Sociais" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FF991B" />
+        <InitialRotationPreference>
+          <Rotation Preference="portrait" />
+          <Rotation Preference="landscape" />
+          <Rotation Preference="portraitFlipped" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.shareTarget">
+          <ShareTarget>
+            <SupportedFileTypes>
+              <FileType>.png</FileType>
+              <FileType>.jpeg</FileType>
+              <FileType>.jpg</FileType>
+              <FileType>.gif</FileType>
+              <FileType>.bmp</FileType>
+            </SupportedFileTypes>
+            <DataFormat>Bitmap</DataFormat>
+            <DataFormat>StorageItems</DataFormat>
+          </ShareTarget>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

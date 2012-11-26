@@ -51,3 +51,4 @@ DB.sdf
 packages/
 .nuget/
 *.pfx
+docs/~$*
