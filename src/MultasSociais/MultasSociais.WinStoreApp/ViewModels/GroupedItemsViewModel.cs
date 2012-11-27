@@ -1,16 +1,12 @@
-﻿using System.Collections.Generic;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using MultasSociais.WinStoreApp.DataModel;
 using MultasSociais.WinStoreApp.Views;
-using Windows.UI.Xaml.Controls;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class GroupedItemsViewModel : ViewModelBase
     {
-        public GroupedItemsViewModel(INavigationService navigationService) : base(navigationService)
-        {
-        }
+        public GroupedItemsViewModel(INavigationService navigationService) : base(navigationService) {}
 
         protected override void OnInitialize()
         {
@@ -18,10 +14,10 @@ namespace MultasSociais.WinStoreApp.ViewModels
             base.OnInitialize();
         }
 
-        private BindableCollection<SampleDataGroup> groups;
 
         public string Parameter { get; set; }
 
+        private BindableCollection<SampleDataGroup> groups;
         public BindableCollection<SampleDataGroup> Groups
         {
             set
