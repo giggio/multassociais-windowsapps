@@ -2,6 +2,7 @@
 using Caliburn.Micro;
 using MultasSociais.WinStoreApp.DataModel;
 using MultasSociais.WinStoreApp.Views;
+using Windows.UI.Xaml.Controls;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
@@ -16,21 +17,10 @@ namespace MultasSociais.WinStoreApp.ViewModels
             Groups = new BindableCollection<SampleDataGroup>(SampleDataSource.GetGroups(Parameter));
             base.OnInitialize();
         }
-        private string parameter;
+
         private BindableCollection<SampleDataGroup> groups;
 
-        public string Parameter
-        {
-            get
-            {
-                return parameter;
-            }
-            set
-            {
-                parameter = value;
-                NotifyOfPropertyChange();
-            }
-        }
+        public string Parameter { get; set; }
 
         public BindableCollection<SampleDataGroup> Groups
         {
@@ -48,6 +38,10 @@ namespace MultasSociais.WinStoreApp.ViewModels
         public void GoToHeader(SampleDataGroup sampleDataGroup)
         {
             navigationService.Navigate<GroupDetailView>(sampleDataGroup.UniqueId);
+        }
+        public void GoToItem(SampleDataItem sampleDataItem)
+        {
+            navigationService.Navigate<ItemDetailView>(sampleDataItem.UniqueId);
         }
     }
 }
