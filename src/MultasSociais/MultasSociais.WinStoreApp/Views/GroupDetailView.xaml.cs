@@ -1,9 +1,10 @@
-﻿using MultasSociais.WinStoreApp.Data;
+﻿using MultasSociais.WinStoreApp.DataModel;
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using MultasSociais.WinStoreApp.DataModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -14,16 +15,17 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Grouped Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234231
+// The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
 
-namespace MultasSociais.WinStoreApp
+namespace MultasSociais.WinStoreApp.Views
 {
     /// <summary>
-    /// A page that displays a grouped collection of items.
+    /// A page that displays an overview of a single group, including a preview of the items
+    /// within the group.
     /// </summary>
-    public sealed partial class GroupedItemsPage : MultasSociais.WinStoreApp.Common.LayoutAwarePage
+    public sealed partial class GroupDetailView : MultasSociais.WinStoreApp.Common.LayoutAwarePage
     {
-        public GroupedItemsPage()
+        public GroupDetailView()
         {
             this.InitializeComponent();
         }
@@ -40,27 +42,13 @@ namespace MultasSociais.WinStoreApp
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
-            this.DefaultViewModel["Groups"] = sampleDataGroups;
+            var group = SampleDataSource.GetGroup((String)navigationParameter);
+            this.DefaultViewModel["Group"] = group;
+            this.DefaultViewModel["Items"] = group.Items;
         }
 
         /// <summary>
-        /// Invoked when a group header is clicked.
-        /// </summary>
-        /// <param name="sender">The Button used as a group header for the selected group.</param>
-        /// <param name="e">Event data that describes how the click was initiated.</param>
-        void Header_Click(object sender, RoutedEventArgs e)
-        {
-            // Determine what group the Button instance represents
-            var group = (sender as FrameworkElement).DataContext;
-
-            // Navigate to the appropriate destination page, configuring the new page
-            // by passing required information as a navigation parameter
-            this.Frame.Navigate(typeof(GroupDetailPage), ((SampleDataGroup)group).UniqueId);
-        }
-
-        /// <summary>
-        /// Invoked when an item within a group is clicked.
+        /// Invoked when an item is clicked.
         /// </summary>
         /// <param name="sender">The GridView (or ListView when the application is snapped)
         /// displaying the item clicked.</param>
@@ -70,7 +58,7 @@ namespace MultasSociais.WinStoreApp
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(ItemDetailPage), itemId);
+            this.Frame.Navigate(typeof(ItemDetailView), itemId);
         }
     }
 }

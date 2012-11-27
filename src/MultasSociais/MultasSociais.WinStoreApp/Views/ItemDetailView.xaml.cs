@@ -1,9 +1,10 @@
-﻿using MultasSociais.WinStoreApp.Data;
+﻿using MultasSociais.WinStoreApp.DataModel;
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using MultasSociais.WinStoreApp.DataModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -16,15 +17,15 @@ using Windows.UI.Xaml.Navigation;
 
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232
 
-namespace MultasSociais.WinStoreApp
+namespace MultasSociais.WinStoreApp.Views
 {
     /// <summary>
     /// A page that displays details for a single item within a group while allowing gestures to
     /// flip through other items belonging to the same group.
     /// </summary>
-    public sealed partial class ItemDetailPage : MultasSociais.WinStoreApp.Common.LayoutAwarePage
+    public sealed partial class ItemDetailView
     {
-        public ItemDetailPage()
+        public ItemDetailView()
         {
             this.InitializeComponent();
         }
@@ -47,7 +48,7 @@ namespace MultasSociais.WinStoreApp
             }
 
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var item = SampleDataSource.GetItem((String)navigationParameter);
+            var item = SampleDataSource.GetItem((string)navigationParameter);
             this.DefaultViewModel["Group"] = item.Group;
             this.DefaultViewModel["Items"] = item.Group.Items;
             this.flipView.SelectedItem = item;

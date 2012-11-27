@@ -5,24 +5,15 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="StandardStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="MSLayoutRootStyle" TargetType="Grid">
-		<Setter Property="Background" Value="White"/>
-		<Setter Property="ChildrenTransitions">
-			<Setter.Value>
-				<TransitionCollection>
-					<EntranceThemeTransition/>
-				</TransitionCollection>
-			</Setter.Value>
-		</Setter>
-	</Style>
     <Color x:Key="MSApplicationHeaderForegroundThemeBrush">Black</Color>
-    <Style x:Key="MSPageHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextStyle}">
-        <Setter Property="TextWrapping" Value="NoWrap"/>
-		<Setter Property="VerticalAlignment" Value="Bottom"/>
-		<Setter Property="Margin" Value="0,0,30,40"/>
+    <Color x:Key="MSApplicationPageBackgroundThemeBrush">White</Color>
+    <Style x:Key="MSLayoutRootStyle" TargetType="Grid" BasedOn="{StaticResource LayoutRootStyle}">
+        <Setter Property="Background" Value="{StaticResource MSApplicationPageBackgroundThemeBrush}"/>
+	</Style>
+    <Style x:Key="MSPageHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource PageHeaderTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource MSApplicationHeaderForegroundThemeBrush}"/>
 	</Style>
-    <Style x:Key="MSTextPrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource TextButtonStyle}">
+    <Style x:Key="MSTextPrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource TextPrimaryButtonStyle}">
         <Setter Property="Foreground" Value="{StaticResource MSApplicationHeaderForegroundThemeBrush}"/>
 	</Style>
 </ResourceDictionary>

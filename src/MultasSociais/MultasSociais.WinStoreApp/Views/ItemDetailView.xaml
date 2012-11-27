@@ -1,14 +1,14 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
-    x:Class="MultasSociais.WinStoreApp.ItemDetailPage"
+    x:Class="MultasSociais.WinStoreApp.Views.ItemDetailView"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MultasSociais.WinStoreApp"
-    xmlns:data="using:MultasSociais.WinStoreApp.Data"
     xmlns:common="using:MultasSociais.WinStoreApp.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dataModel="using:MultasSociais.WinStoreApp.DataModel"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -17,7 +17,7 @@
         <CollectionViewSource
             x:Name="itemsViewSource"
             Source="{Binding Items}"
-            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <!--
@@ -28,7 +28,7 @@
     <Grid
         Style="{StaticResource LayoutRootStyle}"
         DataContext="{Binding Group}"
-        d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}">
+        d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
