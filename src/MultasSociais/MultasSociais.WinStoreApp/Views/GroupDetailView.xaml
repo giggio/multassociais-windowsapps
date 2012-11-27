@@ -1,7 +1,7 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
     x:Class="MultasSociais.WinStoreApp.Views.GroupDetailView"
-    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    d:DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MultasSociais.WinStoreApp"
@@ -20,15 +20,9 @@
             d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
-    <Grid
-        Style="{StaticResource LayoutRootStyle}"
-        DataContext="{Binding Group}"
-        d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}">
+    <Grid Style="{StaticResource LayoutRootStyle}"
+          DataContext="{Binding Group}"
+          d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -44,11 +38,10 @@
             Grid.RowSpan="2"
             Padding="120,126,120,50"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Standard500x130ItemTemplate}"
+            ItemTemplate="{StaticResource ItemTemplateWithSubTextFilled}"
             SelectionMode="None"
             IsSwipeEnabled="false"
-            IsItemClickEnabled="True"
-            ItemClick="ItemView_ItemClick">
+            IsItemClickEnabled="True">
 
             <GridView.Header>
                 <StackPanel Width="480" Margin="0,4,14,0">
@@ -74,11 +67,10 @@
             Visibility="Collapsed"
             Padding="10,0,0,60"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Standard80ItemTemplate}"
+            ItemTemplate="{StaticResource ItemTemplateSnapped}"
             SelectionMode="None"
             IsSwipeEnabled="false"
-            IsItemClickEnabled="True"
-            ItemClick="ItemView_ItemClick">
+            IsItemClickEnabled="True">
 
             <ListView.Header>
                 <StackPanel>

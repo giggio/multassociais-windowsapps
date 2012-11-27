@@ -14,9 +14,6 @@ namespace MultasSociais.WinStoreApp.ViewModels
             base.OnInitialize();
         }
 
-
-        public string Parameter { get; set; }
-
         private BindableCollection<SampleDataGroup> groups;
         public BindableCollection<SampleDataGroup> Groups
         {

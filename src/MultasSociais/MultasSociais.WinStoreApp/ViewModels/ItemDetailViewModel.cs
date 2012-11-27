@@ -13,7 +13,6 @@ namespace MultasSociais.WinStoreApp.ViewModels
             if (item != selectedItem) SelectedItem = item;
             base.OnInitialize();
         }
-        public string Parameter { get; set; }
 
         public SampleDataGroup Group
         {

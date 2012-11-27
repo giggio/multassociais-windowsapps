@@ -23,5 +23,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
                 return navigationService.CanGoBack;
             }
         }
+
+        public string Parameter { get; set; }
     }
 }

@@ -50,20 +50,11 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True">
-            <!--ItemTemplate="{StaticResource Standard250x250ItemTemplate}"-->
-            <!--caliburn:Message.Attach="[Event ItemClick] = [Action GoToItem($eventArgs.ClickedItem)]"-->
-
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>                        
                     <VirtualizingStackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
-            <!--<GridView.ItemTemplate>
-                <DataTemplate>
-                    
-                    <Button caliburn:Message.Attach="[Event Click] = [Action GoToItem($dataContext)]" Content="{Binding}"></Button>
-                </DataTemplate>
-            </GridView.ItemTemplate>-->
             <GridView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
