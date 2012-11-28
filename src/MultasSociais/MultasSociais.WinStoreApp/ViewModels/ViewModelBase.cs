@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using MultasSociais.WinStoreApp.DataModel;
+using MultasSociais.WinStoreApp.Models;
 using MultasSociais.WinStoreApp.Views;
 
 namespace MultasSociais.WinStoreApp.ViewModels
@@ -7,11 +7,13 @@ namespace MultasSociais.WinStoreApp.ViewModels
     public abstract class ViewModelBase : Screen
     {
         protected readonly INavigationService navigationService;
+        protected readonly ITalao talao;
         private string parameter;
 
-        protected ViewModelBase(INavigationService navigationService)
+        protected ViewModelBase(INavigationService navigationService, ITalao talao)
         {
             this.navigationService = navigationService;
+            this.talao = talao;
         }
 
         public void GoBack()
@@ -41,13 +43,13 @@ namespace MultasSociais.WinStoreApp.ViewModels
         {
         }
 
-        public void GoToHeader(SampleDataGroup sampleDataGroup)
+        public void GoToHeader(GrupoDeMultas grupoDeMultas)
         {
-            navigationService.Navigate<GroupDetailView>(sampleDataGroup.UniqueId);
+            navigationService.Navigate<GroupDetailView>(grupoDeMultas.Nome);
         }
-        public void GoToItem(SampleDataItem sampleDataItem)
+        public void GoToItem(Multa multa)
         {
-            navigationService.Navigate<ItemDetailView>(sampleDataItem.UniqueId);
+            navigationService.Navigate<ItemDetailView>(multa.Id);
         }
     }
 }

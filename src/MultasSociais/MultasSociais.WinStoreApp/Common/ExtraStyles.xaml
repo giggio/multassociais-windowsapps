@@ -27,11 +27,11 @@
     <DataTemplate x:Key="GrupoTemplateFilled">
         <Grid HorizontalAlignment="Left" Width="250" Height="250" caliburn:Message.Attach="[Event PointerPressed] = [Action GoToItem($dataContext)]">
             <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                <Image Source="{Binding FotoUrl}" Stretch="UniformToFill" AutomationProperties.Name="{Binding DataDescrita}"/>
             </Border>
             <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                <TextBlock Text="{Binding Subtitle}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                <TextBlock Text="{Binding DataDescrita}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+                <TextBlock Text="{Binding NumeroDeMultasDescrita}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
             </StackPanel>
         </Grid>
     </DataTemplate>
@@ -43,11 +43,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
-                <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                <Image Source="{Binding FotoUrl}" Stretch="UniformToFill"/>
             </Border>
             <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                <TextBlock Text="{Binding Title}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
-                <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+                <TextBlock Text="{Binding DataDescrita}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
+                <TextBlock Text="{Binding NumeroDeMultasDescrita}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
             </StackPanel>
         </Grid>
     </DataTemplate>
@@ -59,12 +59,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">
-                <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                <Image Source="{Binding FotoUrl}" Stretch="UniformToFill" AutomationProperties.Name="{Binding DataDescrita}"/>
             </Border>
             <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextStyle}" TextWrapping="NoWrap"/>
-                <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
-                <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextStyle}" MaxHeight="60"/>
+                <TextBlock Text="{Binding DataDescrita}" Style="{StaticResource TitleTextStyle}" TextWrapping="NoWrap"/>
+                <TextBlock Text="{Binding NumeroDeMultasDescrita}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+                <TextBlock Text="{Binding Descricao}" Style="{StaticResource BodyTextStyle}" MaxHeight="60"/>
             </StackPanel>
         </Grid>
     </DataTemplate>
@@ -75,11 +75,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
-                <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                <Image Source="{Binding FotoUrl}" Stretch="UniformToFill"/>
             </Border>
             <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                <TextBlock Text="{Binding Title}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
-                <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+                <TextBlock Text="{Binding DataDescrita}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
+                <TextBlock Text="{Binding NumeroDeMultasDescrita}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
             </StackPanel>
         </Grid>
     </DataTemplate>

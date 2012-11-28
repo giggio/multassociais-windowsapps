@@ -1,36 +1,43 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using Caliburn.Micro;
-using MultasSociais.WinStoreApp.DataModel;
-using MultasSociais.WinStoreApp.Views;
+using MultasSociais.WinStoreApp.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class GroupDetailViewModel : ViewModelBase
     {
-        public GroupDetailViewModel(INavigationService navigationService) : base(navigationService){}
+        public GroupDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao){}
 
         protected override void OnInitialize()
         {
-            Group = SampleDataSource.GetGroup(Parameter);
+            switch (Parameter.ToLower())
+            {
+                case "mais multados":
+                    Grupo = talao.ObterMaisMultados();
+                    break;
+                case "mais novos":
+                    Grupo = talao.ObterMaisNovos();
+                    break;
+            }
             base.OnInitialize();
         }
 
-        private SampleDataGroup @group;
-        public SampleDataGroup Group
+        private GrupoDeMultas grupo;
+        public GrupoDeMultas Grupo
         {
-            get { return @group; }
+            get { return grupo; }
             set
             {
-                @group = value;
+                grupo = value;
                 NotifyOfPropertyChange();
-                NotifyOfPropertyChange("Items");
+                NotifyOfPropertyChange("Itens");
             }
         }
-        public ObservableCollection<SampleDataItem> Items
+        public IEnumerable<Multa> Itens
         {
             get
             {
-                return @group == null ? null : @group.Items;
+                return grupo == null ? null : grupo.Itens;
             }
         }
     }

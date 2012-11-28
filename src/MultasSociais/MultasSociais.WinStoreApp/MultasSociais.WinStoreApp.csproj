@@ -105,6 +105,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\GrupoDeMultas.cs" />
+    <Compile Include="Models\Multa.cs" />
+    <Compile Include="Models\Talao.cs" />
     <Compile Include="ViewModels\GroupDetailViewModel.cs" />
     <Compile Include="ViewModels\GroupedItemsViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
@@ -185,9 +188,7 @@
       <HintPath>..\packages\Windows.UI.Interactivity.1.0.2.0\lib\winrt45\Windows.UI.Interactivity.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

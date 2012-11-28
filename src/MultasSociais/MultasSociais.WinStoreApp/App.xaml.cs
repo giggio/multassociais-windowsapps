@@ -1,9 +1,11 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using MultasSociais.WinStoreApp.Models;
 using MultasSociais.WinStoreApp.Views;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Controls;
+using Caliburn.Micro;
 
 namespace MultasSociais.WinStoreApp
 {
@@ -20,6 +22,7 @@ namespace MultasSociais.WinStoreApp
         {
             container = new WinRTContainer();
             container.RegisterWinRTServices();
+            container.PerRequest<ITalao, Talao>();
         }
 
         protected override object GetInstance(Type service, string key)

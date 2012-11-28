@@ -8,7 +8,7 @@
     xmlns:common="using:MultasSociais.WinStoreApp.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:dataModel="using:MultasSociais.WinStoreApp.DataModel"
+    xmlns:models="using:MultasSociais.WinStoreApp.Models"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -16,13 +16,13 @@
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource
             x:Name="itemsViewSource"
-            Source="{Binding Items}"
-            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            Source="{Binding Itens}"
+            d:Source="{Binding maisNovos.Itens, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <Grid Style="{StaticResource LayoutRootStyle}"
-          DataContext="{Binding Group}"
-          d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}">
+          DataContext="{Binding Grupo}"
+          d:DataContext="{Binding maisNovos, Source={d:DesignInstance Type= models:Talao, IsDesignTimeCreatable=True}}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -43,13 +43,6 @@
             IsSwipeEnabled="false"
             IsItemClickEnabled="True">
 
-            <GridView.Header>
-                <StackPanel Width="480" Margin="0,4,14,0">
-                    <TextBlock Text="{Binding Subtitle}" Margin="0,0,18,20" Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
-                    <Image Source="{Binding Image}" Height="400" Margin="0,0,18,20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                    <TextBlock Text="{Binding Description}" Margin="0,0,18,0" Style="{StaticResource BodyTextStyle}"/>
-                </StackPanel>
-            </GridView.Header>
             <GridView.ItemContainerStyle>
                 <Style TargetType="FrameworkElement">
                     <Setter Property="Margin" Value="52,0,0,10"/>
@@ -71,13 +64,6 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True">
-            <ListView.Header>
-                <StackPanel>
-                    <TextBlock Text="{Binding Subtitle}" Margin="10,0,18,20" Style="{StaticResource TitleTextStyle}" MaxHeight="60"/>
-                    <Image Source="{Binding Image}" Margin="10,0,18,0" MaxHeight="160" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                    <TextBlock Margin="10,20,18,30" Text="{Binding Description}" Style="{StaticResource BodyTextStyle}"/>
-                </StackPanel>
-            </ListView.Header>
         </ListView>
 
         <!-- Back button and page title -->
@@ -87,7 +73,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+            <TextBlock x:Name="pageTitle" Text="{Binding Nome}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

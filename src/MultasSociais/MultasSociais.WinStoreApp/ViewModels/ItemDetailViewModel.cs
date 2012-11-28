@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Caliburn.Micro;
 using MultasSociais.WinStoreApp.DataModel;
+using MultasSociais.WinStoreApp.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
@@ -11,7 +12,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
         private SampleDataGroup @group;
         private ObservableCollection<SampleDataItem> items;
 
-        public ItemDetailViewModel(INavigationService navigationService) : base(navigationService) {}
+        public ItemDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
         
         protected override void BeforeInitialize()
         {

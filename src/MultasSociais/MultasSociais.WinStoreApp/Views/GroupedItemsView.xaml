@@ -7,7 +7,7 @@
     xmlns:common="using:MultasSociais.WinStoreApp.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:dataModel="using:MultasSociais.WinStoreApp.DataModel"
+    xmlns:models="using:MultasSociais.WinStoreApp.Models"
     xmlns:caliburn="using:Caliburn.Micro"
     d:DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     mc:Ignorable="d">
@@ -20,10 +20,10 @@
         -->
         <CollectionViewSource
             x:Name="groupedItemsViewSource"
-            Source="{Binding Groups}"
+            Source="{Binding Grupos}"
             IsSourceGrouped="true"
-            ItemsPath="TopItems"
-            d:Source="{Binding AllGroups, Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            ItemsPath="Itens"
+            d:Source="{Binding Grupos, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <!--
@@ -65,7 +65,7 @@
                                     AutomationProperties.Name="Group Title"
                                     Style="{StaticResource MSTextPrimaryButtonStyle}" >
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Title}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                        <TextBlock Text="{Binding Nome}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
                                         <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
                                     </StackPanel>
                                 </Button>
@@ -106,7 +106,7 @@
                                     caliburn:Message.Attach="[Event Click] = [Action GoToHeader($dataContext)]"
                                     Style="{StaticResource TextPrimaryButtonStyle}">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Title}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                        <TextBlock Text="{Binding Nome}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
                                         <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
                                     </StackPanel>
                                 </Button>

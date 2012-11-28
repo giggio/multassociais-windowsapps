@@ -1,29 +1,29 @@
 ﻿using Caliburn.Micro;
-using MultasSociais.WinStoreApp.DataModel;
+using MultasSociais.WinStoreApp.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class GroupedItemsViewModel : ViewModelBase
     {
-        public GroupedItemsViewModel(INavigationService navigationService) : base(navigationService) {}
+        public GroupedItemsViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
 
         protected override void OnInitialize()
         {
-            Groups = new BindableCollection<SampleDataGroup>(SampleDataSource.GetGroups(Parameter));
+            Grupos = new BindableCollection<GrupoDeMultas>{talao.ObterMaisNovos(), talao.ObterMaisMultados()};
             base.OnInitialize();
         }
 
-        private BindableCollection<SampleDataGroup> groups;
-        public BindableCollection<SampleDataGroup> Groups
+        private BindableCollection<GrupoDeMultas> grupos;
+        public BindableCollection<GrupoDeMultas> Grupos
         {
             set
             {
-                groups = value;
+                grupos = value;
                 NotifyOfPropertyChange();
             }
             get
             {
-                return groups;
+                return grupos;
             }
         }
 
