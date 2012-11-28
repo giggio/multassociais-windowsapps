@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using MultasSociais.WinStoreApp.DataModel;
+using MultasSociais.WinStoreApp.Views;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
@@ -37,6 +39,15 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         protected virtual void BeforeInitialize()
         {
+        }
+
+        public void GoToHeader(SampleDataGroup sampleDataGroup)
+        {
+            navigationService.Navigate<GroupDetailView>(sampleDataGroup.UniqueId);
+        }
+        public void GoToItem(SampleDataItem sampleDataItem)
+        {
+            navigationService.Navigate<ItemDetailView>(sampleDataItem.UniqueId);
         }
     }
 }

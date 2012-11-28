@@ -33,9 +33,5 @@ namespace MultasSociais.WinStoreApp.ViewModels
                 return @group == null ? null : @group.Items;
             }
         }
-        public void GoToItem(SampleDataItem sampleDataItem)
-        {
-            navigationService.Navigate<ItemDetailView>(sampleDataItem.UniqueId);
-        }
     }
 }

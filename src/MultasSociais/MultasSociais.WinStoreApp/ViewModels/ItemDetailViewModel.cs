@@ -60,6 +60,5 @@ namespace MultasSociais.WinStoreApp.ViewModels
                 NotifyOfPropertyChange();
             }
         }        
-
     }
 }
