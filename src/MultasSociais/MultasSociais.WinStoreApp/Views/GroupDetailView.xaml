@@ -71,7 +71,6 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True">
-
             <ListView.Header>
                 <StackPanel>
                     <TextBlock Text="{Binding Subtitle}" Margin="10,0,18,20" Style="{StaticResource TitleTextStyle}" MaxHeight="60"/>

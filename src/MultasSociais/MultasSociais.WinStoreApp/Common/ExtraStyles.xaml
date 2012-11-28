@@ -17,6 +17,12 @@
     <Style x:Key="MSTextPrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource TextPrimaryButtonStyle}">
         <Setter Property="Foreground" Value="{StaticResource MSApplicationHeaderForegroundThemeBrush}"/>
 	</Style>
+    <Style TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>    
+    <Style TargetType="Grid">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
 
     <DataTemplate x:Key="GrupoTemplateFilled">
         <Grid HorizontalAlignment="Left" Width="250" Height="250" caliburn:Message.Attach="[Event PointerPressed] = [Action GoToItem($dataContext)]">
