@@ -43,7 +43,7 @@
             AutomationProperties.Name="Item Details"
             TabIndex="1"
             Grid.RowSpan="2"
-            SelectedItem="{Binding SelectedItem}"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}">
 
             <FlipView.ItemContainerStyle>

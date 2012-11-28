@@ -6,19 +6,33 @@ namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class ItemDetailViewModel : ViewModelBase
     {
-        public ItemDetailViewModel(INavigationService navigationService) : base(navigationService) {}
-        protected override void OnInitialize()
-        {
-            var item = SampleDataSource.GetItem(Parameter);
-            if (item != selectedItem) SelectedItem = item;
-            base.OnInitialize();
-        }
 
+        private SampleDataItem selectedItem;
+        private SampleDataGroup @group;
+        private ObservableCollection<SampleDataItem> items;
+
+        public ItemDetailViewModel(INavigationService navigationService) : base(navigationService) {}
+        
+        protected override void BeforeInitialize()
+        {
+            if (selectedItem != null && selectedItem.UniqueId == Parameter)
+                return;
+            var item = SampleDataSource.GetItem(Parameter);
+            SelectedItem = item;
+            Group = item.Group;
+            Items = Group.Items;
+            base.BeforeInitialize();
+        }
         public SampleDataGroup Group
         {
             get
             {
-                return selectedItem == null ? null : selectedItem.Group;
+                return @group;
+            }
+            set 
+            { 
+                @group = value;
+                NotifyOfPropertyChange();
             }
         }
 
@@ -26,27 +40,23 @@ namespace MultasSociais.WinStoreApp.ViewModels
         {
             get
             {
-                return selectedItem == null ? null : selectedItem.Group.Items;
+                return items;
+            }
+            set { 
+                items = value;
+                NotifyOfPropertyChange();
             }
         }
 
-        private SampleDataItem selectedItem;
         public SampleDataItem SelectedItem
         {
             get
             {
-                if (selectedItem == null)
-                {
-                    var item = SampleDataSource.GetItem(Parameter);
-                    SelectedItem = item;
-                }
                 return selectedItem;
             }
             set
             {
                 selectedItem = value;
-                NotifyOfPropertyChange("Group");
-                NotifyOfPropertyChange("Items");
                 NotifyOfPropertyChange();
             }
         }        

@@ -5,6 +5,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
     public abstract class ViewModelBase : Screen
     {
         protected readonly INavigationService navigationService;
+        private string parameter;
 
         protected ViewModelBase(INavigationService navigationService)
         {
@@ -24,6 +25,18 @@ namespace MultasSociais.WinStoreApp.ViewModels
             }
         }
 
-        public string Parameter { get; set; }
+        public string Parameter
+        {
+            get { return parameter; }
+            set
+            {
+                parameter = value;
+                BeforeInitialize();
+            }
+        }
+
+        protected virtual void BeforeInitialize()
+        {
+        }
     }
 }
