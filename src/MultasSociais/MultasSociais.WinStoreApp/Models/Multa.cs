@@ -11,6 +11,7 @@ namespace MultasSociais.WinStoreApp.Models
         public int NumeroDeMultas { get; set; }
         public string VideoUrl { get; set; }
         public string FotoUrl { get; set; }
+        public GrupoDeMultas Grupo { get; set; }
 
         public string DataDescrita
         {

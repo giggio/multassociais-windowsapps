@@ -8,7 +8,7 @@
     xmlns:common="using:MultasSociais.WinStoreApp.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:dataModel="using:MultasSociais.WinStoreApp.DataModel"
+    xmlns:models="using:MultasSociais.WinStoreApp.Models"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -16,8 +16,8 @@
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource
             x:Name="itemsViewSource"
-            Source="{Binding Items}"
-            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            Source="{Binding Itens}"
+            d:Source="{Binding MaisNovos.Itens, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <!--
@@ -66,18 +66,18 @@
                             <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
                                 <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
                                     <Paragraph>
-                                        <Run FontSize="26.667" FontWeight="Light" Text="{Binding Title}"/>
+                                        <Run FontSize="26.667" FontWeight="Light" Text="{Binding DataDescrita}"/>
                                         <LineBreak/>
                                         <LineBreak/>
-                                        <Run FontWeight="Normal" Text="{Binding Subtitle}"/>
+                                        <Run FontWeight="Normal" Text="{Binding NumeroDeMultasDescrita}"/>
                                     </Paragraph>
                                     <Paragraph LineStackingStrategy="MaxHeight">
                                         <InlineUIContainer>
-                                            <Image x:Name="image" MaxHeight="480" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding Image}" AutomationProperties.Name="{Binding Title}"/>
+                                            <Image x:Name="image" MaxHeight="480" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding FotoUrl}" AutomationProperties.Name="{Binding DataDescrita}"/>
                                         </InlineUIContainer>
                                     </Paragraph>
                                     <Paragraph>
-                                        <Run FontWeight="SemiLight" Text="{Binding Content}"/>
+                                        <Run FontWeight="SemiLight" Text="{Binding Descricao}"/>
                                     </Paragraph>
                                 </RichTextBlock>
 
@@ -138,14 +138,14 @@
         </FlipView>
 
         <!-- Back button and page title -->
-        <Grid DataContext="{Binding Group}"
-            d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=dataModel:SampleDataSource, IsDesignTimeCreatable=True}}">
+        <Grid DataContext="{Binding Grupo}"
+            d:DataContext="{Binding MaisNovos, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+            <TextBlock x:Name="pageTitle" Text="{Binding Nome}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

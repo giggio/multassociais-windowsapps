@@ -3,7 +3,7 @@ using MultasSociais.WinStoreApp.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
-    public class GroupedItemsViewModel : ViewModelBase
+    public class GroupedItemsViewModel : ViewModelBase<string>
     {
         public GroupedItemsViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
 

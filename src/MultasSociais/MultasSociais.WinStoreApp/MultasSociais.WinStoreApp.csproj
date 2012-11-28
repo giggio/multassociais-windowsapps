@@ -111,6 +111,7 @@
     <Compile Include="ViewModels\GroupDetailViewModel.cs" />
     <Compile Include="ViewModels\GroupedItemsViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
+    <Compile Include="Models\TipoGrupo.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\GroupedItemsView.xaml.cs">
       <DependentUpon>GroupedItemsView.xaml</DependentUpon>

@@ -1,55 +1,54 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using Caliburn.Micro;
-using MultasSociais.WinStoreApp.DataModel;
 using MultasSociais.WinStoreApp.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
-    public class ItemDetailViewModel : ViewModelBase
+    public class ItemDetailViewModel : ViewModelBase<int>
     {
 
-        private SampleDataItem selectedItem;
-        private SampleDataGroup @group;
-        private ObservableCollection<SampleDataItem> items;
+        private Multa selectedItem;
+        private GrupoDeMultas grupo;
+        private IEnumerable<Multa> itens;
 
         public ItemDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
         
         protected override void BeforeInitialize()
         {
-            if (selectedItem != null && selectedItem.UniqueId == Parameter)
+            if (selectedItem != null && selectedItem.Id == Parameter)
                 return;
-            var item = SampleDataSource.GetItem(Parameter);
-            SelectedItem = item;
-            Group = item.Group;
-            Items = Group.Items;
+            var multa = talao.ObterPorId(Parameter);
+            SelectedItem = multa;
+            Grupo = multa.Grupo;
+            Itens = Grupo.Itens;
             base.BeforeInitialize();
         }
-        public SampleDataGroup Group
+        public GrupoDeMultas Grupo
         {
             get
             {
-                return @group;
+                return grupo;
             }
             set 
             { 
-                @group = value;
+                grupo = value;
                 NotifyOfPropertyChange();
             }
         }
 
-        public ObservableCollection<SampleDataItem> Items
+        public IEnumerable<Multa> Itens
         {
             get
             {
-                return items;
+                return itens;
             }
             set { 
-                items = value;
+                itens = value;
                 NotifyOfPropertyChange();
             }
         }
 
-        public SampleDataItem SelectedItem
+        public Multa SelectedItem
         {
             get
             {

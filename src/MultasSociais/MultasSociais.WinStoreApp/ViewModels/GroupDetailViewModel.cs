@@ -4,7 +4,7 @@ using MultasSociais.WinStoreApp.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
-    public class GroupDetailViewModel : ViewModelBase
+    public class GroupDetailViewModel : ViewModelBase<string>
     {
         public GroupDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao){}
 

@@ -5,7 +5,6 @@ using MultasSociais.WinStoreApp.Models;
 using MultasSociais.WinStoreApp.Views;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Controls;
-using Caliburn.Micro;
 
 namespace MultasSociais.WinStoreApp
 {

@@ -8,7 +8,6 @@ namespace MultasSociais.WinStoreApp.ViewModels
     {
         protected readonly INavigationService navigationService;
         protected readonly ITalao talao;
-        private string parameter;
 
         protected ViewModelBase(INavigationService navigationService, ITalao talao)
         {
@@ -29,16 +28,6 @@ namespace MultasSociais.WinStoreApp.ViewModels
             }
         }
 
-        public string Parameter
-        {
-            get { return parameter; }
-            set
-            {
-                parameter = value;
-                BeforeInitialize();
-            }
-        }
-
         protected virtual void BeforeInitialize()
         {
         }
@@ -50,6 +39,22 @@ namespace MultasSociais.WinStoreApp.ViewModels
         public void GoToItem(Multa multa)
         {
             navigationService.Navigate<ItemDetailView>(multa.Id);
+        }
+    }
+
+    public abstract class ViewModelBase<T> : ViewModelBase
+    {
+        protected ViewModelBase(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
+
+        private T parameter;
+        public T Parameter
+        {
+            get { return parameter; }
+            set
+            {
+                parameter = value;
+                BeforeInitialize();
+            }
         }
     }
 }

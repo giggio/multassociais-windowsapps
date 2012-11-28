@@ -17,12 +17,12 @@
         <CollectionViewSource
             x:Name="itemsViewSource"
             Source="{Binding Itens}"
-            d:Source="{Binding maisNovos.Itens, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}"/>
+            d:Source="{Binding MaisNovos.Itens, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <Grid Style="{StaticResource LayoutRootStyle}"
           DataContext="{Binding Grupo}"
-          d:DataContext="{Binding maisNovos, Source={d:DesignInstance Type= models:Talao, IsDesignTimeCreatable=True}}">
+          d:DataContext="{Binding MaisNovos, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>

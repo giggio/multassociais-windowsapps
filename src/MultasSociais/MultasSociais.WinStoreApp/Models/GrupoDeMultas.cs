@@ -6,5 +6,6 @@ namespace MultasSociais.WinStoreApp.Models
     {
         public IEnumerable<Multa> Itens { get; set; }
         public string Nome { get; set; }
+        public TipoGrupo TipoGrupo { get; set; }
     }
 }
