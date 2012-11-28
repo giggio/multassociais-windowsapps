@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Caliburn.Micro;
 
-namespace MultasSociais.WinStoreApp.Models
+namespace MultasSociais.Lib.Models
 {
     public interface ITalao
     {
@@ -31,11 +30,11 @@ namespace MultasSociais.WinStoreApp.Models
 
 #if DEBUG
 
-        public static BindableCollection<GrupoDeMultas> Grupos
+        public static IEnumerable<GrupoDeMultas> Grupos
         {
             get
             {
-                return new BindableCollection<GrupoDeMultas> { MaisNovos, MaisMultados };
+                return new List<GrupoDeMultas> { MaisNovos, MaisMultados };
             }
         }
         public static GrupoDeMultas MaisNovos { get; set; }

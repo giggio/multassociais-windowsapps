@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MultasSociais.WinStoreApp.Models
+namespace MultasSociais.Lib.Models
 {
     public class GrupoDeMultas
     {

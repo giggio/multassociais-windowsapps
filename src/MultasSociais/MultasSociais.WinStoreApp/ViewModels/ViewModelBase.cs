@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using MultasSociais.WinStoreApp.Models;
+using MultasSociais.Lib.Models;
 using MultasSociais.WinStoreApp.Views;
 
 namespace MultasSociais.WinStoreApp.ViewModels

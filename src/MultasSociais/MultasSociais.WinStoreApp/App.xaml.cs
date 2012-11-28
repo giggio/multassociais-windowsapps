@@ -1,7 +1,7 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
-using MultasSociais.WinStoreApp.Models;
+using MultasSociais.Lib.Models;
 using MultasSociais.WinStoreApp.Views;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Controls;

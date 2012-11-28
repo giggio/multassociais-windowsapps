@@ -105,13 +105,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\GrupoDeMultas.cs" />
-    <Compile Include="Models\Multa.cs" />
-    <Compile Include="Models\Talao.cs" />
     <Compile Include="ViewModels\GroupDetailViewModel.cs" />
     <Compile Include="ViewModels\GroupedItemsViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
-    <Compile Include="Models\TipoGrupo.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\GroupedItemsView.xaml.cs">
       <DependentUpon>GroupedItemsView.xaml</DependentUpon>
@@ -189,7 +185,12 @@
       <HintPath>..\packages\Windows.UI.Interactivity.1.0.2.0\lib\winrt45\Windows.UI.Interactivity.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MultasSociais.Lib\MultasSociais.Lib.csproj">
+      <Project>{D7CB53ED-6A02-44BA-B804-56DDD35F8EFD}</Project>
+      <Name>MultasSociais.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Caliburn.Micro;
-using MultasSociais.WinStoreApp.Models;
+using MultasSociais.Lib.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿namespace MultasSociais.WinStoreApp.Models
+﻿namespace MultasSociais.Lib.Models
 {
     public enum TipoGrupo
     {

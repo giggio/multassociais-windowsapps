@@ -1,6 +1,6 @@
 using System;
 
-namespace MultasSociais.WinStoreApp.Models
+namespace MultasSociais.Lib.Models
 {
     public class Multa
     {
