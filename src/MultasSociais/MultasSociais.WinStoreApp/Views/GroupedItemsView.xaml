@@ -22,7 +22,7 @@
             x:Name="groupedItemsViewSource"
             Source="{Binding Grupos}"
             IsSourceGrouped="true"
-            ItemsPath="Itens"
+            ItemsPath="ItensTop"
             d:Source="{Binding Grupos, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
