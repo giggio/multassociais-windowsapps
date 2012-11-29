@@ -1,15 +1,17 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MultasSociais.WinStoreApp.Common" 
-    xmlns:caliburn="using:Caliburn.Micro">
+    xmlns:common="using:MultasSociais.WinStoreApp.Common" 
+    xmlns:caliburn="using:Caliburn.Micro" 
+    xmlns:local="using:MultasSociais.WinStoreApp">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="StandardStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+    <local:ScaleHelper x:Key="ScaleHelper"></local:ScaleHelper>
     <Color x:Key="MSApplicationHeaderForegroundThemeBrush">Black</Color>
-    <Color x:Key="MSApplicationPageBackgroundThemeBrush">White</Color>
-    <Style x:Key="MSLayoutRootStyle" TargetType="Grid" BasedOn="{StaticResource LayoutRootStyle}">
-        <Setter Property="Background" Value="{StaticResource MSApplicationPageBackgroundThemeBrush}"/>
+    <Color x:Key="PageColor">White</Color>
+    <Style x:Key="MSLayoutRootStyle" TargetType="Panel">
+        <Setter Property="Background" Value="{StaticResource PageColor}"/>
 	</Style>
     <Style x:Key="MSPageHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource PageHeaderTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource MSApplicationHeaderForegroundThemeBrush}"/>
@@ -23,9 +25,12 @@
     <Style TargetType="Grid">
         <Setter Property="Background" Value="Transparent" />
     </Style>
+    <Style x:Key="MSGroupHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GroupHeaderTextStyle}">
+        <Setter Property="FontSize" Value="48"></Setter>
+    </Style>
 
     <DataTemplate x:Key="GrupoTemplateFilled">
-        <Grid HorizontalAlignment="Left" Width="250" Height="250" caliburn:Message.Attach="[Event PointerPressed] = [Action GoToItem($dataContext)]">
+        <Grid HorizontalAlignment="Left" Width="{Binding GroupItemsItemSize.Width, Source={StaticResource ScaleHelper}}" Height="{Binding GroupItemsItemSize.Height, Source={StaticResource ScaleHelper}}" caliburn:Message.Attach="[Event PointerPressed] = [Action GoToItem($dataContext)]">
             <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                 <Image Source="{Binding FotoUrl}" Stretch="UniformToFill" AutomationProperties.Name="{Binding DataDescrita}"/>
             </Border>
@@ -58,7 +63,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">
+            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="{Binding GroupDetailItemSize.Width, Source={StaticResource ScaleHelper}}" Height="{Binding GroupDetailItemSize.Width, Source={StaticResource ScaleHelper}}">
                 <Image Source="{Binding FotoUrl}" Stretch="UniformToFill" AutomationProperties.Name="{Binding DataDescrita}"/>
             </Border>
             <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">

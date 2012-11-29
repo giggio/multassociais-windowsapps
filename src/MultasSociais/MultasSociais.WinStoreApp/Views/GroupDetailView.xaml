@@ -20,7 +20,7 @@
             d:Source="{Binding MaisNovos.Itens, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
-    <Grid Style="{StaticResource LayoutRootStyle}"
+    <Grid x:Name="mainGrid" Style="{StaticResource MSLayoutRootStyle}"
           DataContext="{Binding Grupo}"
           d:DataContext="{Binding MaisNovos, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}">
 
@@ -67,7 +67,7 @@
         </ListView>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid x:Name="header">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>

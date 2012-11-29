@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System.Collections.Generic;
+using Caliburn.Micro;
 using MultasSociais.Lib.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
@@ -9,8 +10,19 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         protected async override void OnInitialize()
         {
-            Grupos = new BindableCollection<GrupoDeMultas>{await talao.ObterMaisNovos(), await talao.ObterMaisMultados()};
+            var grupos = new BindableCollection<GrupoDeMultas>{await talao.ObterMaisNovos(), await talao.ObterMaisMultados()};
+            ConfigurarNumeroDeItensAExibir(grupos);
+            Grupos = grupos;
             base.OnInitialize();
+        }
+
+        private void ConfigurarNumeroDeItensAExibir(IEnumerable<GrupoDeMultas> grupos)
+        {
+            var top = 6;
+            foreach (var grupo in grupos)
+            {
+                grupo.TopCount = top;
+            }
         }
 
         private BindableCollection<GrupoDeMultas> grupos;
@@ -26,6 +38,5 @@ namespace MultasSociais.WinStoreApp.ViewModels
                 return grupos;
             }
         }
-
     }
 }

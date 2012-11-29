@@ -7,6 +7,16 @@ namespace MultasSociais.Lib.Models
     {
         private readonly List<Multa> itens = new List<Multa>();
         private IEnumerable<Multa> itensTop = new List<Multa>();
+        private int topCount = 4;
+        public int TopCount
+        {
+            get { return topCount; }
+            set
+            {
+                topCount = value;
+                SetItensTop();
+            }
+        }
 
         public GrupoDeMultas(TipoGrupo tipoGrupo)
         {
@@ -19,10 +29,16 @@ namespace MultasSociais.Lib.Models
             itens.AddRange(multas);
             foreach (var multa in multas)
                 multa.Grupo = this;
-            itensTop = (from m in itens
-                       orderby m.DataOcorrencia descending
-                       select m).Take(4);
+            SetItensTop();
         }
+
+        private void SetItensTop()
+        {
+            itensTop = (from m in itens
+                        orderby m.DataOcorrencia descending
+                        select m).Take(TopCount);
+        }
+
         public void Add(params Multa[] multas)
         {
             Add((IEnumerable<Multa>) multas);

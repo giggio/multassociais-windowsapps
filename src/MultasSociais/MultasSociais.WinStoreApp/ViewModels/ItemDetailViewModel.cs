@@ -13,7 +13,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         public ItemDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
         
-        protected async override void BeforeInitialize()
+        protected override void BeforeInitialize()
         {
             if (selectedItem != null && selectedItem == Parameter)
                 return;
