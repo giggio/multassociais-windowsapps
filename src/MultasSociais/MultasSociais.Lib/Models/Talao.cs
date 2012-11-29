@@ -15,13 +15,13 @@ namespace MultasSociais.Lib.Models
         Task<GrupoDeMultas> ObterMaisMultados();
         Task<Multa> ObterPorId(int id);
     }
+
     public class Talao : ITalao
     {
        public async Task<GrupoDeMultas> ObterMaisNovos()
        {
            var request = WebRequest.CreateHttp("http://multassociais.net/multas.json");
-           var response = await Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, request.EndGetResponse, null);
-           var responseContent = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+           var responseContent = await request.GetResponseAsync();
            var multas = JsonConvert.DeserializeObject<IEnumerable<Multa>>(responseContent);
            var grupo = new GrupoDeMultas {Itens = multas, TipoGrupo = TipoGrupo.MaisNovos, Nome = "Mais novos"};
            foreach (var multa in multas)
@@ -33,8 +33,7 @@ namespace MultasSociais.Lib.Models
        public async Task<GrupoDeMultas> ObterMaisMultados()
        {
            var request = WebRequest.CreateHttp("http://multassociais.net/multas.json");
-           var response = await Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, request.EndGetResponse, null);
-           var responseContent = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+           var responseContent = await request.GetResponseAsync();
            var multas = JsonConvert.DeserializeObject<IEnumerable<Multa>>(responseContent);
            var grupo = new GrupoDeMultas { Itens = multas, TipoGrupo = TipoGrupo.MaisMultados, Nome = "Mais multados" };
            foreach (var multa in multas)
@@ -47,8 +46,7 @@ namespace MultasSociais.Lib.Models
         public async Task<Multa> ObterPorId(int id)
         {
             var request = WebRequest.CreateHttp(string.Format("http://multassociais.net/multas/{0}.json", id));
-            var response = await Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, request.EndGetResponse, null);
-            var responseContent = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+            var responseContent = await request.GetResponseAsync();
             var multa = JsonConvert.DeserializeObject<Multa>(responseContent);
             return multa;
         }

@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
     <Compile Include="Models\GrupoDeMultas.cs" />
     <Compile Include="Models\Multa.cs" />
     <Compile Include="Models\Talao.cs" />
