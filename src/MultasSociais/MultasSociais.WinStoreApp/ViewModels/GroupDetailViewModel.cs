@@ -4,21 +4,13 @@ using MultasSociais.Lib.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
-    public class GroupDetailViewModel : ViewModelBase<string>
+    public class GroupDetailViewModel : ViewModelBase<GrupoDeMultas>
     {
         public GroupDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao){}
 
-        protected async override void OnInitialize()
+        protected override void OnInitialize()
         {
-            switch (Parameter.ToLower())
-            {
-                case "mais multados":
-                    Grupo = await talao.ObterMaisMultados();
-                    break;
-                case "mais novos":
-                    Grupo = await talao.ObterMaisNovos();
-                    break;
-            }
+            Grupo = Parameter;
             base.OnInitialize();
         }
 

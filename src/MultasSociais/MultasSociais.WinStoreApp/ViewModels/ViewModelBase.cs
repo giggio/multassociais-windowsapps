@@ -34,7 +34,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         public void GoToHeader(GrupoDeMultas grupoDeMultas)
         {
-            navigationService.Navigate<GroupDetailView>(grupoDeMultas.Nome);
+            navigationService.Navigate<GroupDetailView>(grupoDeMultas);
         }
         public void GoToItem(Multa multa)
         {

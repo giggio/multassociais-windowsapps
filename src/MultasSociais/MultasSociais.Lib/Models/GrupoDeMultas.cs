@@ -6,13 +6,12 @@ namespace MultasSociais.Lib.Models
     {
         private readonly List<Multa> itens = new List<Multa>();
 
-        public GrupoDeMultas(TipoGrupo tipoGrupo) : this(GrupoDeMultas.ObterNome(tipoGrupo), tipoGrupo) { }
-
-        public GrupoDeMultas(string nome, TipoGrupo tipoGrupo)
+        public GrupoDeMultas(TipoGrupo tipoGrupo)
         {
-            Nome = nome;
+            Nome = ObterNome(tipoGrupo);
             TipoGrupo = tipoGrupo;
         }
+
         public void Add(IEnumerable<Multa> multas)
         {
             itens.AddRange(multas);
