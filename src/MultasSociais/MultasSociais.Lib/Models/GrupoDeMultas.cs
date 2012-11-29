@@ -6,6 +6,8 @@ namespace MultasSociais.Lib.Models
     {
         private readonly List<Multa> itens = new List<Multa>();
 
+        public GrupoDeMultas(TipoGrupo tipoGrupo) : this(GrupoDeMultas.ObterNome(tipoGrupo), tipoGrupo) { }
+
         public GrupoDeMultas(string nome, TipoGrupo tipoGrupo)
         {
             Nome = nome;
@@ -25,5 +27,20 @@ namespace MultasSociais.Lib.Models
         public IEnumerable<Multa> Itens { get { return itens; } }
         public string Nome { get; private set; }
         public TipoGrupo TipoGrupo { get; private set; }
+
+        public static string ObterNome(TipoGrupo tipoGrupo)
+        {
+            var nome = "";
+            switch (tipoGrupo)
+            {
+                case TipoGrupo.MaisNovos:
+                    nome = "Mais multados";
+                    break;
+                case TipoGrupo.MaisMultados:
+                    nome = "Mais novos";
+                    break;
+            }
+            return nome;
+        }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace MultasSociais.Lib.Models
 {
@@ -18,20 +13,25 @@ namespace MultasSociais.Lib.Models
 
     public class Talao : ITalao
     {
-       public async Task<GrupoDeMultas> ObterMaisNovos()
-       {
-           var grupo = new GrupoDeMultas("Mais novos", TipoGrupo.MaisNovos);
-           var multas = await "http://multassociais.net/multas.json".Obter<IEnumerable<Multa>>();
-           grupo.Add(multas);
-           return grupo;
-       }
-       public async Task<GrupoDeMultas> ObterMaisMultados()
-       {
-           var grupo = new GrupoDeMultas ("Mais multados", TipoGrupo.MaisMultados);
-           var multas = await "http://multassociais.net/multas.json".Obter<IEnumerable<Multa>>();
-           grupo.Add(multas);
-           return grupo;
-       }
+        private static GrupoDeMultas maisNovos;
+        private static GrupoDeMultas maisMultados;
+        public async Task<GrupoDeMultas> ObterMaisNovos()
+        {
+            return maisNovos ?? (maisNovos = await ObterGrupo("http://multassociais.net/multas.json", TipoGrupo.MaisNovos));
+        }
+
+        public async Task<GrupoDeMultas> ObterMaisMultados()
+        {
+            return maisMultados ?? (maisMultados = await ObterGrupo("http://multassociais.net/multas.json", TipoGrupo.MaisMultados));
+        }
+
+        public async Task<GrupoDeMultas> ObterGrupo(string url, TipoGrupo tipoGrupo)
+        {
+            var grupo = new GrupoDeMultas(tipoGrupo);
+            var multas = await url.Obter<IEnumerable<Multa>>();
+            grupo.Add(multas);
+            return grupo;
+        }
 
         public async Task<Multa> ObterPorId(int id)
         {

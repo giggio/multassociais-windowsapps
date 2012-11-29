@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
 
