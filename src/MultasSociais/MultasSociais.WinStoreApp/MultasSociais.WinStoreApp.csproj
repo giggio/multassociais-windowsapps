@@ -141,6 +141,7 @@
     <Content Include="Assets\logo-invertido-wide.png" />
     <Content Include="Assets\logo-wide.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\SemImagem.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />

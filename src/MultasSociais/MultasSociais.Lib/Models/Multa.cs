@@ -7,6 +7,7 @@ namespace MultasSociais.Lib.Models
     {
         private string descricao;
         private string placa;
+        private string fotoUrl;
         public int Id { get; set; }
         [JsonProperty(PropertyName = "data_ocorrencia")]
         public DateTime DataOcorrencia { get; set; }
@@ -33,7 +34,15 @@ namespace MultasSociais.Lib.Models
         [JsonProperty(PropertyName = "video")]
         public string VideoUrl { get; set; }
         [JsonProperty(PropertyName = "foto_url")]
-        public string FotoUrl { get; set; }
+        public string FotoUrl
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(fotoUrl) ? "ms-appx:///Assets/SemImagem.png" : fotoUrl;
+            }
+            set { fotoUrl = value; }
+        }
+
         public GrupoDeMultas Grupo { get; set; }
 
         public string DataDescrita

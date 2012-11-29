@@ -39,5 +39,10 @@ namespace Testes.Unidade
         {
             multa.Placa.Should().Be("não informada");
         }
+        [Test]
+        public void FotoUrlCorreta()
+        {
+            multa.FotoUrl.Should().Be("ms-appx:///Assets/SemImagem.png");
+        }
     }
 }
