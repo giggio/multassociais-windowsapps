@@ -7,9 +7,9 @@ namespace MultasSociais.WinStoreApp.ViewModels
     {
         public GroupedItemsViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
 
-        protected override void OnInitialize()
+        protected async override void OnInitialize()
         {
-            Grupos = new BindableCollection<GrupoDeMultas>{talao.ObterMaisNovos(), talao.ObterMaisMultados()};
+            Grupos = new BindableCollection<GrupoDeMultas>{await talao.ObterMaisNovos(), await talao.ObterMaisMultados()};
             base.OnInitialize();
         }
 

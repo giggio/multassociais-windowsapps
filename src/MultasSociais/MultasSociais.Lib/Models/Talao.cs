@@ -1,30 +1,55 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MultasSociais.Lib.Models
 {
     public interface ITalao
     {
-        GrupoDeMultas ObterMaisNovos();
-        GrupoDeMultas ObterMaisMultados();
-        Multa ObterPorId(int id);
+        Task<GrupoDeMultas> ObterMaisNovos();
+        Task<GrupoDeMultas> ObterMaisMultados();
+        Task<Multa> ObterPorId(int id);
     }
     public class Talao : ITalao
     {
-       public GrupoDeMultas ObterMaisNovos()
+       public async Task<GrupoDeMultas> ObterMaisNovos()
        {
-           return MaisNovos;
+           var request = WebRequest.CreateHttp("http://multassociais.net/multas.json");
+           var response = await Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, request.EndGetResponse, null);
+           var responseContent = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+           var multas = JsonConvert.DeserializeObject<IEnumerable<Multa>>(responseContent);
+           var grupo = new GrupoDeMultas {Itens = multas, TipoGrupo = TipoGrupo.MaisNovos, Nome = "Mais novos"};
+           foreach (var multa in multas)
+           {
+               multa.Grupo = grupo;
+           } 
+           return grupo;
        }
-       public GrupoDeMultas ObterMaisMultados()
+       public async Task<GrupoDeMultas> ObterMaisMultados()
        {
-           return MaisMultados;
+           var request = WebRequest.CreateHttp("http://multassociais.net/multas.json");
+           var response = await Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, request.EndGetResponse, null);
+           var responseContent = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+           var multas = JsonConvert.DeserializeObject<IEnumerable<Multa>>(responseContent);
+           var grupo = new GrupoDeMultas { Itens = multas, TipoGrupo = TipoGrupo.MaisMultados, Nome = "Mais multados" };
+           foreach (var multa in multas)
+           {
+               multa.Grupo = grupo;
+           } 
+           return grupo;
        }
 
-        public Multa ObterPorId(int id)
+        public async Task<Multa> ObterPorId(int id)
         {
-            var multa = MaisNovos.Itens.First();
-            multa.Id = id;
+            var request = WebRequest.CreateHttp(string.Format("http://multassociais.net/multas/{0}.json", id));
+            var response = await Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, request.EndGetResponse, null);
+            var responseContent = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+            var multa = JsonConvert.DeserializeObject<Multa>(responseContent);
             return multa;
         }
 

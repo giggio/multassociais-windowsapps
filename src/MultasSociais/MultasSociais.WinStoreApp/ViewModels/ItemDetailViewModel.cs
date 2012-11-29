@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
 
@@ -13,11 +15,11 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         public ItemDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
         
-        protected override void BeforeInitialize()
+        protected async override void BeforeInitialize()
         {
             if (selectedItem != null && selectedItem.Id == Parameter)
                 return;
-            var multa = talao.ObterPorId(Parameter);
+            var multa = await talao.ObterPorId(Parameter);
             SelectedItem = multa;
             Grupo = multa.Grupo;
             Itens = Grupo.Itens;

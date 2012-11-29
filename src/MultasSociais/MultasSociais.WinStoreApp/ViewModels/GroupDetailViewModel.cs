@@ -8,15 +8,15 @@ namespace MultasSociais.WinStoreApp.ViewModels
     {
         public GroupDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao){}
 
-        protected override void OnInitialize()
+        protected async override void OnInitialize()
         {
             switch (Parameter.ToLower())
             {
                 case "mais multados":
-                    Grupo = talao.ObterMaisMultados();
+                    Grupo = await talao.ObterMaisMultados();
                     break;
                 case "mais novos":
-                    Grupo = talao.ObterMaisNovos();
+                    Grupo = await talao.ObterMaisNovos();
                     break;
             }
             base.OnInitialize();
