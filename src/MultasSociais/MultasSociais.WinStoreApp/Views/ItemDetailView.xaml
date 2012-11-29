@@ -59,39 +59,36 @@
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="688" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" x:Name="pageTitle" Margin="117,30,0,0">
                             <TextBlock Text="Placa: " Style="{StaticResource PageHeaderTextStyle}" IsHitTestVisible="false" />
                             <TextBlock x:Name="pageTitleText" Text="{Binding Placa}" Style="{StaticResource PageHeaderTextStyle}" IsHitTestVisible="false" />
                         </StackPanel>
-                        
+                        <Image Grid.Row="1" x:Name="foto" MaxHeight="800" Margin="117,0,0,20" Stretch="Uniform" Source="{Binding FotoUrl}" AutomationProperties.Name="{Binding Placa}" VerticalAlignment="Top" HorizontalAlignment="Left" />
                         <!--
                             UserControl chosen as the templated item because it supports visual state management
                             Loaded/unloaded events explicitly subscribe to view state updates from the page
                         -->
-                        <UserControl Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates" Grid.Row="1">
-                            <ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
+                        <UserControl Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates" Grid.Row="1" Grid.Column="1">
+                            <ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
 
                                 <!-- Content is allowed to flow across as many columns as needed -->
-                                <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
-                                    <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
-                                        <Paragraph LineStackingStrategy="MaxHeight">
-                                            <InlineUIContainer>
-                                                <Image x:Name="image" MaxHeight="480" Margin="0,20,0,10" Stretch="Uniform" Source="{Binding FotoUrl}" AutomationProperties.Name="{Binding DataDescrita}"/>
-                                            </InlineUIContainer>
-                                            <LineBreak/>
-                                        </Paragraph>
-                                        <Paragraph>
-                                            <Run FontSize="27" FontWeight="Normal" Text="{Binding DataDescrita}"/>
-                                            <LineBreak/>
-                                            <LineBreak/>
-                                            <Run FontSize="27" FontWeight="Normal" Text="{Binding NumeroDeMultasDescrita}" />
-                                            <LineBreak/>
-                                        </Paragraph>
-                                        <Paragraph>
-                                            <Run FontSize="18" FontWeight="Light" Text="{Binding Descricao}"/>
-                                        </Paragraph>
-                                    </RichTextBlock>
-
+                                <common:RichTextColumns x:Name="richTextColumns" Margin="43,0,0,29">
+                                	<RichTextBlock x:Name="richTextBlock" HorizontalAlignment="Left" IsTextSelectionEnabled="False" Style="{StaticResource ItemRichTextStyle}" Width="560" VerticalAlignment="Top">
+                                		<Paragraph>
+                                			<Run FontWeight="Normal" FontSize="27" Text="{Binding DataDescrita}"/>
+                                			<LineBreak/>
+                                			<LineBreak/>
+                                			<Run FontWeight="Normal" FontSize="27" Text="{Binding NumeroDeMultasDescrita}"/>
+                                			<LineBreak/>
+                                		</Paragraph>
+                                		<Paragraph>
+                                			<Run FontWeight="Light" FontSize="18" Text="{Binding Descricao}"/>
+                                		</Paragraph>
+                                	</RichTextBlock>
                                     <!-- Additional columns are created from this template -->
                                     <common:RichTextColumns.ColumnTemplate>
                                         <DataTemplate>
@@ -117,7 +114,7 @@
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextColumns" Storyboard.TargetProperty="Margin">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="97,0,87,57"/>
                                                 </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="MaxHeight">
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="foto" Storyboard.TargetProperty="MaxHeight">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="400"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
@@ -135,7 +132,7 @@
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextBlock" Storyboard.TargetProperty="Width">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="280"/>
                                                 </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="MaxHeight">
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="foto" Storyboard.TargetProperty="MaxHeight">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="160"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
