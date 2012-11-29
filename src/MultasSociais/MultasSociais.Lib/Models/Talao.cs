@@ -20,28 +20,22 @@ namespace MultasSociais.Lib.Models
     {
        public async Task<GrupoDeMultas> ObterMaisNovos()
        {
-           var request = WebRequest.CreateHttp("http://multassociais.net/multas.json");
-           var responseContent = await request.GetResponseAsync();
-           var multas = JsonConvert.DeserializeObject<IEnumerable<Multa>>(responseContent);
-           var grupo = new GrupoDeMultas("Mais novos",TipoGrupo.MaisNovos);
+           var grupo = new GrupoDeMultas("Mais novos", TipoGrupo.MaisNovos);
+           var multas = await "http://multassociais.net/multas.json".Obter<IEnumerable<Multa>>();
            grupo.Add(multas);
            return grupo;
        }
        public async Task<GrupoDeMultas> ObterMaisMultados()
        {
-           var request = WebRequest.CreateHttp("http://multassociais.net/multas.json");
-           var responseContent = await request.GetResponseAsync();
-           var multas = JsonConvert.DeserializeObject<IEnumerable<Multa>>(responseContent);
            var grupo = new GrupoDeMultas ("Mais multados", TipoGrupo.MaisMultados);
+           var multas = await "http://multassociais.net/multas.json".Obter<IEnumerable<Multa>>();
            grupo.Add(multas);
            return grupo;
        }
 
         public async Task<Multa> ObterPorId(int id)
         {
-            var request = WebRequest.CreateHttp(string.Format("http://multassociais.net/multas/{0}.json", id));
-            var responseContent = await request.GetResponseAsync();
-            var multa = JsonConvert.DeserializeObject<Multa>(responseContent);
+            var multa = await "http://multassociais.net/multas/{0}.json".Obter<Multa>();
             return multa;
         }
 
