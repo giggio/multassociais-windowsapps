@@ -4,7 +4,7 @@ using MultasSociais.Lib.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
-    public class ItemDetailViewModel : ViewModelBase<int>
+    public class ItemDetailViewModel : ViewModelBase<Multa>
     {
 
         private Multa selectedItem;
@@ -15,9 +15,9 @@ namespace MultasSociais.WinStoreApp.ViewModels
         
         protected async override void BeforeInitialize()
         {
-            if (selectedItem != null && selectedItem.Id == Parameter)
+            if (selectedItem != null && selectedItem == Parameter)
                 return;
-            var multa = await talao.ObterPorId(Parameter);
+            var multa = Parameter;
             SelectedItem = multa;
             Grupo = multa.Grupo;
             Itens = Grupo.Itens;

@@ -38,7 +38,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
         }
         public void GoToItem(Multa multa)
         {
-            navigationService.Navigate<ItemDetailView>(multa.Id);
+            navigationService.Navigate<ItemDetailView>(multa);
         }
     }
 
