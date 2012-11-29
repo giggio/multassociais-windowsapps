@@ -5,11 +5,29 @@ namespace MultasSociais.Lib.Models
 {
     public class Multa
     {
+        private string descricao;
+        private string placa;
         public int Id { get; set; }
         [JsonProperty(PropertyName = "data_ocorrencia")]
         public DateTime DataOcorrencia { get; set; }
-        public string Descricao { get; set; }
-        public string Placa { get; set; }
+        public string Descricao
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(descricao) ? "Nenhuma descrição informada" : descricao;
+            }
+            set { descricao = value; }
+        }
+
+        public string Placa
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(placa) ? "não informada" : placa;
+            }
+            set { placa = value; }
+        }
+
         [JsonProperty(PropertyName = "likes")]
         public int NumeroDeMultas { get; set; }
         [JsonProperty(PropertyName = "video")]
@@ -20,11 +38,26 @@ namespace MultasSociais.Lib.Models
 
         public string DataDescrita
         {
-            get { return Math.Round(DateTime.UtcNow.Subtract(DataOcorrencia).TotalDays, 0) + " dias atrás"; }
+            get
+            {
+                var diasDaOcorrencia = Math.Round(DateTime.UtcNow.Subtract(DataOcorrencia).TotalDays, 0);
+                if (diasDaOcorrencia == 0)
+                {
+                    return "Hoje";
+                }
+                return diasDaOcorrencia + " dias atrás";
+            }
         }
         public string NumeroDeMultasDescrita
         {
-            get { return NumeroDeMultas + " multas"; }
+            get
+            {
+                if (NumeroDeMultas == 0)
+                {
+                    return "Nenhuma multa";
+                }
+                return NumeroDeMultas + " multas";
+            }
         }
     }
 }

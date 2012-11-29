@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MultaVaziaTestes.cs" />
     <Compile Include="DesserializacaoMultas.cs" />
     <Compile Include="MultaTestes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
