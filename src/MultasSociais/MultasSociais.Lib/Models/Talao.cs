@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MultasSociais.Lib.Models
@@ -8,20 +10,26 @@ namespace MultasSociais.Lib.Models
         Task<GrupoDeMultas> ObterMaisNovos();
         Task<GrupoDeMultas> ObterMaisMultados();
         Task<Multa> ObterPorId(int id);
+        Task<IEnumerable<Multa>> PegarMaisMultas(TipoGrupo tipoGrupo, int iniciarEm, uint quantidade);
     }
 
     public partial class Talao : ITalao
     {
         private static GrupoDeMultas maisNovos;
         private static GrupoDeMultas maisMultados;
+        const string urlMaisNovos = "http://multassociais.net/multas.json";
+        const string urlMaisNovosComPaginacao = "http://multassociais.net/multas.json?p={0}";
+        const string urlMaisMultados = "http://multassociais.net/multas.json";
+        const string urlMaisMultadosComPaginacao = "http://multassociais.net/multas.json?p={0}";
+        const string urlMulta = "http://multassociais.net/multas/{0}.json";
         public async Task<GrupoDeMultas> ObterMaisNovos()
         {
-            return maisNovos ?? (maisNovos = await ObterGrupo("http://multassociais.net/multas.json", TipoGrupo.MaisNovos));
+            return maisNovos ?? (maisNovos = await ObterGrupo(urlMaisNovos, TipoGrupo.MaisNovos));
         }
 
         public async Task<GrupoDeMultas> ObterMaisMultados()
         {
-            return maisMultados ?? (maisMultados = await ObterGrupo("http://multassociais.net/multas.json", TipoGrupo.MaisMultados));
+            return maisMultados ?? (maisMultados = await ObterGrupo(urlMaisMultados, TipoGrupo.MaisMultados));
         }
 
         public async Task<GrupoDeMultas> ObterGrupo(string url, TipoGrupo tipoGrupo)
@@ -37,9 +45,23 @@ namespace MultasSociais.Lib.Models
             return grupo;
         }
 
+        public async Task<IEnumerable<Multa>> PegarMaisMultas(TipoGrupo tipoGrupo, int iniciarEm, uint quantidade)
+        {
+            var numeroDePaginas = Math.Ceiling(Convert.ToDecimal(quantidade)/10);
+            var urlBase = tipoGrupo == TipoGrupo.MaisNovos ? urlMaisNovosComPaginacao : urlMaisMultadosComPaginacao;
+            var novasMultas = new List<Multa>();
+            for (int i = 0; i < numeroDePaginas; i++)
+            {
+                var urlConsulta = string.Format(urlBase, iniciarEm + (i*10));
+                var multas = (await urlConsulta.Obter<IEnumerable<Multa>>()).ToArray();
+                novasMultas.AddRange(multas);
+            }
+            return novasMultas;
+        }
+
         public async Task<Multa> ObterPorId(int id)
         {
-            var multa = await "http://multassociais.net/multas/{0}.json".Obter<Multa>();
+            var multa = await urlMulta.Obter<Multa>();
             return multa;
         }
     }

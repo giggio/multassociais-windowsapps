@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace MultasSociais.Lib.Models
 {
     public class GrupoDeMultas
     {
-        private readonly List<Multa> itens = new List<Multa>();
+        private readonly ObservableCollection<Multa> itens = new ObservableCollection<Multa>();
         private IEnumerable<Multa> itensTop = new List<Multa>();
         private int topCount = 4;
         public int TopCount
@@ -26,9 +27,11 @@ namespace MultasSociais.Lib.Models
 
         public void Add(IEnumerable<Multa> multas)
         {
-            itens.AddRange(multas);
             foreach (var multa in multas)
+            {
                 multa.Grupo = this;
+                itens.Add(multa);
+            }
             SetItensTop();
         }
 
@@ -44,7 +47,7 @@ namespace MultasSociais.Lib.Models
             Add((IEnumerable<Multa>) multas);
         }
 
-        public IEnumerable<Multa> Itens { get { return itens; } }
+        public ObservableCollection<Multa> Itens { get { return itens; } }
         public IEnumerable<Multa> ItensTop { get { return itensTop; } }
         public string Nome { get; private set; }
         public TipoGrupo TipoGrupo { get; private set; }

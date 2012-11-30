@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
 
@@ -21,15 +21,23 @@ namespace MultasSociais.WinStoreApp.ViewModels
             set
             {
                 grupo = value;
+                ConstruirItens();
                 NotifyOfPropertyChange();
                 NotifyOfPropertyChange("Itens");
             }
         }
-        public IEnumerable<Multa> Itens
+
+        private void ConstruirItens()
+        {
+            itens = new ListaVirtualizada<Multa>(grupo.Itens, numeroAObter => talao.PegarMaisMultas(grupo.TipoGrupo, grupo.Itens.Count, numeroAObter));
+        }
+
+        private ListaVirtualizada<Multa> itens;
+        public ListaVirtualizada<Multa> Itens
         {
             get
             {
-                return grupo == null ? null : grupo.Itens;
+                return itens;
             }
         }
     }
