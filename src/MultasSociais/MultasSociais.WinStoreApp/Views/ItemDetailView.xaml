@@ -18,6 +18,8 @@
             x:Name="itemsViewSource"
             Source="{Binding Itens}"
             d:Source="{Binding MaisNovos.Itens, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}"/>
+        <local:StringFormatConverter x:Key="StringFormatConverter" />
+        <local:DateFormatConverter x:Key="DateFormatConverter" />
     </Page.Resources>
 
     <!--
@@ -83,6 +85,7 @@
                                     	<RichTextBlock x:Name="richTextBlock" IsTextSelectionEnabled="False" Style="{StaticResource ItemRichTextStyle}" VerticalAlignment="Top" Width="560" HorizontalAlignment="Left">
                                     		<Paragraph>
                                     			<Run FontWeight="Normal" FontSize="27" Text="{Binding DataDescrita}"/>
+												<Run FontWeight="Normal" FontSize="27" Text=" - "/><Run FontWeight="Normal" FontSize="27" Text="{Binding DataOcorrencia, Converter={StaticResource DateFormatConverter}, ConverterParameter='d'}"/>
                                     			<LineBreak/>
                                     			<LineBreak/>
                                     			<Run FontWeight="Normal" FontSize="27" Text="{Binding NumeroDeMultasDescrita}"/>
