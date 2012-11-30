@@ -54,6 +54,10 @@ namespace MultasSociais.Lib.Models
                 {
                     return "Hoje";
                 }
+                if (diasDaOcorrencia == 1)
+                {
+                    return "Ontem";
+                }
                 return diasDaOcorrencia + " dias atrás";
             }
         }
@@ -64,6 +68,10 @@ namespace MultasSociais.Lib.Models
                 if (NumeroDeMultas == 0)
                 {
                     return "Nenhuma multa";
+                }
+                if (NumeroDeMultas == 1)
+                {
+                    return "Uma multa";
                 }
                 return NumeroDeMultas + " multas";
             }
