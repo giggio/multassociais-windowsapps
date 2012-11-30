@@ -79,23 +79,22 @@
                                     <Image x:Name="foto" MaxHeight="800" Margin="117,0,0,20" Stretch="Uniform" Source="{Binding FotoUrl}" AutomationProperties.Name="{Binding Placa}" VerticalAlignment="Top" HorizontalAlignment="Left" />
 
                                     <!-- Content is allowed to flow across as many columns as needed -->
-                                    <common:RichTextColumns x:Name="richTextColumns" Margin="43,0,0,29" Grid.Column="1">
-                                	    <RichTextBlock x:Name="richTextBlock" HorizontalAlignment="Left" IsTextSelectionEnabled="False" Style="{StaticResource ItemRichTextStyle}" Width="560" VerticalAlignment="Top">
-                                		    <Paragraph>
-                                			    <Run FontWeight="Normal" FontSize="27" Text="{Binding DataDescrita}"/>
-                                			    <LineBreak/>
-                                			    <LineBreak/>
-                                			    <Run FontWeight="Normal" FontSize="27" Text="{Binding NumeroDeMultasDescrita}"/>
-                                			    <LineBreak/>
-                                		    </Paragraph>
-                                		    <Paragraph>
-                                			    <Run FontWeight="Light" FontSize="18" Text="{Binding Descricao}"/>
-                                		    </Paragraph>
-                                	    </RichTextBlock>
-                                        <!-- Additional columns are created from this template -->
+                                    <common:RichTextColumns x:Name="richTextColumns" Margin="43,0,0,29" Grid.Column="1" VerticalAlignment="Top">
+                                    	<RichTextBlock x:Name="richTextBlock" IsTextSelectionEnabled="False" Style="{StaticResource ItemRichTextStyle}" VerticalAlignment="Top" Width="560" HorizontalAlignment="Left">
+                                    		<Paragraph>
+                                    			<Run FontWeight="Normal" FontSize="27" Text="{Binding DataDescrita}"/>
+                                    			<LineBreak/>
+                                    			<LineBreak/>
+                                    			<Run FontWeight="Normal" FontSize="27" Text="{Binding NumeroDeMultasDescrita}"/>
+                                    			<LineBreak/>
+                                    		</Paragraph>
+                                    		<Paragraph>
+                                    			<Run FontWeight="Light" FontSize="18" Text="{Binding Descricao}"/>
+                                    		</Paragraph>
+                                    	</RichTextBlock>
                                         <common:RichTextColumns.ColumnTemplate>
                                             <DataTemplate>
-                                                <RichTextBlockOverflow Width="560" Margin="80,0,0,0">
+                                                <RichTextBlockOverflow Margin="80,0,0,0" Width="560">
                                                     <RichTextBlockOverflow.RenderTransform>
                                                         <TranslateTransform X="-1" Y="4"/>
                                                     </RichTextBlockOverflow.RenderTransform>
