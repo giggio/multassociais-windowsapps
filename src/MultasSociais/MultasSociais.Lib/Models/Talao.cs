@@ -19,8 +19,8 @@ namespace MultasSociais.Lib.Models
         private static GrupoDeMultas maisMultados;
         const string urlMaisNovos = "http://multassociais.net/multas.json";
         const string urlMaisNovosComPaginacao = "http://multassociais.net/multas.json?p={0}";
-        const string urlMaisMultados = "http://multassociais.net/multas.json";
-        const string urlMaisMultadosComPaginacao = "http://multassociais.net/multas.json?p={0}";
+        const string urlMaisMultados = "http://multassociais.net/mais_multados.json";
+        const string urlMaisMultadosComPaginacao = "http://multassociais.net/mais_multados.json?p={0}";
         const string urlMulta = "http://multassociais.net/multas/{0}.json";
         public async Task<GrupoDeMultas> ObterMaisNovos()
         {

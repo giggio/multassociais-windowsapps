@@ -58,10 +58,10 @@ namespace MultasSociais.Lib.Models
             switch (tipoGrupo)
             {
                 case TipoGrupo.MaisNovos:
-                    nome = "Mais multados";
+                    nome = "Mais novos";
                     break;
                 case TipoGrupo.MaisMultados:
-                    nome = "Mais novos";
+                    nome = "Mais multados";
                     break;
             }
             return nome;
