@@ -10,7 +10,7 @@ namespace MultasSociais.Lib.Models
         Task<GrupoDeMultas> ObterMaisNovos();
         Task<GrupoDeMultas> ObterMaisMultados();
         Task<Multa> ObterPorId(int id);
-        Task<IEnumerable<Multa>> PegarMaisMultas(TipoGrupo tipoGrupo, int iniciarEm, uint quantidade);
+        Task<IEnumerable<Multa>> PegarMaisMultas(GrupoDeMultas grupo, int iniciarEm, uint quantidade);
     }
 
     public partial class Talao : ITalao
@@ -45,10 +45,10 @@ namespace MultasSociais.Lib.Models
             return grupo;
         }
 
-        public async Task<IEnumerable<Multa>> PegarMaisMultas(TipoGrupo tipoGrupo, int iniciarEm, uint quantidade)
+        public async Task<IEnumerable<Multa>> PegarMaisMultas(GrupoDeMultas grupo, int iniciarEm, uint quantidade)
         {
             var numeroDePaginas = Math.Ceiling(Convert.ToDecimal(quantidade)/10);
-            var urlBase = tipoGrupo == TipoGrupo.MaisNovos ? urlMaisNovosComPaginacao : urlMaisMultadosComPaginacao;
+            var urlBase = grupo.TipoGrupo == TipoGrupo.MaisNovos ? urlMaisNovosComPaginacao : urlMaisMultadosComPaginacao;
             var novasMultas = new List<Multa>();
             for (int i = 0; i < numeroDePaginas; i++)
             {
@@ -56,6 +56,7 @@ namespace MultasSociais.Lib.Models
                 var multas = (await urlConsulta.Obter<IEnumerable<Multa>>()).ToArray();
                 novasMultas.AddRange(multas);
             }
+            grupo.Add(novasMultas);
             return novasMultas;
         }
 

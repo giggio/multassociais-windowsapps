@@ -29,7 +29,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         private void ConstruirItens()
         {
-            itens = new ListaVirtualizada<Multa>(grupo.Itens, numeroAObter => talao.PegarMaisMultas(grupo.TipoGrupo, grupo.Itens.Count, numeroAObter));
+            itens = new ListaVirtualizada<Multa>(grupo.Itens, numeroAObter => talao.PegarMaisMultas(grupo, grupo.Itens.Count, numeroAObter));
         }
 
         private ListaVirtualizada<Multa> itens;

@@ -12,13 +12,11 @@ namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class ListaVirtualizada<T> : ObservableCollection<T>, ISupportIncrementalLoading
     {
-        private readonly ObservableCollection<T> colecaoOriginal;
         private readonly Func<uint, Task<IEnumerable<T>>> obterMaisItens;
         private bool hasMoreItems = true;
 
         public ListaVirtualizada(ObservableCollection<T> colecaoOriginal, Func<uint, Task<IEnumerable<T>>> obterMaisItens) : base(colecaoOriginal)
         {
-            this.colecaoOriginal = colecaoOriginal;
             this.obterMaisItens = obterMaisItens;
         }
 
@@ -34,7 +32,6 @@ namespace MultasSociais.WinStoreApp.ViewModels
             var itensObtidos = (await obterMaisItens(count)).ToArray();
             foreach (var item in itensObtidos)
             {
-                colecaoOriginal.Add(item);
                 Add(item);
             }
             hasMoreItems = itensObtidos.Length > count;
