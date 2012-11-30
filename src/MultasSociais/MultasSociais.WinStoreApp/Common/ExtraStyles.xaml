@@ -28,18 +28,30 @@
     <Style x:Key="MSGroupHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GroupHeaderTextStyle}">
         <Setter Property="FontSize" Value="48"></Setter>
     </Style>
+    <Style x:Key="BotaoSemEstilo" TargetType="Button">
+    	<Setter Property="Padding" Value="0"/>
+    	<Setter Property="Template">
+    		<Setter.Value>
+    			<ControlTemplate TargetType="Button">
+    				<ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>    				
+    			</ControlTemplate>
+    		</Setter.Value>
+    	</Setter>
+    </Style>
 
     <DataTemplate x:Key="GrupoTemplateFilled">
-        <Grid HorizontalAlignment="Left" Width="{Binding GroupItemsItemSize.Width, Source={StaticResource ScaleHelper}}" Height="{Binding GroupItemsItemSize.Height, Source={StaticResource ScaleHelper}}" caliburn:Message.Attach="[Event PointerPressed] = [Action GoToItem($dataContext)]">
-            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                <Image Source="{Binding FotoUrl}" Stretch="UniformToFill" AutomationProperties.Name="{Binding DataDescrita}"/>
-            </Border>
-            <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                <TextBlock Text="{Binding DataDescrita}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0"/>
-                <TextBlock Text="{Binding Placa}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0,15,20"/>
-                <TextBlock Text="{Binding NumeroDeMultasDescrita}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-            </StackPanel>
-        </Grid>
+        <Button x:Name="button" HorizontalAlignment="Left" caliburn:Message.Attach="[Event Click] = [Action GoToItem($dataContext)]" Width="{Binding GroupItemsItemSize.Width, Source={StaticResource ScaleHelper}}" Height="{Binding GroupItemsItemSize.Height, Source={StaticResource ScaleHelper}}" Style="{StaticResource BotaoSemEstilo}">
+            <Grid x:Name="grid" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border x:Name="borderFoto" Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <Image x:Name="foto" Source="{Binding FotoUrl}" Stretch="UniformToFill" AutomationProperties.Name="{Binding DataDescrita}"/>
+                </Border>
+                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                    <TextBlock Text="{Binding DataDescrita}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0"/>
+                    <TextBlock Text="{Binding Placa}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0,15,20"/>
+                    <TextBlock Text="{Binding NumeroDeMultasDescrita}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                </StackPanel>
+            </Grid>
+        </Button>
     </DataTemplate>
 
     <DataTemplate x:Key="GrupoTemplateSnapped">
@@ -59,20 +71,20 @@
     </DataTemplate>
     
     <DataTemplate x:Key="ItemTemplateWithSubTextFilled">
-        <Grid Height="110" Width="480" Margin="10" caliburn:Message.Attach="[Event PointerPressed] = [Action GoToItem($dataContext)]">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="{Binding GroupDetailItemSize.Width, Source={StaticResource ScaleHelper}}" Height="{Binding GroupDetailItemSize.Width, Source={StaticResource ScaleHelper}}">
-                <Image Source="{Binding FotoUrl}" Stretch="UniformToFill" AutomationProperties.Name="{Binding DataDescrita}"/>
-            </Border>
-            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                <TextBlock Text="{Binding DataDescrita}" Style="{StaticResource TitleTextStyle}" TextWrapping="NoWrap"/>
-                <TextBlock Text="{Binding NumeroDeMultasDescrita}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
-                <TextBlock Text="{Binding Descricao}" Style="{StaticResource BodyTextStyle}" MaxHeight="60"/>
-            </StackPanel>
-        </Grid>
+        <Button HorizontalContentAlignment="Stretch" x:Name="button" Style="{StaticResource BotaoSemEstilo}" Height="110" Width="480" Margin="10" caliburn:Message.Attach="[Event Click] = [Action GoToItem($dataContext)]">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding FotoUrl}" Stretch="UniformToFill" AutomationProperties.Name="{Binding DataDescrita}" Width="{Binding GroupDetailItemSize.Width, Source={StaticResource ScaleHelper}}" Height="{Binding GroupDetailItemSize.Width, Source={StaticResource ScaleHelper}}"/>
+                <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding DataDescrita}" Style="{StaticResource TitleTextStyle}" TextWrapping="NoWrap"/>
+                    <TextBlock Text="{Binding NumeroDeMultasDescrita}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+                    <TextBlock Text="{Binding Descricao}" Style="{StaticResource BodyTextStyle}" MaxHeight="60"/>
+                </StackPanel>
+            </Grid>
+        </Button>
     </DataTemplate>
     <DataTemplate x:Key="ItemTemplateSnapped">
         <Grid Margin="6" caliburn:Message.Attach="[Event PointerPressed] = [Action GoToItem($dataContext)]">
