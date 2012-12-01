@@ -10,6 +10,7 @@
     xmlns:models="using:MultasSociais.Lib.Models"
     xmlns:caliburn="using:Caliburn.Micro"
     d:DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    NavigationCacheMode="Required"
     mc:Ignorable="d">
 
     <Page.Resources>

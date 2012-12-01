@@ -9,6 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:MultasSociais.Lib.Models"
+    NavigationCacheMode="Required"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -33,7 +34,7 @@
         <GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
-            AutomationProperties.Name="Items In Group"
+            AutomationProperties.Name="Multas no grupo"
             TabIndex="1"
             Grid.RowSpan="2"
             Padding="120,126,120,50"
@@ -54,7 +55,7 @@
         <ListView
             x:Name="itemListView"
             AutomationProperties.AutomationId="ItemListView"
-            AutomationProperties.Name="Items In Group"
+            AutomationProperties.Name="Multas no grupo"
             TabIndex="1"
             Grid.Row="1"
             Visibility="Collapsed"
