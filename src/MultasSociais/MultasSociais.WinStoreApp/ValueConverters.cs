@@ -39,4 +39,19 @@ namespace MultasSociais.WinStoreApp
             return value;
         }
     }
+    public class SumConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (parameter == null) 
+                throw new ArgumentNullException("parameter");
+            if (value == null) 
+                throw new ArgumentNullException("value");
+            return (double)value + System.Convert.ToDouble(parameter);
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return value;
+        }
+    }
 }

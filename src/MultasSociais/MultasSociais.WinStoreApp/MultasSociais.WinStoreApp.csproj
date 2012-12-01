@@ -110,7 +110,7 @@
     <Compile Include="ViewModels\GroupedItemsViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="ViewModels\ListaVirtualizada.cs" />
-    <Compile Include="FormatConverters.cs" />
+    <Compile Include="ValueConverters.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\GroupedItemsView.xaml.cs">
       <DependentUpon>GroupedItemsView.xaml</DependentUpon>
