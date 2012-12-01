@@ -41,7 +41,7 @@
 
     <DataTemplate x:Key="GrupoTemplateFilled">
         <Button x:Name="button" HorizontalAlignment="Left" caliburn:Message.Attach="[Event Click] = [Action GoToItem($dataContext)]" Width="{Binding GroupItemsItemSize.Width, Source={StaticResource ScaleHelper}}" Height="{Binding GroupItemsItemSize.Height, Source={StaticResource ScaleHelper}}" Style="{StaticResource BotaoSemEstilo}">
-            <Grid x:Name="grid" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid x:Name="grid" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="{Binding Width, ElementName=button}" Height="{Binding Height, ElementName=button}">
                 <Border x:Name="borderFoto" Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image x:Name="foto" Source="{Binding FotoUrl}" Stretch="UniformToFill" AutomationProperties.Name="{Binding DataDescrita}"/>
                 </Border>
