@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
 
@@ -10,6 +11,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
         private Multa selectedItem;
         private GrupoDeMultas grupo;
         private IEnumerable<Multa> itens;
+        private bool possivelMultar = true;
 
         public ItemDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
         
@@ -24,10 +26,26 @@ namespace MultasSociais.WinStoreApp.ViewModels
             base.BeforeInitialize();
         }
 
-        public void Multar()
+        public async Task Multar()
         {
-            talao.MarcarMultaAsync(selectedItem);
+            var multadoComSucesso = await talao.MarcarMultaAsync(selectedItem);
+            if (multadoComSucesso)
+            {
+                selectedItem.NumeroDeMultas++;
+                CanMultar = false;
+            }
         }
+
+        public bool CanMultar
+        {
+            get { return possivelMultar; }
+            set 
+            { 
+                possivelMultar = value;
+                NotifyOfPropertyChange();
+            }
+        }
+        
         public GrupoDeMultas Grupo
         {
             get
@@ -63,6 +81,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
             {
                 selectedItem = value;
                 NotifyOfPropertyChange();
+                NotifyOfPropertyChange("CanMultar");
             }
         }        
     }

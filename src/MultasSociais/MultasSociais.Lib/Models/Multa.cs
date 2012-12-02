@@ -1,13 +1,17 @@
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using MultasSociais.Lib.Annotations;
 using Newtonsoft.Json;
 
 namespace MultasSociais.Lib.Models
 {
-    public class Multa
+    public class Multa : INotifyPropertyChanged
     {
         private string descricao;
         private string placa;
         private string fotoUrl;
+        private int numeroDeMultas;
         public int Id { get; set; }
         [JsonProperty(PropertyName = "data_ocorrencia")]
         public DateTime DataOcorrencia { get; set; }
@@ -30,7 +34,17 @@ namespace MultasSociais.Lib.Models
         }
 
         [JsonProperty(PropertyName = "likes")]
-        public int NumeroDeMultas { get; set; }
+        public int NumeroDeMultas
+        {
+            get { return numeroDeMultas; }
+            set
+            {
+                numeroDeMultas = value;
+                OnPropertyChanged();
+                OnPropertyChanged("NumeroDeMultasDescrita");
+            }
+        }
+
         [JsonProperty(PropertyName = "video")]
         public string VideoUrl { get; set; }
         [JsonProperty(PropertyName = "foto_url")]
@@ -75,6 +89,15 @@ namespace MultasSociais.Lib.Models
                 }
                 return NumeroDeMultas + " multas";
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

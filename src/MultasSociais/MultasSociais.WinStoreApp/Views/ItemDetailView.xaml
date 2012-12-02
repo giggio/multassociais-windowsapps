@@ -31,7 +31,7 @@
 				</Grid.ColumnDefinitions>
 				<StackPanel Orientation="Horizontal"/>
 				<StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button x:Name="Multar" Content="$" Style="{StaticResource DollarAppBarButtonStyle}"/>
+                    <Button x:Name="Multar" Content="$" Style="{StaticResource DollarAppBarButtonStyle}" />
 				</StackPanel>
 			</Grid>
 		</AppBar>
