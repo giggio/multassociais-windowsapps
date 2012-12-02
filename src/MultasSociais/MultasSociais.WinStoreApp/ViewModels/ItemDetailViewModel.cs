@@ -23,6 +23,11 @@ namespace MultasSociais.WinStoreApp.ViewModels
             Itens = Grupo.Itens;
             base.BeforeInitialize();
         }
+
+        public void Multar()
+        {
+            talao.MarcarMultaAsync(selectedItem);
+        }
         public GrupoDeMultas Grupo
         {
             get
