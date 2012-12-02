@@ -2,19 +2,23 @@
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
+using MultasSociais.WinStoreApp.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class ItemDetailViewModel : ViewModelBase<Multa>
     {
+        private readonly IMultasRealizadas multasRealizadas;
 
         private Multa selectedItem;
         private GrupoDeMultas grupo;
         private IEnumerable<Multa> itens;
-        private bool possivelMultar = true;
+        private bool multadoAgora = true;
+        public ItemDetailViewModel(INavigationService navigationService, ITalao talao, IMultasRealizadas multasRealizadas) : base(navigationService, talao)
+        {
+            this.multasRealizadas = multasRealizadas;
+        }
 
-        public ItemDetailViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
-        
         protected override void BeforeInitialize()
         {
             if (selectedItem != null && selectedItem == Parameter)
@@ -28,22 +32,22 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         public async Task Multar()
         {
-            var multadoComSucesso = await talao.MarcarMultaAsync(selectedItem);
-            if (multadoComSucesso)
+            multadoAgora = await talao.MarcarMultaAsync(selectedItem);
+            if (multadoAgora)
             {
+                NotifyOfPropertyChange("CanMultar");
                 selectedItem.NumeroDeMultas++;
-                CanMultar = false;
+                await GuardarQueFoiMultado();
             }
+        }
+        private async Task GuardarQueFoiMultado()
+        {
+            await multasRealizadas.Adicionar(new MultaRealizada{Id = selectedItem.Id});
         }
 
         public bool CanMultar
         {
-            get { return possivelMultar; }
-            set 
-            { 
-                possivelMultar = value;
-                NotifyOfPropertyChange();
-            }
+            get { return !multadoAgora && !multasRealizadas.FoiMultado(selectedItem); }
         }
         
         public GrupoDeMultas Grupo
@@ -79,6 +83,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
             }
             set
             {
+                multadoAgora = false;
                 selectedItem = value;
                 NotifyOfPropertyChange();
                 NotifyOfPropertyChange("CanMultar");

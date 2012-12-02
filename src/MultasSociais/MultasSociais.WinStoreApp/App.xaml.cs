@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using MultasSociais.Lib.Models;
+using MultasSociais.WinStoreApp.Models;
 using MultasSociais.WinStoreApp.Views;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Controls;
@@ -15,6 +16,7 @@ namespace MultasSociais.WinStoreApp
         public App()
         {
             InitializeComponent();
+            MultasRealizadas.Inicializar();
         }
 
         protected override void Configure()
@@ -22,6 +24,7 @@ namespace MultasSociais.WinStoreApp
             container = new WinRTContainer();
             container.RegisterWinRTServices();
             container.PerRequest<ITalao, Talao>();
+            container.PerRequest<IMultasRealizadas, MultasRealizadas>();
         }
 
         protected override object GetInstance(Type service, string key)
