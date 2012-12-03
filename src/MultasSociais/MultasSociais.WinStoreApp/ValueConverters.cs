@@ -44,7 +44,13 @@ namespace MultasSociais.WinStoreApp
             {
                 language = GlobalizationPreferences.Languages.First();
             }
-            return System.Convert.ToDateTime(value, new CultureInfo(language));
+            DateTime date = DateTime.MinValue;
+            try
+            {
+                date = System.Convert.ToDateTime(value, new CultureInfo(language));
+            }
+            catch{ }
+            return date;
         }
     }
     public class SumConverter : IValueConverter
