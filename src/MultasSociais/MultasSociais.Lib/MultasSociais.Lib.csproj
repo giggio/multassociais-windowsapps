@@ -35,7 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\CriarMultaNova.Api.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\CriarMultaNova.cs" />
     <Compile Include="Models\GrupoDeMultas.cs" />
     <Compile Include="Models\Multa.cs" />
     <Compile Include="Models\MultaNova.cs" />
@@ -44,6 +46,7 @@
     <Compile Include="Models\TipoGrupo.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HttpUpload.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

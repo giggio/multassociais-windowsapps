@@ -2,80 +2,124 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using MultasSociais.Lib;
 using MultasSociais.Lib.Models;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class ShareTargetViewModel : ViewModelBase
     {
-        public static ShareOperation ShareOperation { get; set; }
-
+        private HttpUpload.FileInfo fileInfo;
+        
         public ShareTargetViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
 
         protected async override void OnInitialize()
         {
             base.OnInitialize();
 
-            var shareProperties = ShareOperation.Data.Properties;
-            if (shareProperties.Thumbnail != null)
-            {
-                var stream = await shareProperties.Thumbnail.OpenReadAsync();
-                Image = new BitmapImage();
-                await Image.SetSourceAsync(stream);
-                ShowImage = true;
-            }
+            await TentarObterThumbnail();
 
+            await ObterImagem();
+        }
+
+        private async Task TentarObterThumbnail()
+        {
+            var shareProperties = ShareOperation.Data.Properties;
+            if (shareProperties.Thumbnail == null) return;
+            var stream = await shareProperties.Thumbnail.OpenReadAsync();
+            await ExibirImagem(stream);
+        }
+
+        private async Task ObterImagem()
+        {
+            IRandomAccessStream streamCloned = null;
             if (ShareOperation.Data.Contains(StandardDataFormats.Bitmap))
             {
-                var sharedBitmap = await ShareOperation.Data.GetBitmapAsync();
-                Image = new BitmapImage();
-                await Image.SetSourceAsync(await sharedBitmap.OpenReadAsync());
-                ShowImage = true;
+                var sharedBitmapRandomAccessStreamReference = await ShareOperation.Data.GetBitmapAsync();
+                var stream = await sharedBitmapRandomAccessStreamReference.OpenReadAsync();
+                streamCloned = stream.CloneStream();
+                fileInfo = new HttpUpload.FileInfo
+                               {
+                                   FileName = ObterNomeAleatorioDeArquivo(stream.ContentType),
+                                   ContentType = stream.ContentType,
+                                   Buffer = await stream.GetByteFromFileAsync(),
+                                   ParamName = "multa[foto]"
+                               };
             }
-            
-            if (ShareOperation.Data.Contains(StandardDataFormats.StorageItems))
+            else if (ShareOperation.Data.Contains(StandardDataFormats.StorageItems))
             {
                 var storageItems = await ShareOperation.Data.GetStorageItemsAsync();
-                StorageFile storageItem = null;
-                if (storageItems.Count > 0)
-                    storageItem = (StorageFile) storageItems.First();
-                if (storageItem != null)
-                {
-                    Image = new BitmapImage();
-                    await Image.SetSourceAsync(await storageItem.OpenReadAsync());
-                    ShowImage = true;
-                }
+                var storageFile = (StorageFile) storageItems.FirstOrDefault();
+                if (storageFile == null) return;
+                var stream = await storageFile.OpenReadAsync();
+                streamCloned = stream.CloneStream();
+                fileInfo = new HttpUpload.FileInfo
+                               {
+                                   FileName = storageFile.Name,
+                                   ContentType = stream.ContentType,
+                                   Buffer = await stream.GetByteFromFileAsync(),
+                                   ParamName = "multa[foto]"
+                               };
             }
+            await ExibirImagem(streamCloned);
         }
+
+        private async Task ExibirImagem(IRandomAccessStream stream)
+        {
+            if (Image != null) return;
+            Image = new BitmapImage();
+            await Image.SetSourceAsync(stream);
+            ShowImage = true;
+        }
+
+
+        private string ObterNomeAleatorioDeArquivo(string contentType)
+        {
+            var nomeAleatorio = "arq" + new Random().Next(1000000000, int.MaxValue).ToString();
+            var ext = contentType.Split('/')[1];
+            var nome = string.Format("{0}.{1}", nomeAleatorio, ext);
+            return nome;
+        }
+
 
         public async Task Share()
         {
             Sharing = true;
             ShareOperation.ReportStarted();
-            var multa = new MultaNova
+            var multa = new CriarMultaNova
                             {
-                                DataOcorrencia = dataOcorrencia,
                                 Descricao = descricao,
                                 Placa = placa,
                                 VideoUrl = videoUrl
                             };
-            MultadoComSucesso = await talao.MultarAsync(multa);
-            if (MultadoComSucesso)
+            multa.SetaDataOcorrencia(dataOcorrencia);
+            try
             {
-                Sharing = false;
-                await Task.Delay(1000);
-                ShareOperation.ReportCompleted();
+                MultadoComSucesso = await talao.MultarAsync(multa, fileInfo);
+                if (MultadoComSucesso)
+                {
+                    Sharing = false;
+                    await Task.Delay(1000);
+                    ShareOperation.ReportCompleted();
+                }
+                else
+                {
+                    ShareOperation.ReportError("Não foi possível multar, favor tentar mais tarde.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShareOperation.ReportError("Não foi possível multar, favor tentar mais tarde.");
+                ShareOperation.ReportError("Não foi possível multar, ocorreu um erro, favor tentar mais tarde.\nErro:" + ex.Message);
             }
+
         }
 
+        public static ShareOperation ShareOperation { get; set; }
         private DateTime dataOcorrencia;
         public DateTime DataOcorrencia { get { return dataOcorrencia; } set { dataOcorrencia = value; NotifyOfPropertyChange(); } }
         private string descricao;

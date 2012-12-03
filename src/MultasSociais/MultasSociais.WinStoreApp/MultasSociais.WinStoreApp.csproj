@@ -105,6 +105,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entensoes.cs" />
     <Compile Include="Models\MultasRealizadas.cs" />
     <Compile Include="ScaleHelper.cs" />
     <Compile Include="ViewModels\GroupDetailViewModel.cs" />

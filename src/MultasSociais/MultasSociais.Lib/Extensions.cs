@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using MultasSociais.Lib.Models;
 using Newtonsoft.Json;
 
 namespace MultasSociais.Lib
@@ -43,11 +44,26 @@ namespace MultasSociais.Lib
             var response = await request.GetResponseAsync();
             return response.StatusCode;
         }
+        
+        public static async Task Postar<T>(this string url, T item, byte[] fileBuffer)
+        {
+            var request = WebRequest.CreateHttp(url);
+            request.Method = "POST";
+            var requestStream = await request.GetRequestStreamAsync();
+            var writer = new StreamWriter(requestStream);
+            var itemSerializado = JsonConvert.SerializeObject(item);
+            await writer.WriteAsync(itemSerializado);
+            var response = await request.GetResponseAsync();
+            //response.StatusCode;
+        }
 
-        private static async Task<Stream> GetRquestStreamAsync(HttpWebRequest request)
+        public static async Task<Stream> GetRequestStreamAsync(this HttpWebRequest request)
         {
             var stream = await Task.Factory.FromAsync<Stream>(request.BeginGetRequestStream, request.EndGetRequestStream, null);
             return stream;
         }
+
+
+
     }
 }

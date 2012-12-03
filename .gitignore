@@ -53,3 +53,4 @@ packages/
 *.pfx
 docs/~$*
 !MultasSociais.Lib
+CriarMultaNova.Api.cs
