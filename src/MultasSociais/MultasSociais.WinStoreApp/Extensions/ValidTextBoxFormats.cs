@@ -14,6 +14,8 @@ namespace MultasSociais.WinStoreApp.Extensions
         Numeric = 2,
         NonEmptyNumeric = 3,
         StartsWith = 4,
-        StartsWithNonEmpty = 5        
+        StartsWithNonEmpty = 5,
+        DateTime = 8,
+        DateTimeNonEmpty = 9
     }
 }

@@ -90,7 +90,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
         { 
             get
             {
-                return descricaoIsValid && videoUrlIsValid && !sharing;
+                return descricaoIsValid && videoUrlIsValid && dataOcorrenciaIsValid && !sharing;
             }
         }
 
@@ -147,5 +147,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
         public bool VideoUrlIsValid { get { return videoUrlIsValid; } set { videoUrlIsValid = value; NotifyOfPropertyChange("CanShare"); } }
         private bool descricaoIsValid;
         public bool DescricaoIsValid { get { return descricaoIsValid; } set { descricaoIsValid = value; NotifyOfPropertyChange("CanShare"); } }
+        private bool dataOcorrenciaIsValid = true;
+        public bool DataOcorrenciaIsValid { get { return dataOcorrenciaIsValid; } set { dataOcorrenciaIsValid = value; NotifyOfPropertyChange("CanShare"); } }
     }
 }

@@ -101,7 +101,7 @@ namespace MultasSociais.WinStoreApp.Extensions
         public static Brush GetValidBrush(DependencyObject d)
         {
             var brush = (Brush) d.GetValue(ValidBrushProperty);
-            return brush.Dispatcher == null ? null : brush;
+            return brush == null || brush.Dispatcher == null ? null : brush;
         }
 
         public static void SetValidBrush(DependencyObject d, Brush value)
@@ -118,7 +118,7 @@ namespace MultasSociais.WinStoreApp.Extensions
         public static Brush GetInvalidBrush(DependencyObject d)
         {
             var brush = (Brush) d.GetValue(InvalidBrushProperty);
-            return brush.Dispatcher == null ? null : brush;
+            return brush == null || brush.Dispatcher == null ? null : brush;
         }
 
         public static void SetInvalidBrush(DependencyObject d, Brush value)

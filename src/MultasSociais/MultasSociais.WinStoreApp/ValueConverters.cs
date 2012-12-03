@@ -32,7 +32,11 @@ namespace MultasSociais.WinStoreApp
             }
             if (parameter == null) 
                 throw new ArgumentNullException("parameter");
-            return ((DateTime) value).ToString((string) parameter, new CultureInfo(language));
+            return Converter((DateTime) value, (string) parameter, new CultureInfo(language));
+        }
+        public string Converter(DateTime valor, string parametro, CultureInfo cultureInfo)
+        {
+            return valor.ToString(parametro, cultureInfo);
         }
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
@@ -40,16 +44,24 @@ namespace MultasSociais.WinStoreApp
             {
                 throw new ArgumentException("Only converts from DateTime to String and back.");
             }
+            return Converter((string)value, language);
+        }
+        public DateTime Converter(string valor, string language = null)
+        {
             if (string.IsNullOrWhiteSpace(language))
             {
                 language = GlobalizationPreferences.Languages.First();
             }
-            DateTime date = DateTime.MinValue;
+            return Converter(valor, new CultureInfo(language));
+        }
+        public DateTime Converter(string valor, CultureInfo cultureInfo)
+        {
+            var date = DateTime.MinValue;
             try
             {
-                date = System.Convert.ToDateTime(value, new CultureInfo(language));
+                date = System.Convert.ToDateTime(valor, cultureInfo);
             }
-            catch{ }
+            catch { }
             return date;
         }
     }

@@ -46,13 +46,15 @@
                 <TextBlock x:Name="textoDescricao" Text="Descrição (obrigatória)" Style="{StaticResource ShareTargetTextBlockStyle}" />
                 <TextBox x:Name="Descricao" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Height="162" AcceptsReturn="True" TextWrapping="Wrap" 
                          Extensions:TextBoxValidationExtensions.IsValid="{Binding DescricaoIsValid, Mode=TwoWay}"
-                         Extensions:TextBoxValidationExtensions.Format="NonEmpty" Extensions:TextBoxValidationExtensions.InvalidBrush="DarkGoldenrod"/>
-                <TextBlock x:Name="textoVideoUrl" Text="Url Video (deve começar com http://)" Style="{StaticResource ShareTargetTextBlockStyle}" />
+                         Extensions:TextBoxValidationExtensions.Format="NonEmpty" Extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}"/>
+                <TextBlock x:Name="textoVideoUrl" Text="Url Video (deve começar com http://www.youtube.com)" Style="{StaticResource ShareTargetTextBlockStyle}" />
                 <TextBox x:Name="VideoUrl" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" 
                          Extensions:TextBoxValidationExtensions.IsValid="{Binding VideoUrlIsValid, Mode=TwoWay}"
-                         Extensions:TextBoxValidationExtensions.Format="StartsWith" Extensions:TextBoxValidationExtensions.StartsWith="http://" Extensions:TextBoxValidationExtensions.InvalidBrush="DarkGoldenrod"/>
+                         Extensions:TextBoxValidationExtensions.Format="StartsWith" Extensions:TextBoxValidationExtensions.StartsWith="http://www.youtube.com" Extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}"/>
                 <TextBlock x:Name="textoDataOcorrencia" Text="Data da ocorrência" Style="{StaticResource ShareTargetTextBlockStyle}" />
-                <TextBox x:Name="DataOcorrencia" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Text="{Binding DataOcorrencia, ConverterParameter=d, Converter={StaticResource DateFormatConverter}, Mode=TwoWay}"/>
+                <TextBox x:Name="DataOcorrencia" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Text="{Binding DataOcorrencia, ConverterParameter=d, Converter={StaticResource DateFormatConverter}, Mode=TwoWay}"
+                         Extensions:TextBoxValidationExtensions.IsValid="{Binding DataOcorrenciaIsValid, Mode=TwoWay}"
+                         Extensions:TextBoxValidationExtensions.Format="DateTimeNonEmpty" Extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}"/>
                 
             </StackPanel>
             <!-- Standard share target footer -->

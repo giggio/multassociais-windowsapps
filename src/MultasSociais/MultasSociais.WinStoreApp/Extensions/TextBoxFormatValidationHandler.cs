@@ -70,8 +70,24 @@ namespace MultasSociais.WinStoreApp.Extensions
                 MarkInvalid();
                 return;
             }
+            
+            var expectDateTime = (format & ValidTextBoxFormats.DateTime) != 0;
+
+            if (expectDateTime &&
+                !isEmpty &&
+                !IsDateTime())
+            {
+                MarkInvalid();
+                return;
+            }
 
             MarkValid();
+        }
+
+        private bool IsDateTime()
+        {
+            var isDateTime = new DateFormatConverter().Converter(textBox.Text) != DateTime.MinValue;
+            return isDateTime;
         }
 
         private bool IsNumeric()

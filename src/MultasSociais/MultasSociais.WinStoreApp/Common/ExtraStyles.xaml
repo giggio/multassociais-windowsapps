@@ -10,6 +10,8 @@
     <local:ScaleHelper x:Key="ScaleHelper"></local:ScaleHelper>
     <Color x:Key="MSApplicationHeaderForegroundThemeBrush">Black</Color>
     <Color x:Key="PageColor">White</Color>
+    <Color x:Key="InvalidBackgroundColor">Pink</Color>
+    <SolidColorBrush x:Key="InvalidBackgroundColorBrush" Color="{StaticResource InvalidBackgroundColor}"></SolidColorBrush>
     <Style x:Key="MSLayoutRootStyle" TargetType="Panel">
         <Setter Property="Background" Value="{StaticResource PageColor}"/>
 	</Style>
