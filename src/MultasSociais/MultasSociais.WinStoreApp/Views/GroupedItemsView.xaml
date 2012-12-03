@@ -125,7 +125,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <Image Grid.Column="1" HorizontalAlignment="Left" Height="79" Margin="10,36,0,0" VerticalAlignment="Top" Width="340" Source="/Assets/logo-wide.png"/>
+            <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Left" Height="79" Margin="10,36,0,0" VerticalAlignment="Top" Width="340" Source="/Assets/logo-wide.png"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -164,6 +164,28 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="image">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<x:Double>240</x:Double>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="image">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<x:Double>76</x:Double>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="image">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<Thickness>0,43,0,0</Thickness>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <PointAnimation Duration="0" To="0.493,1.048" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="image" d:IsOptimized="True"/>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
