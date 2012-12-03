@@ -64,8 +64,8 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Orientation="Horizontal" x:Name="pageTitle" Margin="117,30,0,0">
-                            <TextBlock Text="Placa: " Style="{StaticResource PageHeaderTextStyle}" IsHitTestVisible="false" />
-                            <TextBlock x:Name="pageTitleText" Text="{Binding Placa}" Style="{StaticResource PageHeaderTextStyle}" IsHitTestVisible="false" />
+                            <TextBlock x:Name="textoPlaca" Text="Placa: " Style="{StaticResource PageHeaderTextStyle}" IsHitTestVisible="false" />
+                            <TextBlock x:Name="placa" Text="{Binding Placa}" Style="{StaticResource PageHeaderTextStyle}" IsHitTestVisible="false" />
                         </StackPanel>
                         <!--
                             UserControl chosen as the templated item because it supports visual state management
@@ -142,6 +142,12 @@
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="foto" Storyboard.TargetProperty="MaxHeight">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="160"/>
                                                 </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="textoPlaca" Storyboard.TargetProperty="Style">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="placa" Storyboard.TargetProperty="Style">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                                                </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
                                     </VisualStateGroup>
@@ -186,9 +192,6 @@
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitleText" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
