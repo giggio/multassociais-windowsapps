@@ -67,7 +67,7 @@ namespace MultasSociais.Lib.Models
             for (int i = 0; i < numeroDePaginas; i++)
             {
                 var urlConsulta = string.Format(urlBase, iniciarEm + (i*10));
-                var multas = (await ObterUrl(urlConsulta).Obter<IEnumerable<Multa>>()).ToArray();
+                var multas = (await urlConsulta.Obter<IEnumerable<Multa>>()).ToArray();
                 novasMultas.AddRange(multas);
             }
             grupo.Add(novasMultas);
