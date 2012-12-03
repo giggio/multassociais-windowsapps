@@ -106,6 +106,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entensoes.cs" />
+    <Compile Include="Extensions\TextBoxValidationExtensions.cs" />
+    <Compile Include="Extensions\TextBoxFormatValidationHandler.cs" />
+    <Compile Include="Extensions\ValidTextBoxFormats.cs" />
     <Compile Include="Models\MultasRealizadas.cs" />
     <Compile Include="ScaleHelper.cs" />
     <Compile Include="ViewModels\GroupDetailViewModel.cs" />

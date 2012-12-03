@@ -8,6 +8,7 @@
     x:Name="pageRoot"
     x:Class="MultasSociais.WinStoreApp.Views.ShareTargetView"
     mc:Ignorable="d"
+    xmlns:Extensions="using:MultasSociais.WinStoreApp.Extensions"
     d:ExtensionType="ShareTarget">
 
     <common:LayoutAwarePage.Resources>
@@ -43,9 +44,11 @@
                 <TextBlock x:Name="textoPlaca" Text="Placa" Style="{StaticResource ShareTargetTextBlockStyle}" />
                 <TextBox x:Name="Placa" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Margin="0,0,302,0"/>
                 <TextBlock x:Name="textoDescricao" Text="Descrição" Style="{StaticResource ShareTargetTextBlockStyle}" />
-                <TextBox x:Name="Descricao" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Height="162" AcceptsReturn="True" TextWrapping="Wrap"/>
+                <TextBox x:Name="Descricao" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Height="162" AcceptsReturn="True" TextWrapping="Wrap" 
+                         Extensions:TextBoxValidationExtensions.Format="NonEmpty" Extensions:TextBoxValidationExtensions.InvalidBrush="DarkGoldenrod"/>
                 <TextBlock x:Name="textoVideoUrl" Text="Url Video" Style="{StaticResource ShareTargetTextBlockStyle}" />
-                <TextBox x:Name="VideoUrl"/>
+                <TextBox x:Name="VideoUrl" 
+                         Extensions:TextBoxValidationExtensions.Format="StartsWithNonEmpty" Extensions:TextBoxValidationExtensions.StartsWith="http://" Extensions:TextBoxValidationExtensions.InvalidBrush="DarkGoldenrod"/>
                 <TextBlock x:Name="textoDataOcorrencia" Text="Data da ocorrência" Style="{StaticResource ShareTargetTextBlockStyle}" />
                 <TextBox x:Name="DataOcorrencia"
                          IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Text="{Binding DataOcorrencia, ConverterParameter=d, Converter={StaticResource DateFormatConverter}, Mode=TwoWay}"/>
