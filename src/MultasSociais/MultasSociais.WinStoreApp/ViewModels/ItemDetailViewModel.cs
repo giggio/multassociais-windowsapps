@@ -59,7 +59,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         public bool CanMultar
         {
-            get { return !multando && !multadoAgora && !multasRealizadas.FoiMultado(selectedItem); }
+            get { return !multando && !multadoAgora && selectedItem != null && !multasRealizadas.FoiMultado(selectedItem); }
         }
         
         public GrupoDeMultas Grupo
