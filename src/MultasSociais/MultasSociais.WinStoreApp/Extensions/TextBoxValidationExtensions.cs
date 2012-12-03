@@ -28,6 +28,7 @@ namespace MultasSociais.WinStoreApp.Extensions
         public static void SetIsValid(DependencyObject d, bool value)
         {
             d.SetValue(IsValidProperty, value);
+            SetIsValid((TextBox)d, value);
         }
         #endregion
 
@@ -95,11 +96,12 @@ namespace MultasSociais.WinStoreApp.Extensions
 
         #region ValidBrush
         public static readonly DependencyProperty ValidBrushProperty = 
-            DependencyProperty.RegisterAttached("ValidBrush", typeof(Brush), typeof(TextBoxValidationExtensions), new PropertyMetadata(new SolidColorBrush(Colors.White), (d, e) => SetupAndValidate(d)));
+            DependencyProperty.RegisterAttached("ValidBrush", typeof(Brush), typeof(TextBoxValidationExtensions), new PropertyMetadata(new SolidColorBrush(Colors.Transparent), (d, e) => SetupAndValidate(d)));
 
         public static Brush GetValidBrush(DependencyObject d)
         {
-            return (Brush)d.GetValue(ValidBrushProperty);
+            var brush = (Brush) d.GetValue(ValidBrushProperty);
+            return brush.Dispatcher == null ? null : brush;
         }
 
         public static void SetValidBrush(DependencyObject d, Brush value)
@@ -111,13 +113,14 @@ namespace MultasSociais.WinStoreApp.Extensions
 
         #region InvalidBrush
         public static readonly DependencyProperty InvalidBrushProperty = 
-            DependencyProperty.RegisterAttached("InvalidBrush", typeof(Brush), typeof(TextBoxValidationExtensions), new PropertyMetadata(new SolidColorBrush(Colors.Pink), (d, e) => SetupAndValidate(d)));
+            DependencyProperty.RegisterAttached("InvalidBrush", typeof(Brush), typeof(TextBoxValidationExtensions), new PropertyMetadata(new SolidColorBrush(Colors.Transparent), (d, e) => SetupAndValidate(d)));
 
         public static Brush GetInvalidBrush(DependencyObject d)
         {
-            return (Brush)d.GetValue(InvalidBrushProperty);
+            var brush = (Brush) d.GetValue(InvalidBrushProperty);
+            return brush.Dispatcher == null ? null : brush;
         }
-        
+
         public static void SetInvalidBrush(DependencyObject d, Brush value)
         {
             d.SetValue(InvalidBrushProperty, value);
