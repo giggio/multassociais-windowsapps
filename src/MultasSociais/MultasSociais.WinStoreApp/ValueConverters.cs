@@ -36,7 +36,15 @@ namespace MultasSociais.WinStoreApp
         }
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            return value;
+            if (value.GetType() != typeof(string) || (targetType != typeof(DateTime) && targetType != typeof(object)))
+            {
+                throw new ArgumentException("Only converts from DateTime to String and back.");
+            }
+            if (string.IsNullOrWhiteSpace(language))
+            {
+                language = GlobalizationPreferences.Languages.First();
+            }
+            return System.Convert.ToDateTime(value, new CultureInfo(language));
         }
     }
     public class SumConverter : IValueConverter

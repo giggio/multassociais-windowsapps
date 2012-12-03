@@ -38,6 +38,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Models\GrupoDeMultas.cs" />
     <Compile Include="Models\Multa.cs" />
+    <Compile Include="Models\MultaNova.cs" />
     <Compile Include="Models\Talao.cs" />
     <Compile Include="Models\Talao.DadosTeste.cs" />
     <Compile Include="Models\TipoGrupo.cs" />

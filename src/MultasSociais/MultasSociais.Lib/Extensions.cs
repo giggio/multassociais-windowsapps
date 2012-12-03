@@ -7,6 +7,14 @@ namespace MultasSociais.Lib
 {
     public static class Extensions
     {
+        public static async Task<Stream> GetResponseStreamAsync(this string url)
+        {
+            var request = WebRequest.CreateHttp(url);
+            var response = await request.GetResponseAsync();
+            var stream = response.GetResponseStream();
+            return stream;
+        }
+
         public static async Task<string> GetResponseContentAsync(this HttpWebRequest request)
         {
             var response = await request.GetResponseAsync();

@@ -13,6 +13,7 @@ namespace MultasSociais.Lib.Models
         Task<Multa> ObterPorId(int id);
         Task<IEnumerable<Multa>> PegarMaisMultas(GrupoDeMultas grupo, int iniciarEm, uint quantidade);
         Task<bool> MarcarMultaAsync(Multa multa);
+        Task<bool> MultarAsync(MultaNova multa);
     }
 
     public partial class Talao : ITalao
@@ -79,6 +80,13 @@ namespace MultasSociais.Lib.Models
             var urlMarcarMultaComId = string.Format(urlMarcarMulta, multa.Id);
             var statusCode = await ObterUrl(urlMarcarMultaComId).Postar();
             return statusCode == HttpStatusCode.OK;
+        }
+
+        public async Task<bool> MultarAsync(MultaNova multa)
+        {
+            //todo: implementar
+            await Task.Delay(2000);
+            return true;
         }
 
         public async Task<Multa> ObterPorId(int id)

@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using MultasSociais.Lib.Models;
 using MultasSociais.WinStoreApp.Models;
+using MultasSociais.WinStoreApp.ViewModels;
 using MultasSociais.WinStoreApp.Views;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.UI.Xaml.Controls;
 
 namespace MultasSociais.WinStoreApp
@@ -49,12 +51,14 @@ namespace MultasSociais.WinStoreApp
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            if (args.Kind == ActivationKind.ShareTarget) return;
             DisplayRootView<GroupedItemsView>("AllGroups");
         }
 
         protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
         {
-            //todo: share
+            ShareTargetViewModel.ShareOperation = args.ShareOperation; 
+            DisplayRootViewFor<ShareTargetViewModel>();
         }
     }
 }

@@ -162,7 +162,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <Button x:Name="Multar" Content="Multar" Grid.Column="1" HorizontalAlignment="Right" Margin="0,53,42,36" Background="{StaticResource CorPadrao}" Width="147" Height="51" />
+            <Button x:Name="Share" Content="Multar" Grid.Column="1" HorizontalAlignment="Right" Margin="0,53,42,36" Width="147" Height="51" Style="{StaticResource BotaoPadrao}" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
