@@ -82,14 +82,12 @@ namespace MultasSociais.WinStoreApp.Extensions
 
         protected virtual void MarkValid()
         {
-            var brush = TextBoxValidationExtensions.GetValidBrush(textBox);
-            textBox.Background = brush;
+            TextBoxValidationExtensions.SetIsValid(textBox, true);
         }
 
         protected virtual void MarkInvalid()
         {
-            var brush = TextBoxValidationExtensions.GetInvalidBrush(textBox);
-            textBox.Background = brush;
+            TextBoxValidationExtensions.SetIsValid(textBox, false);
         }
     }
 }
