@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
@@ -14,6 +15,8 @@ namespace MultasSociais.WinStoreApp.ViewModels
         private GrupoDeMultas grupo;
         private IEnumerable<Multa> itens;
         private bool multadoAgora = true;
+        private bool multando;
+
         public ItemDetailViewModel(INavigationService navigationService, ITalao talao, IMultasRealizadas multasRealizadas) : base(navigationService, talao)
         {
             this.multasRealizadas = multasRealizadas;
@@ -32,13 +35,22 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         public async Task Multar()
         {
-            multadoAgora = await talao.MarcarMultaAsync(selectedItem);
-            if (multadoAgora)
+            try
             {
+                multando = true;
                 NotifyOfPropertyChange("CanMultar");
-                selectedItem.NumeroDeMultas++;
-                await GuardarQueFoiMultado();
+                multadoAgora = await talao.MarcarMultaAsync(selectedItem);
+                if (multadoAgora)
+                {
+                    selectedItem.NumeroDeMultas++;
+                    await GuardarQueFoiMultado();
+                }
             }
+            finally
+            {
+                multando = false;
+            }
+            NotifyOfPropertyChange("CanMultar");
         }
         private async Task GuardarQueFoiMultado()
         {
@@ -47,7 +59,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         public bool CanMultar
         {
-            get { return !multadoAgora && !multasRealizadas.FoiMultado(selectedItem); }
+            get { return !multando && !multadoAgora && !multasRealizadas.FoiMultado(selectedItem); }
         }
         
         public GrupoDeMultas Grupo
