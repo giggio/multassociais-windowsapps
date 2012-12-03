@@ -86,6 +86,13 @@ namespace MultasSociais.WinStoreApp.ViewModels
             return nome;
         }
 
+        public bool CanShare
+        { 
+            get
+            {
+                return descricaoIsValid && videoUrlIsValid && !sharing;
+            }
+        }
 
         public async Task Share()
         {
@@ -120,7 +127,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
         }
 
         public static ShareOperation ShareOperation { get; set; }
-        private DateTime dataOcorrencia;
+        private DateTime dataOcorrencia = DateTime.Now;
         public DateTime DataOcorrencia { get { return dataOcorrencia; } set { dataOcorrencia = value; NotifyOfPropertyChange(); } }
         private string descricao;
         public string Descricao { get { return descricao; } set { descricao = value; NotifyOfPropertyChange(); } }
@@ -131,10 +138,14 @@ namespace MultasSociais.WinStoreApp.ViewModels
         private bool multadoComSucesso;
         public bool MultadoComSucesso { get { return multadoComSucesso; } set { multadoComSucesso = value; NotifyOfPropertyChange(); } }
         private bool sharing;
-        public bool Sharing { get { return sharing; } set { sharing = value; NotifyOfPropertyChange(); } }
+        public bool Sharing { get { return sharing; } set { sharing = value; NotifyOfPropertyChange(); NotifyOfPropertyChange("CanShare"); } }
         private bool showImage;
         public bool ShowImage { get { return showImage; } set { showImage = value; NotifyOfPropertyChange(); } }
         private BitmapImage image;
         public BitmapImage Image { get { return image; } set { image = value; NotifyOfPropertyChange(); } }
+        private bool videoUrlIsValid = true;
+        public bool VideoUrlIsValid { get { return videoUrlIsValid; } set { videoUrlIsValid = value; NotifyOfPropertyChange("CanShare"); } }
+        private bool descricaoIsValid;
+        public bool DescricaoIsValid { get { return descricaoIsValid; } set { descricaoIsValid = value; NotifyOfPropertyChange("CanShare"); } }
     }
 }
