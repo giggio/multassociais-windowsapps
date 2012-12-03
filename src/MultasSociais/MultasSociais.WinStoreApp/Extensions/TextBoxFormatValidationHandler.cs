@@ -55,7 +55,7 @@ namespace MultasSociais.WinStoreApp.Extensions
             }
 
             var startsWith = textBox.Text.StartsWith(TextBoxValidationExtensions.GetStartsWith(textBox), StringComparison.CurrentCultureIgnoreCase);
-            if (expectStartsWith && !startsWith)
+            if (expectStartsWith && !startsWith && !isEmpty)
             {
                 MarkInvalid();
                 return;
