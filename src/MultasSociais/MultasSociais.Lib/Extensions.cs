@@ -45,7 +45,7 @@ namespace MultasSociais.Lib
             return response.StatusCode;
         }
         
-        public static async Task Postar<T>(this string url, T item, byte[] fileBuffer)
+        public static async Task<HttpWebResponse> Postar<T>(this string url, T item, byte[] fileBuffer)
         {
             var request = WebRequest.CreateHttp(url);
             request.Method = "POST";
@@ -54,7 +54,7 @@ namespace MultasSociais.Lib
             var itemSerializado = JsonConvert.SerializeObject(item);
             await writer.WriteAsync(itemSerializado);
             var response = await request.GetResponseAsync();
-            //response.StatusCode;
+            return response;
         }
 
         public static async Task<Stream> GetRequestStreamAsync(this HttpWebRequest request)
