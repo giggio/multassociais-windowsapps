@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="2f909005-1410-49db-88c4-ec448abbf416" Publisher="CN=Giovanni" Version="1.0.0.0" />
+  <Identity Name="Lambda3.MultasSociais" Publisher="CN=B9B97D75-0150-4609-BF6A-1E0E35E664C8" Version="1.0.0.0" />
   <Properties>
     <DisplayName>Multas Sociais</DisplayName>
-    <PublisherDisplayName>Giovanni Bassi</PublisherDisplayName>
+    <PublisherDisplayName>Lambda3</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
