@@ -54,3 +54,4 @@ packages/
 docs/~$*
 !MultasSociais.Lib
 CriarMultaNova.Api.cs
+AppPackages/
