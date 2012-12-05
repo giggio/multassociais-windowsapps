@@ -16,6 +16,10 @@ Url ainda a ser definida, ou seja, projeto ainda não publicado.
 
 * Veja o backlog no Github: [https://github.com/giggio/multassociais-windowsapps/issues](https://github.com/giggio/multassociais-windowsapps/issues)
 
+## Política de privacidade
+
+A aplicação mantém um registro do id das multas que o usuário votou na máquina do usuário. A aplicação não identifica o usuário de nenhuma forma. Apenas os dados de multa eventualmente enviados para o site são mantidos no site, como placa e foto dos veículos que recebem multas sociais, mas não a identidade do usuário. Os dados da multa enviada não ficam registrados na máquina do usuário.
+
 ## Mantenedores
 
 * [Giovanni Bassi](http://blog.lambda3.com.br/L3/giovannibassi/), [Lambda3](http://www.lambda3.com.br), [@giovannibassi](http://twitter.com/giovannibassi)
