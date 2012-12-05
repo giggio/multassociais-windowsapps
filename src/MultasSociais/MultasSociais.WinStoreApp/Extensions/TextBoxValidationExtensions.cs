@@ -13,9 +13,9 @@ namespace MultasSociais.WinStoreApp.Extensions
     {
         #region IsValid
         public static readonly DependencyProperty IsValidProperty =
-            DependencyProperty.RegisterAttached("IsValid", typeof(bool), typeof(TextBoxValidationExtensions), new PropertyMetadata(true, (d, e) => SetIsValid((TextBox)d, (bool)e.NewValue)));
+            DependencyProperty.RegisterAttached("IsValid", typeof(bool), typeof(TextBoxValidationExtensions), new PropertyMetadata(true, (d, e) => SetValid((TextBox)d, (bool)e.NewValue)));
 
-        private static void SetIsValid(TextBox textBox, bool isValid)
+        private static void SetValid(TextBox textBox, bool isValid)
         {
             var brush = isValid ? GetValidBrush(textBox) : GetInvalidBrush(textBox);
             textBox.Background = brush;
@@ -28,7 +28,7 @@ namespace MultasSociais.WinStoreApp.Extensions
         public static void SetIsValid(DependencyObject d, bool value)
         {
             d.SetValue(IsValidProperty, value);
-            SetIsValid((TextBox)d, value);
+            SetValid((TextBox)d, value);
         }
         #endregion
 
