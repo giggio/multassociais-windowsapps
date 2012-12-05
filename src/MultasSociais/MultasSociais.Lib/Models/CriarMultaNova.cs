@@ -33,8 +33,16 @@ namespace MultasSociais.Lib.Models
         public string Descricao { get; set; }
         [JsonProperty(PropertyName = "multa[placa]")]
         public string Placa { get; set; }
+        private string videoUrl = string.Empty;
         [JsonProperty(PropertyName = "multa[video]")]
-        public string VideoUrl { get; set; }
+        public string VideoUrl
+        {
+            get { return videoUrl; }
+            set
+            {
+                videoUrl = value ?? string.Empty;
+            }
+        }
 
         public Dictionary<string, string> ObterValores()
         {
@@ -47,10 +55,7 @@ namespace MultasSociais.Lib.Models
                 var valorObjeto = prop.GetValue(this, null);
                 if (valorObjeto == null) continue;
                 var valorString = valorObjeto.ToString();
-                if (!string.IsNullOrWhiteSpace(valorString))
-                {
-                    valores.Add(name, valorString);
-                }
+                valores.Add(name, valorString);
             }
             return valores;
         }
