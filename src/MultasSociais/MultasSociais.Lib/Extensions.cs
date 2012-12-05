@@ -41,6 +41,8 @@ namespace MultasSociais.Lib
         {
             var request = WebRequest.CreateHttp(url);
             request.Method = "POST";
+            //o pedido da stream é só para setar o content length em 0, porque senao o servidor falha. e a prop contentlength nao esta disponivel em PCL.
+            await request.GetRequestStreamAsync();
             var response = await request.GetResponseAsync();
             return response.StatusCode;
         }
