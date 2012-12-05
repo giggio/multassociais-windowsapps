@@ -42,7 +42,7 @@
             		MaxHeight="200"
             		Margin="0,0,486,0" Height="80"/>
                 <TextBlock x:Name="textoPlaca" Text="Placa" Style="{StaticResource ShareTargetTextBlockStyle}" />
-                <TextBox x:Name="Placa" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Margin="0,0,302,0"/>
+                <TextBox x:Name="Placa" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Margin="0,0,302,0" MaxLength="8"/>
                 <TextBlock x:Name="textoDescricao" Text="Descrição (obrigatória)" Style="{StaticResource ShareTargetTextBlockStyle}" />
                 <TextBox x:Name="Descricao" IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" Height="162" AcceptsReturn="True" TextWrapping="Wrap" MaxLength="2500"
                          Extensions:TextBoxValidationExtensions.IsValid="{Binding DescricaoIsValid, Mode=TwoWay}"
