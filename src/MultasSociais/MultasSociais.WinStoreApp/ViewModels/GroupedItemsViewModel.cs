@@ -13,6 +13,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
             var grupos = new BindableCollection<GrupoDeMultas>{await talao.ObterMaisNovos(), await talao.ObterMaisMultados()};
             ConfigurarNumeroDeItensAExibir(grupos);
             Grupos = grupos;
+            IsLoading = false;
             base.OnInitialize();
         }
 
@@ -22,6 +23,17 @@ namespace MultasSociais.WinStoreApp.ViewModels
             foreach (var grupo in grupos)
             {
                 grupo.TopCount = top;
+            }
+        }
+
+        private bool isLoading = true;
+        public bool IsLoading
+        {
+            get { return isLoading; }
+            set
+            {
+                isLoading = value;
+                NotifyOfPropertyChange();
             }
         }
 

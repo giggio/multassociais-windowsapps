@@ -127,6 +127,7 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Left" Height="79" Margin="10,36,0,0" VerticalAlignment="Top" Width="340" Source="/Assets/logo-wide.png"/>
         </Grid>
+        <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2" Foreground="{StaticResource CorPadrao}" IsActive="{Binding IsLoading}" MinWidth="40" MinHeight="40"/>
 
         <VisualStateManager.VisualStateGroups>
 
