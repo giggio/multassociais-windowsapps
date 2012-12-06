@@ -252,7 +252,7 @@
     <Style x:Key="DollarAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource MSButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="DollarAppBarButtonStyle"/>
         <Setter Property="AutomationProperties.Name" Value="Multar"/>
-        <Setter Property="Content" Value="&#xE1C5;"/>
+        <Setter Property="Content" Value="$"/>
     </Style>
     <Style x:Key="ShareTargetTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaselineTextStyle}">
     	<Setter Property="FontSize" Value="16"/>
