@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using MultasSociais.Lib.Models;
 
 namespace MultasSociais.WinStoreApp.ViewModels

@@ -128,6 +128,7 @@
             <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Left" Height="79" Margin="10,36,0,0" VerticalAlignment="Top" Width="340" Source="/Assets/logo-wide.png"/>
         </Grid>
         <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2" Foreground="{StaticResource CorPadrao}" IsActive="{Binding IsLoading}" MinWidth="40" MinHeight="40"/>
+        <Button x:Name="MultaNova" Content="Multa nova" HorizontalAlignment="Right" Margin="0,53,42,36" Width="147" Height="51" Style="{StaticResource BotaoPadrao}" Canvas.ZIndex="1" />
 
         <VisualStateManager.VisualStateGroups>
 

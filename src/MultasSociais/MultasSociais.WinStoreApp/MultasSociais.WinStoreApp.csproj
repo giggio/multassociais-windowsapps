@@ -119,6 +119,7 @@
     <Compile Include="ViewModels\ListaVirtualizada.cs" />
     <Compile Include="ValueConverters.cs" />
     <Compile Include="Models\MultaRealizada.cs" />
+    <Compile Include="ViewModels\MultaNovaViewModel.cs" />
     <Compile Include="ViewModels\ShareTargetViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\GroupedItemsView.xaml.cs">
@@ -199,6 +200,10 @@
     <Page Include="Views\ItemDetailView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MultaNovaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShareTargetView.xaml">
       <SubType>Designer</SubType>

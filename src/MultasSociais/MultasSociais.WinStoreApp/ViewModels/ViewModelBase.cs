@@ -40,6 +40,10 @@ namespace MultasSociais.WinStoreApp.ViewModels
         {
             navigationService.Navigate<ItemDetailView>(multa);
         }
+        public void MultaNova()
+        {
+            navigationService.Navigate<MultaNovaView>();
+        }
     }
 
     public abstract class ViewModelBase<T> : ViewModelBase
