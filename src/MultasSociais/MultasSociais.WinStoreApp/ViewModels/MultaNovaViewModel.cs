@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
+using Windows.Media.Capture;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -36,7 +37,11 @@ namespace MultasSociais.WinStoreApp.ViewModels
 
         public async Task Fotografar()
         {
-            
+            var dialog = new CameraCaptureUI();
+            var storageFile = await dialog.CaptureFileAsync(CameraCaptureUIMode.Photo);
+            var stream = await storageFile.OpenReadAsync();
+            await dadosDaMulta.ExibirImagem(stream, true);
+
         }
         public async Task EscolherFoto()
         {
