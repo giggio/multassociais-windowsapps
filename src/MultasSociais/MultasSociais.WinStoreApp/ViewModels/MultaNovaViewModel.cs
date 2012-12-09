@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using MultasSociais.Lib;
 using MultasSociais.Lib.Models;
 using Windows.Media.Capture;
 using Windows.Storage.Pickers;
-using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Popups;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class MultaNovaViewModel : ViewModelBase
     {
-        private bool multando;
+        private HttpUpload.FileInfo fileInfo; 
+        
         public MultaNovaViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao)
         {
             MontarDadosDaMulta();
@@ -27,7 +29,34 @@ namespace MultasSociais.WinStoreApp.ViewModels
         public async Task Multar()
         {
             Multando = true;
-            await Task.Delay(5000);
+
+
+            var multa = new CriarMultaNova
+            {
+                Descricao = dadosDaMulta.Descricao,
+                Placa = dadosDaMulta.Placa,
+                VideoUrl = dadosDaMulta.VideoUrl
+            };
+            multa.SetaDataOcorrencia(dadosDaMulta.DataOcorrencia);
+            try
+            {
+                MultadoComSucesso = await talao.MultarAsync(multa, fileInfo);
+                if (MultadoComSucesso)
+                {
+                    await new MessageDialog("Multado com sucesso!").ShowAsync();
+                    GoBack();
+                }
+                else
+                {
+                    await new MessageDialog("Não foi possível multar, favor tentar mais tarde.").ShowAsync();
+                    Multando = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                new MessageDialog("Não foi possível multar, ocorreu um erro, favor tentar mais tarde.\nErro:" + ex.Message).ShowAsync();
+                Multando = false;
+            }
         }
 
         public void Cancelar()
@@ -39,10 +68,28 @@ namespace MultasSociais.WinStoreApp.ViewModels
         {
             var dialog = new CameraCaptureUI();
             var storageFile = await dialog.CaptureFileAsync(CameraCaptureUIMode.Photo);
+            if (storageFile == null) return;
             var stream = await storageFile.OpenReadAsync();
-            await dadosDaMulta.ExibirImagem(stream, true);
+            var streamCloned = stream.CloneStream();
+            await dadosDaMulta.ExibirImagem(streamCloned, true);
 
+            fileInfo = new HttpUpload.FileInfo
+            {
+                FileName = ObterNomeAleatorioDeArquivo(stream.ContentType),
+                ContentType = stream.ContentType,
+                Buffer = await stream.GetByteFromFileAsync(),
+                ParamName = "multa[foto]"
+            };
         }
+        
+        private string ObterNomeAleatorioDeArquivo(string contentType)
+        {
+            var nomeAleatorio = "arq" + new Random().Next(1000000000, int.MaxValue).ToString();
+            var ext = contentType.Split('/')[1];
+            var nome = string.Format("{0}.{1}", nomeAleatorio, ext);
+            return nome;
+        }
+
         public async Task EscolherFoto()
         {
             var picker = new FileOpenPicker
@@ -56,13 +103,23 @@ namespace MultasSociais.WinStoreApp.ViewModels
             picker.FileTypeFilter.Add(".png");
             picker.FileTypeFilter.Add(".gif");
 
-            var file = await picker.PickSingleFileAsync();
-            if (file == null) return;
+            var storageFile = await picker.PickSingleFileAsync();
+            if (storageFile == null) return;
 
-            var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            var stream = await storageFile.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            var streamCloned = stream.CloneStream();
             await dadosDaMulta.ExibirImagem(stream, true);
+
+            fileInfo = new HttpUpload.FileInfo
+            {
+                FileName = storageFile.Name,
+                ContentType = storageFile.ContentType,
+                Buffer = await streamCloned.GetByteFromFileAsync(),
+                ParamName = "multa[foto]"
+            };
         }
 
+        private bool multando;
         public bool Multando
         {
             get { return multando; }
@@ -73,8 +130,9 @@ namespace MultasSociais.WinStoreApp.ViewModels
                 NotifyOfPropertyChange();
             }
         }
-
         private DadosDaMultaViewModel dadosDaMulta;
         public DadosDaMultaViewModel DadosDaMulta { get { return dadosDaMulta; } set { dadosDaMulta = value; NotifyOfPropertyChange(); } }
+        private bool multadoComSucesso;
+        public bool MultadoComSucesso { get { return multadoComSucesso; } set { multadoComSucesso = value; NotifyOfPropertyChange(); } }
     }
 }
