@@ -26,6 +26,11 @@ namespace MultasSociais.WinStoreApp.ViewModels
             await Task.Delay(5000);
         }
 
+        public void Cancelar()
+        {
+            GoBack();
+        }
+
         public bool Multando
         {
             get { return multando; }

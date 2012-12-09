@@ -242,9 +242,6 @@
     	</Grid>
     </ControlTemplate>
     <Style x:Key="MSButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
-    	<Setter Property="AutomationProperties.AutomationId" Value="DollarAppBarButtonStyle"/>
-    	<Setter Property="AutomationProperties.Name" Value="Multar"/>
-    	<Setter Property="Content" Value="&#xE1C5;"/>
     	<Setter Property="Background" Value="{StaticResource AppBarTextColor}"/>
     	<Setter Property="Foreground" Value="{StaticResource AppBarTextColor}"/>
         <Setter Property="Template" Value="{StaticResource BotaoDeBaseParaAppBar}"/>
@@ -253,6 +250,11 @@
         <Setter Property="AutomationProperties.AutomationId" Value="DollarAppBarButtonStyle"/>
         <Setter Property="AutomationProperties.Name" Value="Multar"/>
         <Setter Property="Content" Value="$"/>
+    </Style>
+    <Style x:Key="CancelAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource MSButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="CancelAppBarButtonStyle"/>
+        <Setter Property="AutomationProperties.Name" Value="Cancelar"/>
+        <Setter Property="Content" Value="&#xE10A;"/>
     </Style>
     <Style x:Key="ShareTargetTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaselineTextStyle}">
     	<Setter Property="FontSize" Value="16"/>

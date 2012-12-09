@@ -15,7 +15,7 @@
         <common:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
     </Page.Resources>
 	<common:LayoutAwarePage.BottomAppBar>
-		<AppBar Background="{StaticResource CorPadrao}" IsOpen="True">
+		<AppBar Background="{StaticResource CorPadrao}" IsSticky="True" IsOpen="True">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
@@ -24,6 +24,7 @@
 				<StackPanel Orientation="Horizontal"/>
 				<StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button x:Name="Multar" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource DollarAppBarButtonStyle}" />
+                    <Button x:Name="Cancelar" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource CancelAppBarButtonStyle}" />
 				</StackPanel>
 			</Grid>
 		</AppBar>
