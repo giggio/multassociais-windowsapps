@@ -7,7 +7,18 @@ namespace MultasSociais.WinStoreApp.ViewModels
     public class MultaNovaViewModel : ViewModelBase
     {
         private bool multando;
-        public MultaNovaViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
+        public MultaNovaViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao)
+        {
+            MontarDadosDaMulta();
+        }
+
+        private void MontarDadosDaMulta()
+        {
+            dadosDaMulta = new DadosDaMultaViewModel();
+            dadosDaMulta.PropertyChanged += (s, e) => { if (e.PropertyName == "IsValid") NotifyOfPropertyChange("CanMultar"); };
+        }
+
+        public bool CanMultar { get { return dadosDaMulta.IsValid && !multando; } }
 
         public async Task Multar()
         {
@@ -21,8 +32,12 @@ namespace MultasSociais.WinStoreApp.ViewModels
             set
             {
                 multando = value;
+                dadosDaMulta.IsEnabled = !multando;
                 NotifyOfPropertyChange();
             }
         }
+
+        private DadosDaMultaViewModel dadosDaMulta;
+        public DadosDaMultaViewModel DadosDaMulta { get { return dadosDaMulta; } set { dadosDaMulta = value; NotifyOfPropertyChange(); } }
     }
 }

@@ -8,7 +8,6 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
@@ -16,7 +15,16 @@ namespace MultasSociais.WinStoreApp.ViewModels
     {
         private HttpUpload.FileInfo fileInfo;
         
-        public ShareTargetViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao) {}
+        public ShareTargetViewModel(INavigationService navigationService, ITalao talao) : base(navigationService, talao)
+        {
+            MontarDadosDaMulta();
+        }
+
+        private void MontarDadosDaMulta()
+        {
+            dadosDaMulta = new DadosDaMultaViewModel();
+            dadosDaMulta.PropertyChanged += (s, e) => { if (e.PropertyName == "IsValid") NotifyOfPropertyChange("CanShare"); };
+        }
 
         protected async override void OnInitialize()
         {
@@ -32,7 +40,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
             var shareProperties = ShareOperation.Data.Properties;
             if (shareProperties.Thumbnail == null) return;
             var stream = await shareProperties.Thumbnail.OpenReadAsync();
-            await ExibirImagem(stream);
+            await dadosDaMulta.ExibirImagem(stream);
         }
 
         private async Task ObterImagem()
@@ -66,17 +74,8 @@ namespace MultasSociais.WinStoreApp.ViewModels
                                    ParamName = "multa[foto]"
                                };
             }
-            await ExibirImagem(streamCloned);
+            await dadosDaMulta.ExibirImagem(streamCloned);
         }
-
-        private async Task ExibirImagem(IRandomAccessStream stream)
-        {
-            if (Image != null) return;
-            Image = new BitmapImage();
-            await Image.SetSourceAsync(stream);
-            ShowImage = true;
-        }
-
 
         private string ObterNomeAleatorioDeArquivo(string contentType)
         {
@@ -90,7 +89,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
         { 
             get
             {
-                return descricaoIsValid && videoUrlIsValid && dataOcorrenciaIsValid && !sharing;
+                return dadosDaMulta.IsValid && !sharing;
             }
         }
 
@@ -100,11 +99,11 @@ namespace MultasSociais.WinStoreApp.ViewModels
             ShareOperation.ReportStarted();
             var multa = new CriarMultaNova
                             {
-                                Descricao = descricao,
-                                Placa = placa,
-                                VideoUrl = videoUrl
+                                Descricao = dadosDaMulta.Descricao,
+                                Placa = dadosDaMulta.Placa,
+                                VideoUrl = dadosDaMulta.VideoUrl
                             };
-            multa.SetaDataOcorrencia(dataOcorrencia);
+            multa.SetaDataOcorrencia(dadosDaMulta.DataOcorrencia);
             try
             {
                 MultadoComSucesso = await talao.MultarAsync(multa, fileInfo);
@@ -127,27 +126,21 @@ namespace MultasSociais.WinStoreApp.ViewModels
         }
 
         public static ShareOperation ShareOperation { get; set; }
-        private DateTime dataOcorrencia = DateTime.Now;
-        public DateTime DataOcorrencia { get { return dataOcorrencia; } set { dataOcorrencia = value; NotifyOfPropertyChange(); } }
-        private string descricao;
-        public string Descricao { get { return descricao; } set { descricao = value; NotifyOfPropertyChange(); } }
-        private string placa;
-        public string Placa { get { return placa; } set { placa = value; NotifyOfPropertyChange(); } }
-        private string videoUrl;
-        public string VideoUrl { get { return videoUrl; } set { videoUrl = value; NotifyOfPropertyChange(); } }
+        private bool sharing;
+        public bool Sharing
+        {
+            get { return sharing; } 
+            set
+            {
+                sharing = value;
+                dadosDaMulta.IsEnabled = !sharing;
+                NotifyOfPropertyChange(); 
+                NotifyOfPropertyChange("CanShare");
+            }
+        }
         private bool multadoComSucesso;
         public bool MultadoComSucesso { get { return multadoComSucesso; } set { multadoComSucesso = value; NotifyOfPropertyChange(); } }
-        private bool sharing;
-        public bool Sharing { get { return sharing; } set { sharing = value; NotifyOfPropertyChange(); NotifyOfPropertyChange("CanShare"); } }
-        private bool showImage;
-        public bool ShowImage { get { return showImage; } set { showImage = value; NotifyOfPropertyChange(); } }
-        private BitmapImage image;
-        public BitmapImage Image { get { return image; } set { image = value; NotifyOfPropertyChange(); } }
-        private bool videoUrlIsValid = true;
-        public bool VideoUrlIsValid { get { return videoUrlIsValid; } set { videoUrlIsValid = value; NotifyOfPropertyChange("CanShare"); } }
-        private bool descricaoIsValid;
-        public bool DescricaoIsValid { get { return descricaoIsValid; } set { descricaoIsValid = value; NotifyOfPropertyChange("CanShare"); } }
-        private bool dataOcorrenciaIsValid = true;
-        public bool DataOcorrenciaIsValid { get { return dataOcorrenciaIsValid; } set { dataOcorrenciaIsValid = value; NotifyOfPropertyChange("CanShare"); } }
+        private DadosDaMultaViewModel dadosDaMulta;
+        public DadosDaMultaViewModel DadosDaMulta { get { return dadosDaMulta; } set { dadosDaMulta = value; NotifyOfPropertyChange(); } }
     }
 }

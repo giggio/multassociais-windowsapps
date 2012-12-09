@@ -113,6 +113,7 @@
     <Compile Include="Extensions\ValidTextBoxFormats.cs" />
     <Compile Include="Models\MultasRealizadas.cs" />
     <Compile Include="ScaleHelper.cs" />
+    <Compile Include="ViewModels\DadosDaMultaViewModel.cs" />
     <Compile Include="ViewModels\GroupDetailViewModel.cs" />
     <Compile Include="ViewModels\GroupedItemsViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
