@@ -18,7 +18,7 @@
         <local:DateFormatConverter x:Key="DateFormatConverter" />
     </UserControl.Resources>
     <StackPanel x:Name="LayoutRoot" MaxWidth="1000" HorizontalAlignment="Left" Width="{Binding Width, ElementName=dadosDaMultaView}">
-        <Image Source="{Binding Image}" Stretch="Uniform" Visibility="{Binding ShowImage, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top" MinWidth="160" MinHeight="160" MaxWidth="300" MaxHeight="200" Margin="0,0,486,0" Height="80"/>
+        <Image Source="{Binding Image}" Stretch="Uniform" Visibility="{Binding ShowImage, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top" MinWidth="160" MinHeight="160" MaxWidth="300" MaxHeight="200" Height="80" HorizontalAlignment="Left"/>
         <TextBlock x:Name="textoPlaca" Text="Placa" Style="{StaticResource ShareTargetTextBlockStyle}" />
         <TextBox x:Name="Placa" IsEnabled="{Binding IsEnabled}" MaxLength="8" Width="200" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalContentAlignment="Top"/>
         <TextBlock x:Name="textoDescricao" Text="Descrição (obrigatória)" Style="{StaticResource ShareTargetTextBlockStyle}" />

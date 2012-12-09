@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
+using Windows.Storage.Pickers;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace MultasSociais.WinStoreApp.ViewModels
 {
@@ -29,6 +32,30 @@ namespace MultasSociais.WinStoreApp.ViewModels
         public void Cancelar()
         {
             GoBack();
+        }
+
+        public async Task Fotografar()
+        {
+            
+        }
+        public async Task EscolherFoto()
+        {
+            var picker = new FileOpenPicker
+                             {
+                                 SuggestedStartLocation = PickerLocationId.PicturesLibrary,
+                                 ViewMode = PickerViewMode.Thumbnail
+                             };
+
+            picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".jpeg");
+            picker.FileTypeFilter.Add(".png");
+            picker.FileTypeFilter.Add(".gif");
+
+            var file = await picker.PickSingleFileAsync();
+            if (file == null) return;
+
+            var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            await dadosDaMulta.ExibirImagem(stream, true);
         }
 
         public bool Multando

@@ -30,9 +30,9 @@ namespace MultasSociais.WinStoreApp.ViewModels
         private bool isEnabled = true;
         public bool IsEnabled { get { return isEnabled; } set { isEnabled = value; NotifyOfPropertyChange(); } }
 
-        public async Task ExibirImagem(IRandomAccessStream stream)
+        public async Task ExibirImagem(IRandomAccessStream stream, bool forcar = false)
         {
-            if (Image != null) return;
+            if (!forcar && Image != null) return;
             Image = new BitmapImage();
             await Image.SetSourceAsync(stream);
             ShowImage = true;

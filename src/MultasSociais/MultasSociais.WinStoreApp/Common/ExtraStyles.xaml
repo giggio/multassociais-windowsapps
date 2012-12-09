@@ -256,6 +256,16 @@
         <Setter Property="AutomationProperties.Name" Value="Cancelar"/>
         <Setter Property="Content" Value="&#xE10A;"/>
     </Style>
+    <Style x:Key="PhotoAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource MSButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PhotoAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Tirar foto"/>
+        <Setter Property="Content" Value="&#xE114;"/>
+    </Style>
+    <Style x:Key="BrowsePhotosAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource MSButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="BrowsePhotosAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Escolher foto"/>
+        <Setter Property="Content" Value="&#xE155;"/>
+    </Style>
     <Style x:Key="ShareTargetTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaselineTextStyle}">
     	<Setter Property="FontSize" Value="16"/>
     	<Setter Property="Foreground" Value="{StaticResource ApplicationSecondaryForegroundThemeBrush}"/>

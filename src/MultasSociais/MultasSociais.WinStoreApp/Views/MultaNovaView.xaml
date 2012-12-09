@@ -21,10 +21,13 @@
 					<ColumnDefinition/>
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
-				<StackPanel x:Name="leftAppBar" Orientation="Horizontal"/>
+				<StackPanel x:Name="leftAppBar" Orientation="Horizontal">
+                    <Button x:Name="Fotografar" Style="{StaticResource PhotoAppBarButtonStyle}" />
+                    <Button x:Name="EscolherFoto" Style="{StaticResource BrowsePhotosAppBarButtonStyle}" />
+				</StackPanel>
 				<StackPanel x:Name="rightAppBar" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button x:Name="Multar" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource DollarAppBarButtonStyle}" />
-                    <Button x:Name="Cancelar" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource CancelAppBarButtonStyle}" />
+                    <Button x:Name="Multar" Style="{StaticResource DollarAppBarButtonStyle}" />
+                    <Button x:Name="Cancelar" Style="{StaticResource CancelAppBarButtonStyle}" />
 				</StackPanel>
 			</Grid>
 		</AppBar>
