@@ -2,6 +2,7 @@
  * Originally from http://winrtxamltoolkit.codeplex.com/
  */
 
+using Windows.ApplicationModel;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -17,6 +18,7 @@ namespace MultasSociais.WinStoreApp.Extensions
 
         private static void SetValid(TextBox textBox, bool isValid)
         {
+            if (DesignMode.DesignModeEnabled) return;
             var brush = isValid ? GetValidBrush(textBox) : GetInvalidBrush(textBox);
             textBox.Background = brush;
         }
@@ -27,6 +29,7 @@ namespace MultasSociais.WinStoreApp.Extensions
         }
         public static void SetIsValid(DependencyObject d, bool value)
         {
+            if (DesignMode.DesignModeEnabled) return;
             d.SetValue(IsValidProperty, value);
             SetValid((TextBox)d, value);
         }
@@ -41,6 +44,7 @@ namespace MultasSociais.WinStoreApp.Extensions
         }
         public static void SetFormat(DependencyObject d, ValidTextBoxFormats value)
         {
+            if (DesignMode.DesignModeEnabled) return;
             d.SetValue(FormatProperty, value);
         }
 
@@ -57,6 +61,7 @@ namespace MultasSociais.WinStoreApp.Extensions
         }
         public static void SetStartsWith(DependencyObject d, string startsWith)
         {
+            if (DesignMode.DesignModeEnabled) return;
             d.SetValue(StartsWithProperty, startsWith);
         }
 
@@ -78,6 +83,7 @@ namespace MultasSociais.WinStoreApp.Extensions
 
         public static void SetFormatValidationHandler(DependencyObject d, TextBoxFormatValidationHandler value)
         {
+            if (DesignMode.DesignModeEnabled) return;
             d.SetValue(FormatValidationHandlerProperty, value);
         }
 
@@ -106,6 +112,7 @@ namespace MultasSociais.WinStoreApp.Extensions
 
         public static void SetValidBrush(DependencyObject d, Brush value)
         {
+            if (DesignMode.DesignModeEnabled) return;
             d.SetValue(ValidBrushProperty, value);
         }
 
@@ -123,6 +130,7 @@ namespace MultasSociais.WinStoreApp.Extensions
 
         public static void SetInvalidBrush(DependencyObject d, Brush value)
         {
+            if (DesignMode.DesignModeEnabled) return;
             d.SetValue(InvalidBrushProperty, value);
         }
 
