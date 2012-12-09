@@ -122,6 +122,15 @@
     <Compile Include="ViewModels\MultaNovaViewModel.cs" />
     <Compile Include="ViewModels\ShareTargetViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\GroupedItemsView.xaml.cs">
+      <DependentUpon>GroupedItemsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GroupDetailView.xaml.cs">
+      <DependentUpon>GroupDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ItemDetailView.xaml.cs">
+      <DependentUpon>ItemDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
@@ -131,6 +140,9 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Views\Controls\DadosDaMultaView.xaml.cs">
       <DependentUpon>DadosDaMultaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShareTargetView.xaml.cs">
+      <DependentUpon>ShareTargetView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
