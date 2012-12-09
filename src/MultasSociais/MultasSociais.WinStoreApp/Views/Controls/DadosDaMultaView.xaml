@@ -10,29 +10,29 @@
     xmlns:local="using:MultasSociais.WinStoreApp"
     mc:Ignorable="d"
     d:DesignHeight="600"
-    d:DesignWidth="500">
+    d:DesignWidth="1200">
 
     <UserControl.Resources>
         <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <common:BooleanNegationConverter x:Key="BooleanNegationConverter" />
         <local:DateFormatConverter x:Key="DateFormatConverter" />
     </UserControl.Resources>
-    <StackPanel x:Name="LayoutRoot">
+    <StackPanel x:Name="LayoutRoot" MaxWidth="1000" HorizontalAlignment="Left" Width="{Binding Width, ElementName=dadosDaMultaView}">
         <Image Source="{Binding Image}" Stretch="Uniform" Visibility="{Binding ShowImage, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top" MinWidth="160" MinHeight="160" MaxWidth="300" MaxHeight="200" Margin="0,0,486,0" Height="80"/>
         <TextBlock x:Name="textoPlaca" Text="Placa" Style="{StaticResource ShareTargetTextBlockStyle}" />
-        <TextBox x:Name="Placa" IsEnabled="{Binding IsEnabled}" Margin="0,0,302,0" MaxLength="8"/>
+        <TextBox x:Name="Placa" IsEnabled="{Binding IsEnabled}" MaxLength="8" Width="200" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalContentAlignment="Top"/>
         <TextBlock x:Name="textoDescricao" Text="Descrição (obrigatória)" Style="{StaticResource ShareTargetTextBlockStyle}" />
         <TextBox x:Name="Descricao" IsEnabled="{Binding IsEnabled}" Height="162" AcceptsReturn="True" TextWrapping="Wrap" MaxLength="2500"
                          extensions:TextBoxValidationExtensions.IsValid="{Binding DescricaoIsValid, Mode=TwoWay}"
-                         extensions:TextBoxValidationExtensions.Format="NonEmpty" extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}"/>
+                         extensions:TextBoxValidationExtensions.Format="NonEmpty" extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
         <TextBlock x:Name="textoVideoUrl" Text="Url Video (deve começar com http://www.youtube.com)" Style="{StaticResource ShareTargetTextBlockStyle}" />
         <TextBox x:Name="VideoUrl" IsEnabled="{Binding IsEnabled}" 
                          extensions:TextBoxValidationExtensions.IsValid="{Binding VideoUrlIsValid, Mode=TwoWay}"
-                         extensions:TextBoxValidationExtensions.Format="StartsWith" extensions:TextBoxValidationExtensions.StartsWith="http://www.youtube.com" extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}"/>
+                         extensions:TextBoxValidationExtensions.Format="StartsWith" extensions:TextBoxValidationExtensions.StartsWith="http://www.youtube.com" extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
         <TextBlock x:Name="textoDataOcorrencia" Text="Data da ocorrência" Style="{StaticResource ShareTargetTextBlockStyle}" />
         <TextBox x:Name="DataOcorrencia" IsEnabled="{Binding IsEnabled}" Text="{Binding DataOcorrencia, ConverterParameter=d, Converter={StaticResource DateFormatConverter}, Mode=TwoWay}"
                          extensions:TextBoxValidationExtensions.IsValid="{Binding DataOcorrenciaIsValid, Mode=TwoWay}"
-                         extensions:TextBoxValidationExtensions.Format="DateTimeNonEmpty" extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}"/>
+                         extensions:TextBoxValidationExtensions.Format="DateTimeNonEmpty" extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300"/>
 
     </StackPanel>
     
