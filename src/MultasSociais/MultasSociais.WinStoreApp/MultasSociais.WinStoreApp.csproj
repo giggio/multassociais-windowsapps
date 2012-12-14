@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MultasSociais.WinStoreApp</RootNamespace>
     <AssemblyName>MultasSociais.WinStoreApp</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>pt-br</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>MultasSociais.WinStoreApp_StoreKey.pfx</PackageCertificateKeyFile>
@@ -121,6 +121,7 @@
     <Compile Include="ValueConverters.cs" />
     <Compile Include="Models\MultaRealizada.cs" />
     <Compile Include="ViewModels\MultaNovaViewModel.cs" />
+    <Compile Include="ViewModels\PrimeiraRodadaViewModel.cs" />
     <Compile Include="ViewModels\ShareTargetViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\GroupedItemsView.xaml.cs">
@@ -144,6 +145,9 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Views\Controls\DadosDaMultaView.xaml.cs">
       <DependentUpon>DadosDaMultaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrimeiraRodadaView.xaml.cs">
+      <DependentUpon>PrimeiraRodadaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShareTargetView.xaml.cs">
       <DependentUpon>ShareTargetView.xaml</DependentUpon>
@@ -213,6 +217,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MultaNovaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PrimeiraRodadaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

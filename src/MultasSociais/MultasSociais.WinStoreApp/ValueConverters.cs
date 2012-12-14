@@ -28,7 +28,7 @@ namespace MultasSociais.WinStoreApp
             }
             if (string.IsNullOrWhiteSpace(language))
             {
-                language = GlobalizationPreferences.Languages.First();
+                language = ObterLingua();
             }
             if (parameter == null) 
                 throw new ArgumentNullException("parameter");
@@ -50,10 +50,16 @@ namespace MultasSociais.WinStoreApp
         {
             if (string.IsNullOrWhiteSpace(language))
             {
-                language = GlobalizationPreferences.Languages.First();
+                language = ObterLingua();
             }
             return Converter(valor, new CultureInfo(language));
         }
+
+        private static string ObterLingua()
+        {
+            return Windows.Globalization.ApplicationLanguages.Languages.First();
+        }
+
         public DateTime Converter(string valor, CultureInfo cultureInfo)
         {
             var date = DateTime.MinValue;

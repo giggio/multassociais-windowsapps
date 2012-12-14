@@ -6,7 +6,8 @@ using MultasSociais.WinStoreApp.Models;
 using MultasSociais.WinStoreApp.ViewModels;
 using MultasSociais.WinStoreApp.Views;
 using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.DataTransfer.ShareTarget;
+using Windows.Storage;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml.Controls;
 
 namespace MultasSociais.WinStoreApp
@@ -52,7 +53,28 @@ namespace MultasSociais.WinStoreApp
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             if (args.Kind == ActivationKind.ShareTarget) return;
-            DisplayRootView<GroupedItemsView>("AllGroups");
+            ConfigurarSettings();
+            if (ExibirPrimeiraRodada())
+                DisplayRootView<PrimeiraRodadaView>();
+            else
+                DisplayRootView<GroupedItemsView>("AllGroups");
+        }
+
+        private static bool ExibirPrimeiraRodada()
+        {
+            var configuracoes = ApplicationData.Current.LocalSettings.Values;
+            return !configuracoes.ContainsKey("termosDeUsoAceitos");
+        }
+
+        private void ConfigurarSettings()
+        {
+            SettingsPane.GetForCurrentView().CommandsRequested +=
+                (sender, args) =>
+                    {
+                        
+                        var generalCommand = new SettingsCommand("politicaDePrivacidade", "Política de privacidade", comando => Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/giggio/multassociais-windowsapps/blob/master/README.md")));
+                        args.Request.ApplicationCommands.Add(generalCommand);
+                    };
         }
 
         protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
