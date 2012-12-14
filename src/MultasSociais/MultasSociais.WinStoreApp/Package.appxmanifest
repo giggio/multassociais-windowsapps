@@ -11,11 +11,11 @@
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
   <Resources>
-    <Resource Language="x-generate" />
+    <Resource Language="pt-br" />
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MultasSociais.WinStoreApp.App">
-      <VisualElements DisplayName="Multas Sociais" Logo="Assets\logo.png" SmallLogo="Assets\SmallLogo.png" Description="O Multas Sociais é um site com fins estritamente educacionais e de conscientização da população. As multas sociais criadas aqui são fictícias. Essa é a aplicação para Windows 8 deste site." ForegroundText="light" BackgroundColor="#FF991B">
+      <VisualElements DisplayName="Multas Sociais" Logo="Assets\logo.png" SmallLogo="Assets\SmallLogo.png" Description="O Multas Sociais é um site com fins estritamente educacionais e de conscientização da população. As multas sociais criadas aqui são fictícias. Este site ou a aplicação não possuem nenhum vínculo com os órgãos oficiais de controle de infrações de trânsito ou nenhum departamento governamental. Políticas de uso e privacidade: https://github.com/giggio/multassociais-windowsapps/blob/master/README.md" ForegroundText="light" BackgroundColor="#FF991B">
         <DefaultTile ShowName="logoOnly" WideLogo="Assets\logo-invertido-wide.png" ShortName="Multas Sociais" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FF991B" />
         <InitialRotationPreference>
