@@ -1,0 +1,28 @@
+﻿<common:LayoutAwarePage
+    x:Class="MultasSociais.WinStoreApp.Views.PrimeiraRodadaView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MultasSociais.WinStoreApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:MultasSociais.WinStoreApp.Common"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource CorPadrao}">
+    	<Grid VerticalAlignment="Center">
+    		<Grid.Background>
+    			<SolidColorBrush Color="{StaticResource PageColor}"/>
+    		</Grid.Background>
+    		<StackPanel Margin="0,20" VerticalAlignment="Top" Width="670">
+    			<StackPanel.Background>
+    				<SolidColorBrush Color="{StaticResource PageColor}"/>
+    			</StackPanel.Background>
+    			<TextBlock x:Name="titulo" TextWrapping="Wrap" Text="Termos de uso" Style="{StaticResource SubheaderTextStyle}" Margin="0,0,0,30"/>
+    			<TextBlock TextWrapping="Wrap" Text="Os termos de uso e a política de privacidade desta aplicação estão disponíveis no link abaixo:" Style="{StaticResource BodyTextStyle}"/>
+    			<HyperlinkButton Content="https://github.com/giggio/multassociais-windowsapps/blob/master/README.md" HorizontalAlignment="Left" NavigateUri="https://github.com/giggio/multassociais-windowsapps/blob/master/README.md" Padding="0" Margin="-3,0,0,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Ao clicar no botão abaixo você concorda com os termos de uso da aplicação." Style="{StaticResource BodyTextStyle}" Margin="0,-8,0,0"/>
+    			<Button x:Name="Concordo" Content="Concordo" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource BotaoPadrao}" Height="36" Padding="12,5,12,4" Margin="0,14,0,0"/>
+    		</StackPanel>
+    	</Grid>
+    </Grid>
+</common:LayoutAwarePage>

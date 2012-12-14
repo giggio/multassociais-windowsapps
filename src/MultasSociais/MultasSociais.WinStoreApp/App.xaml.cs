@@ -6,8 +6,8 @@ using MultasSociais.WinStoreApp.Models;
 using MultasSociais.WinStoreApp.ViewModels;
 using MultasSociais.WinStoreApp.Views;
 using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 using Windows.UI.ApplicationSettings;
-using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
 namespace MultasSociais.WinStoreApp
@@ -54,7 +54,16 @@ namespace MultasSociais.WinStoreApp
         {
             if (args.Kind == ActivationKind.ShareTarget) return;
             ConfigurarSettings();
-            DisplayRootView<GroupedItemsView>("AllGroups");
+            if (ExibirPrimeiraRodada())
+                DisplayRootView<PrimeiraRodadaView>();
+            else
+                DisplayRootView<GroupedItemsView>("AllGroups");
+        }
+
+        private static bool ExibirPrimeiraRodada()
+        {
+            var configuracoes = ApplicationData.Current.LocalSettings.Values;
+            return !configuracoes.ContainsKey("termosDeUsoAceitos");
         }
 
         private void ConfigurarSettings()

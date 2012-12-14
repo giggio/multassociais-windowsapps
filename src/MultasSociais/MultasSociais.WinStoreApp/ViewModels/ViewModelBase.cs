@@ -32,6 +32,11 @@ namespace MultasSociais.WinStoreApp.ViewModels
         {
         }
 
+        public void GoHome()
+        {
+            navigationService.Navigate<GroupedItemsView>("AllGroups");
+        }
+
         public void GoToHeader(GrupoDeMultas grupoDeMultas)
         {
             navigationService.Navigate<GroupDetailView>(grupoDeMultas);

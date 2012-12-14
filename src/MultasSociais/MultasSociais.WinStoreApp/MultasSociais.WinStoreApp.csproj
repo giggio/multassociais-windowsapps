@@ -119,6 +119,7 @@
     <Compile Include="ViewModels\ListaVirtualizada.cs" />
     <Compile Include="ValueConverters.cs" />
     <Compile Include="Models\MultaRealizada.cs" />
+    <Compile Include="ViewModels\PrimeiraRodadaViewModel.cs" />
     <Compile Include="ViewModels\ShareTargetViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\GroupedItemsView.xaml.cs">
@@ -137,6 +138,9 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Views\PrimeiraRodadaView.xaml.cs">
+      <DependentUpon>PrimeiraRodadaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShareTargetView.xaml.cs">
       <DependentUpon>ShareTargetView.xaml</DependentUpon>
     </Compile>
@@ -199,6 +203,10 @@
     <Page Include="Views\ItemDetailView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PrimeiraRodadaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShareTargetView.xaml">
       <SubType>Designer</SubType>
