@@ -8,7 +8,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class DadosDaMultaViewModel : Screen
     {
-        public bool IsValid { get { return videoUrlIsValid && descricaoIsValid && dataOcorrenciaIsValid; } }
+        public bool IsValid { get { return videoUrlIsValid && descricaoIsValid && dataOcorrenciaIsValid && image != null; } }
         private DateTime dataOcorrencia = DateTime.Now;
         public DateTime DataOcorrencia { get { return dataOcorrencia; } set { dataOcorrencia = value; NotifyOfPropertyChange(); } }
         private string descricao;
@@ -36,6 +36,7 @@ namespace MultasSociais.WinStoreApp.ViewModels
             Image = new BitmapImage();
             await Image.SetSourceAsync(stream);
             ShowImage = true;
+            NotifyOfPropertyChange("IsValid");
         }
     }
 }
