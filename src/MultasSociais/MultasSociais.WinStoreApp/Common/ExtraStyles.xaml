@@ -24,9 +24,6 @@
     <Style TargetType="ListViewItem">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>    
-    <Style TargetType="Grid">
-        <Setter Property="Background" Value="Transparent" />
-    </Style>
     <Style x:Key="MSGroupHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GroupHeaderTextStyle}">
         <Setter Property="FontSize" Value="48"></Setter>
     </Style>
