@@ -10,7 +10,7 @@ Ainda deve ser criada.
 
 ## Instalação via Windows Store:
 
-Url ainda a ser definida, ou seja, projeto ainda não publicado.
+A aplicação está disponível na Windows Store nesse endereço: [http://apps.microsoft.com/windows/pt-br/app/multas-sociais/17127088-e9b7-4c8a-9a0e-3691c7712d3c](http://apps.microsoft.com/windows/pt-br/app/multas-sociais/17127088-e9b7-4c8a-9a0e-3691c7712d3c)
 
 ## Suporte
 
