@@ -10,7 +10,9 @@ Ainda deve ser criada.
 
 ## Instalação via Windows Store:
 
-A aplicação está disponível na Windows Store nesse endereço: [http://apps.microsoft.com/windows/pt-br/app/multas-sociais/17127088-e9b7-4c8a-9a0e-3691c7712d3c](http://apps.microsoft.com/windows/pt-br/app/multas-sociais/17127088-e9b7-4c8a-9a0e-3691c7712d3c)
+Se você está no Internet Explorer, [abra diretamente na Windows Store](ms-windows-store:PDP?PFN=Lambda3.MultasSociais_1fx9nq2s82xrm)
+
+Se estiver em outro navegador, a aplicação está disponível na Windows Store nesse endereço: [http://apps.microsoft.com/windows/pt-br/app/multas-sociais/17127088-e9b7-4c8a-9a0e-3691c7712d3c](http://apps.microsoft.com/windows/pt-br/app/multas-sociais/17127088-e9b7-4c8a-9a0e-3691c7712d3c). Você também pode procurar por "multas sociais" na Store.
 
 ## Suporte
 
