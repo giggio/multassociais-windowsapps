@@ -50,7 +50,6 @@ DB.sdf
 *.cscfg.bin
 packages/
 .nuget/
-*.pfx
 docs/~$*
 !MultasSociais.Lib
 CriarMultaNova.Api.cs
