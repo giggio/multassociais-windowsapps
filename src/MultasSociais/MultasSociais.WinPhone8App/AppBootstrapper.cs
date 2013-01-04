@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Controls;
 using Caliburn.Micro;
 using Microsoft.Phone.Controls;
+using MultasSociais.Lib.Models;
 using MultasSociais.WinPhone8App.ViewModels;
 
 namespace MultasSociais.WinPhone8App
@@ -18,10 +19,11 @@ namespace MultasSociais.WinPhone8App
             container.RegisterPhoneServices();
             container.PerRequest<MainViewModel>(); 
             container.PerRequest<DetailsViewModel>();
-
+            container.PerRequest<ITalao, Talao>();
+            //container.PerRequest<IMultasRealizadas, MultasRealizadas>();
             AddCustomConventions();
 #if DEBUG
-            LogManager.GetLog = type => new DebugLogger(type);
+            //LogManager.GetLog = type => new DebugLogger(type);
 #endif
         }
 
