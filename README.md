@@ -14,6 +14,10 @@ Se você está no Internet Explorer, <a href="ms-windows-store:PDP?PFN=Lambda3.M
 
 Se estiver em outro navegador, a aplicação está disponível na Windows Store nesse endereço: [http://apps.microsoft.com/windows/pt-br/app/multas-sociais/17127088-e9b7-4c8a-9a0e-3691c7712d3c](http://apps.microsoft.com/windows/pt-br/app/multas-sociais/17127088-e9b7-4c8a-9a0e-3691c7712d3c). Você também pode procurar por "multas sociais" na Store.
 
+## Instalação via Windows Phone:
+
+A app está em estágio de publicação.
+
 ## Suporte
 
 * Veja o backlog no Github: [https://github.com/giggio/multassociais-windowsapps/issues](https://github.com/giggio/multassociais-windowsapps/issues)
