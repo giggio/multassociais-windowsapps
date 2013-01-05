@@ -1,36 +1,71 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using System.Threading.Tasks;
+using MultasSociais.Lib.Models;
+using MultasSociais.WinPhone8App.Models;
 
 namespace MultasSociais.WinPhone8App.ViewModels
 {
     public class DetailsViewModel : BaseScreen
     {
-        private readonly INavigationService navigationService;
-
-        public DetailsViewModel() {}
-
-        public DetailsViewModel(INavigationService navigationService)
+        public DetailsViewModel(ITalao talao, IMultasRealizadas multasRealizadas)
         {
-            this.navigationService = navigationService;
+            this.talao = talao;
+            this.multasRealizadas = multasRealizadas;
         }
 
-        public string ItemId { get; set; }
-
-        private ItemViewModel item;
-        public ItemViewModel Item
+        private readonly ITalao talao;
+        private readonly IMultasRealizadas multasRealizadas;
+        public int Id { get; set; }
+        public DateTime DataOcorrencia { get; set; }
+        public string Descricao { get; set; }
+        public string Placa { get; set; }
+        private int numeroDeMultas;
+        public int NumeroDeMultas
         {
-            get { return item; }
+            get { return numeroDeMultas; }
             set
             {
-                if (Equals(value, item)) return;
-                item = value;
+                if (value == numeroDeMultas) return;
+                numeroDeMultas = value;
                 NotifyOfPropertyChange();
             }
         }
+        public string VideoUrl { get; set; }
+        public string FotoUrl { get; set; }
+        public string DataDescrita { get; set; }
+        public string NumeroDeMultasDescrita { get; set; }
+        
+        private bool multando;
+        private bool multadoAgora;
 
-        protected override void OnActivate()
+        public async Task Multar()
         {
-            Item = new ItemViewModel {ID = "0", LineOne = "runtime one", LineTwo = "Maecenas praesent accumsan bibendum", LineThree = "Facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis senectus sociosqu"};
-            base.OnActivate();
+            try
+            {
+                multando = true;
+                NotifyOfPropertyChange("CanMultar");
+                multadoAgora = await talao.MarcarMultaAsync(Id);
+                if (multadoAgora)
+                {
+                    NumeroDeMultas++;
+                    await GuardarQueFoiMultado();
+                }
+            }
+            finally
+            {
+                multando = false;
+            }
+            NotifyOfPropertyChange("CanMultar");
+        }
+
+        private async Task GuardarQueFoiMultado()
+        {
+            await multasRealizadas.Adicionar(new MultaRealizada { Id = Id });
+        }
+
+        public bool CanMultar
+        {
+            get { return !multando && !multadoAgora && !multasRealizadas.FoiMultado(Id); }
         }
     }
 }

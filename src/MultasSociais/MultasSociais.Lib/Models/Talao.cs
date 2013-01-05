@@ -14,6 +14,7 @@ namespace MultasSociais.Lib.Models
         Task<IEnumerable<Multa>> PegarMaisMultas(GrupoDeMultas grupo, int iniciarEm, uint quantidade);
         Task<bool> MarcarMultaAsync(Multa multa);
         Task<bool> MultarAsync(CriarMultaNova multa, HttpUpload.FileInfo fileInfo);
+        Task<bool> MarcarMultaAsync(int multaId);
     }
 
     public partial class Talao : ITalao
@@ -75,9 +76,14 @@ namespace MultasSociais.Lib.Models
             return novasMultas;
         }
 
-        public async Task<bool> MarcarMultaAsync(Multa multa)
+        public Task<bool> MarcarMultaAsync(Multa multa)
         {
-            var urlMarcarMultaComId = string.Format(urlMarcarMulta, multa.Id);
+            return MarcarMultaAsync(multa.Id);
+        }
+
+        public async Task<bool> MarcarMultaAsync(int multaId)
+        {
+            var urlMarcarMultaComId = string.Format(urlMarcarMulta, multaId);
             var statusCode = await ObterUrl(urlMarcarMultaComId).Postar();
             return statusCode == HttpStatusCode.OK;
         }

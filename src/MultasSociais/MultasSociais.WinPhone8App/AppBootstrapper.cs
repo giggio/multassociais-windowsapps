@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using Caliburn.Micro;
 using Microsoft.Phone.Controls;
 using MultasSociais.Lib.Models;
+using MultasSociais.WinPhone8App.Infra;
+using MultasSociais.WinPhone8App.Models;
 using MultasSociais.WinPhone8App.ViewModels;
 
 namespace MultasSociais.WinPhone8App
@@ -20,7 +22,8 @@ namespace MultasSociais.WinPhone8App
             container.PerRequest<MainViewModel>(); 
             container.PerRequest<DetailsViewModel>();
             container.PerRequest<ITalao, Talao>();
-            //container.PerRequest<IMultasRealizadas, MultasRealizadas>();
+            container.RegisterSingleton(typeof(IMultasRealizadas), null, typeof(MultasRealizadas));
+            container.Instance<IObjectStorageHelper<ListaDeMultasRealizadas>>(new ObjectStorageHelper<ListaDeMultasRealizadas>());
             AddCustomConventions();
 #if DEBUG
             //LogManager.GetLog = type => new DebugLogger(type);

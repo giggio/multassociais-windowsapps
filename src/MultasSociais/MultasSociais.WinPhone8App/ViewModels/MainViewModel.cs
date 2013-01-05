@@ -58,11 +58,20 @@ namespace MultasSociais.WinPhone8App.ViewModels
             }
         }
 
-        public void GoToItem(ItemViewModel item)
+        public void GoToItem(Multa multa)
         {
             navigationService.UriFor<DetailsViewModel>()
-                .WithParam(x => x.ItemId, item.ID)
+                .WithParam(x => x.DataDescrita, multa.DataDescrita)
+                .WithParam(x => x.DataOcorrencia, multa.DataOcorrencia)
+                .WithParam(x => x.Descricao, multa.Descricao)
+                .WithParam(x => x.FotoUrl, multa.FotoUrl)
+                .WithParam(x => x.Id, multa.Id)
+                .WithParam(x => x.NumeroDeMultas, multa.NumeroDeMultas)
+                .WithParam(x => x.NumeroDeMultasDescrita, multa.NumeroDeMultasDescrita)
+                .WithParam(x => x.Placa, multa.Placa)
+                .WithParam(x => x.VideoUrl, multa.VideoUrl)
                 .Navigate();
+            
         }
     }
 }
