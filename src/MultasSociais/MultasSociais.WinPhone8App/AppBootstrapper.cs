@@ -30,12 +30,13 @@ namespace MultasSociais.WinPhone8App
 #if DEBUG
             //LogManager.GetLog = type => new DebugLogger(type);
 #endif
-            LigaEventosDoRootFrame();
+            MapeiaRootFrame();
         }
 
-        private void LigaEventosDoRootFrame()
+        private void MapeiaRootFrame()
         {
             RootFrame.Navigating += Navigating;
+            RootFrame.UriMapper = new Mapeador();
         }
 
         private void Navigating(object sender, NavigatingCancelEventArgs e)
@@ -51,8 +52,15 @@ namespace MultasSociais.WinPhone8App
             {
                 // This block will run if the previous navigation was a relaunch
                 wasRelaunched = false;
-                e.Cancel = true;
+                if (!IsShare(e.Uri))
+                    e.Cancel = true;
             }
+        }
+
+        private bool IsShare(Uri uri)
+        {
+            var stringUri = uri.ToString();
+            return ((stringUri.Contains("ShareContent")) && (stringUri.Contains("FileId")));
         }
 
         static void AddCustomConventions()

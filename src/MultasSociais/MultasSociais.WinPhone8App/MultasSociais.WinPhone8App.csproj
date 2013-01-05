@@ -98,10 +98,12 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="BaseScreen.cs" />
     <Compile Include="DebugLogger.cs" />
+    <Compile Include="Infra\Mapeador.cs" />
     <Compile Include="Infra\ObjectStorageHelper.cs" />
     <Compile Include="ViewModels\DetailsViewModel.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\MultasRealizadas.cs" />
+    <Compile Include="ViewModels\PhotoShareViewModel.cs" />
     <Compile Include="Views\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
     </Compile>
@@ -116,6 +118,9 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="Views\PhotoShareView.xaml.cs">
+      <DependentUpon>PhotoShareView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -134,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </DesignData>
+    <Page Include="Views\PhotoShareView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
