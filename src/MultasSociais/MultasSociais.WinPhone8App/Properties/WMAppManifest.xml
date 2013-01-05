@@ -12,7 +12,7 @@
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="/Views/MainView.xaml" />
+      <DefaultTask Name="_default" NavigationPage="/Views/MainView.xaml" ActivationPolicy="Resume" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="MultasSociais.WinPhone8AppToken" TaskName="_default">

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 using Caliburn.Micro;
 using Microsoft.Phone.Controls;
 using MultasSociais.Lib.Models;
@@ -13,6 +14,7 @@ namespace MultasSociais.WinPhone8App
     public class AppBootstrapper : PhoneBootstrapper
     {
         PhoneContainer container;
+        private bool wasRelaunched;
 
         protected override void Configure()
         {
@@ -28,6 +30,29 @@ namespace MultasSociais.WinPhone8App
 #if DEBUG
             //LogManager.GetLog = type => new DebugLogger(type);
 #endif
+            LigaEventosDoRootFrame();
+        }
+
+        private void LigaEventosDoRootFrame()
+        {
+            RootFrame.Navigating += Navigating;
+        }
+
+        private void Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Reset)
+            {
+                // This block will execute if the current navigation is a relaunch.
+                // If so, another navigation will be coming, so this records that a relaunch just happened
+                // so that the next navigation can use this info.
+                wasRelaunched = true;
+            }
+            else if (e.NavigationMode == NavigationMode.New && wasRelaunched)
+            {
+                // This block will run if the previous navigation was a relaunch
+                wasRelaunched = false;
+                e.Cancel = true;
+            }
         }
 
         static void AddCustomConventions()
