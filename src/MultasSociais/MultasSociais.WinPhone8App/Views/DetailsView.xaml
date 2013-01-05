@@ -38,7 +38,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True">
             <shell:ApplicationBar.Buttons>
-                <caliburn:AppBarButton IconUri="/Assets/ApplicationIcon.png" Text="Multar" Message="Multar" />
+                <caliburn:AppBarButton IconUri="/Assets/DolarIcon.png" Text="Multar" Message="Multar" />
             </shell:ApplicationBar.Buttons>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
