@@ -23,6 +23,7 @@ namespace MultasSociais.WinPhone8App
             container.RegisterPhoneServices();
             container.PerRequest<MainViewModel>(); 
             container.PerRequest<DetailsViewModel>();
+            container.PerRequest<PhotoShareViewModel>();
             container.PerRequest<ITalao, Talao>();
             container.RegisterSingleton(typeof(IMultasRealizadas), null, typeof(MultasRealizadas));
             container.Instance<IObjectStorageHelper<ListaDeMultasRealizadas>>(new ObjectStorageHelper<ListaDeMultasRealizadas>());
