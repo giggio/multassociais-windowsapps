@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Caliburn.Micro;
@@ -37,7 +38,35 @@ namespace MultasSociais.WinPhone8App
         private void MapeiaRootFrame()
         {
             RootFrame.Navigating += Navigating;
+            RootFrame.Navigated += CheckForResetNavigation;
+            RootFrame.Navigated += ClearBackStackAfterShare;
             RootFrame.UriMapper = new Mapeador();
+        }
+
+        private void ClearBackStackAfterShare(object sender, NavigationEventArgs e)
+        {
+            //só apaga o backstack se está vindo para a mainview e só tem um único item na stack sendo ele de share
+            if (e.Uri.ToString().ToLower().Contains("mainview.xaml") && RootFrame.BackStack.Count() == 1 && RootFrame.BackStack.Single().Source.ToString().Contains("FileId"))
+            {
+                ClearAllBackStack();
+            }
+        }
+
+        private void ClearAllBackStack()
+        {
+            while (RootFrame.RemoveBackEntry() != null) {}
+        }
+
+        private void CheckForResetNavigation(object sender, NavigationEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Reset)
+                RootFrame.Navigated += ClearBackStackAfterReset;
+        }
+        private void ClearBackStackAfterReset(object sender, NavigationEventArgs e)
+        {
+            RootFrame.Navigated -= ClearBackStackAfterReset;
+            if (e.NavigationMode != NavigationMode.New) return;
+            ClearAllBackStack();
         }
 
         private void Navigating(object sender, NavigatingCancelEventArgs e)
