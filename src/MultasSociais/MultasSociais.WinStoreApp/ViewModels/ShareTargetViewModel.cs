@@ -110,7 +110,6 @@ namespace MultasSociais.WinStoreApp.ViewModels
                 if (MultadoComSucesso)
                 {
                     Sharing = false;
-                    await Task.Delay(1000);
                     ShareOperation.ReportCompleted();
                 }
                 else
