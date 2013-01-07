@@ -6,16 +6,13 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:local="clr-namespace:MultasSociais.WinPhone8App">
 
-    <!--Application Resources-->
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ExtraStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
         <local:LocalizedStrings x:Key="LocalizedStrings"/>
         <local:AppBootstrapper x:Key="bootstrapper" />
     </Application.Resources>
-    <!--<Application.ApplicationLifetimeObjects>
-        Required object that handles lifetime events for the application
-        <shell:PhoneApplicationService
-            Launching="Application_Launching" Closing="Application_Closing"
-            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
-    </Application.ApplicationLifetimeObjects>-->
-
 </Application>

@@ -4,7 +4,11 @@
 
 using System;
 
+#if WINDOWS_PHONE
+namespace MultasSociais.WinPhone8App.Extensions
+#elif NETFX_CORE
 namespace MultasSociais.WinStoreApp.Extensions
+#endif
 {
     [Flags]
     public enum ValidTextBoxFormats

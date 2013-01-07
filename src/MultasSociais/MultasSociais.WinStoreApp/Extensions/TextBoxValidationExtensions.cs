@@ -1,14 +1,23 @@
 ﻿/*
  * Originally from http://winrtxamltoolkit.codeplex.com/
  */
-
+#if WINDOWS_PHONE
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+#elif NETFX_CORE
 using Windows.ApplicationModel;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+#endif
 
+#if WINDOWS_PHONE
+namespace MultasSociais.WinPhone8App.Extensions
+#elif NETFX_CORE
 namespace MultasSociais.WinStoreApp.Extensions
+#endif
 {
     public static class TextBoxValidationExtensions
     {
@@ -53,7 +62,7 @@ namespace MultasSociais.WinStoreApp.Extensions
         #region StartsWith
         
         public static readonly DependencyProperty StartsWithProperty =
-            DependencyProperty.Register("StartsWith", typeof(string), typeof(TextBoxValidationExtensions), new PropertyMetadata(string.Empty, (d, e) => SetupAndValidate(d)));
+            DependencyProperty.RegisterAttached("StartsWith", typeof(string), typeof(TextBoxValidationExtensions), new PropertyMetadata(string.Empty, (d, e) => SetupAndValidate(d)));
 
         public static string GetStartsWith(DependencyObject d)
         {

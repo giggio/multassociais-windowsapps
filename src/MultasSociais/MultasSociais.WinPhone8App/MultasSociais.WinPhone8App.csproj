@@ -92,18 +92,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\MultasSociais.WinStoreApp\Extensions\TextBoxFormatValidationHandler.cs">
+      <Link>Extensions\TextBoxFormatValidationHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\MultasSociais.WinStoreApp\Extensions\TextBoxValidationExtensions.cs">
+      <Link>Extensions\TextBoxValidationExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\MultasSociais.WinStoreApp\Extensions\ValidTextBoxFormats.cs">
+      <Link>Extensions\ValidTextBoxFormats.cs</Link>
+    </Compile>
+    <Compile Include="..\MultasSociais.WinStoreApp\ValueConverters.cs">
+      <Link>ValueConverters.cs</Link>
+    </Compile>
+    <Compile Include="..\MultasSociais.WinStoreApp\ViewModels\DadosDaMultaViewModel.cs">
+      <Link>ViewModels\DadosDaMultaViewModel.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="BaseScreen.cs" />
     <Compile Include="DebugLogger.cs" />
+    <Compile Include="DesignMode.cs" />
     <Compile Include="Infra\Mapeador.cs" />
     <Compile Include="Infra\ObjectStorageHelper.cs" />
     <Compile Include="ViewModels\DetailsViewModel.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\MultasRealizadas.cs" />
     <Compile Include="ViewModels\PhotoShareViewModel.cs" />
+    <Compile Include="Views\Controls\DadosDaMultaView.xaml.cs">
+      <DependentUpon>DadosDaMultaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
     </Compile>
@@ -127,6 +146,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="ExtraStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\DadosDaMultaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -177,6 +204,10 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
@@ -193,6 +224,9 @@
       <HintPath>..\packages\Caliburn.Micro.1.4\lib\wp8\Caliburn.Micro.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>..\..\..\lib\WPToolkit71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>

@@ -1,11 +1,18 @@
 ﻿/*
  * Originally from http://winrtxamltoolkit.codeplex.com/
  */
-
 using System;
+#if WINDOWS_PHONE
+using System.Windows.Controls;
+#elif NETFX_CORE
 using Windows.UI.Xaml.Controls;
+#endif
 
+#if WINDOWS_PHONE
+namespace MultasSociais.WinPhone8App.Extensions
+#elif NETFX_CORE
 namespace MultasSociais.WinStoreApp.Extensions
+#endif
 {
     public class TextBoxFormatValidationHandler
     {

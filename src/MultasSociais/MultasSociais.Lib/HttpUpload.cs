@@ -30,21 +30,22 @@ namespace MultasSociais.Lib
         }
         public async Task<HttpWebResponse> Upload(FileInfo fileInfo, Dictionary<string, string> values)
         {
-            requestStream = await request.GetRequestStreamAsync();
-            foreach (var key in values.Keys)
+            using (requestStream = await request.GetRequestStreamAsync())
             {
+                foreach (var key in values.Keys)
+                {
+                    WriteBoundary();
+                    const string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}";
+                    var formItem = string.Format(formdataTemplate, key, values[key]);
+                    var formItemBytes = encoding.GetBytes(formItem);
+                    requestStream.Write(formItemBytes, 0, formItemBytes.Length);
+                }
                 WriteBoundary();
-                const string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}";
-                var formItem = string.Format(formdataTemplate, key, values[key]);
-                var formItemBytes = encoding.GetBytes(formItem);
-                requestStream.Write(formItemBytes, 0, formItemBytes.Length);
+
+                WriteFile(fileInfo);
+
+                WriteTrailer();
             }
-            WriteBoundary();
-
-            WriteFile(fileInfo);
-
-            WriteTrailer();
-
             var response = await request.GetResponseAsync();
             return response;
         }

@@ -1,12 +1,24 @@
 ﻿using System;
-using System.Threading.Tasks;
+#if WINDOWS_PHONE
+using System.IO;
+using System.Windows.Media.Imaging;
+#elif NETFX_CORE
 using Caliburn.Micro;
 using Windows.Storage.Streams;
+using System.Threading.Tasks;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
+#endif
 
+#if WINDOWS_PHONE
+namespace MultasSociais.WinPhone8App.ViewModels
+{
+    public class DadosDaMultaViewModel : BaseScreen
+#elif NETFX_CORE
 namespace MultasSociais.WinStoreApp.ViewModels
 {
     public class DadosDaMultaViewModel : Screen
+#endif
     {
         public bool IsValid { get { return videoUrlIsValid && descricaoIsValid && dataOcorrenciaIsValid && image != null; } }
         private DateTime dataOcorrencia = DateTime.Now;
@@ -30,11 +42,20 @@ namespace MultasSociais.WinStoreApp.ViewModels
         private bool isEnabled = true;
         public bool IsEnabled { get { return isEnabled; } set { isEnabled = value; NotifyOfPropertyChange(); } }
 
+#if WINDOWS_PHONE
+        public void ExibirImagem(Stream stream, bool forcar = false)
+#elif NETFX_CORE
         public async Task ExibirImagem(IRandomAccessStream stream, bool forcar = false)
+#endif
         {
             if (!forcar && Image != null) return;
-            Image = new BitmapImage();
-            await Image.SetSourceAsync(stream);
+            var bitmapImage = new BitmapImage(); 
+#if WINDOWS_PHONE
+            bitmapImage.SetSource(stream);
+#elif NETFX_CORE
+            await bitmapImage.SetSourceAsync(stream);
+#endif
+            Image = bitmapImage;
             ShowImage = true;
             NotifyOfPropertyChange("IsValid");
         }

@@ -1,26 +1,57 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using Windows.System.UserProfile;
+#if WINDOWS_PHONE
+using System.Windows.Data;
+#elif NETFX_CORE
 using Windows.UI.Xaml.Data;
-
+#endif
+#if WINDOWS_PHONE
+namespace MultasSociais.WinPhone8App
+#elif NETFX_CORE
 namespace MultasSociais.WinStoreApp
+#endif
 {
-    public class StringFormatConverter : IValueConverter
+    public abstract class BaseValueConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+#if WINDOWS_PHONE        
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return Convert(value, targetType, parameter, culture.ToString());
+        }
+
+        public abstract object Convert(object value, Type targetType, object parameter, string language);
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ConvertBack(value, targetType, parameter, culture.ToString());
+        }
+
+        public abstract object ConvertBack(object value, Type targetType, object parameter, string language);
+#elif NETFX_CORE
+        public abstract object Convert(object value, Type targetType, object parameter, string language);
+        public abstract object ConvertBack(object value, Type targetType, object parameter, string language);
+#endif
+
+
+    }
+
+
+    public class StringFormatConverter : BaseValueConverter
+    {
+        public override object Convert(object value, Type targetType, object parameter, string language)
         {
             if (parameter == null) return value;
             return string.Format((string)parameter, value);
         }
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public override object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             return value;
         }
     }
-    public class DateFormatConverter : IValueConverter
+    public class DateFormatConverter : BaseValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public override object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value.GetType() != typeof(DateTime) || targetType != typeof(string))
             {
@@ -38,7 +69,7 @@ namespace MultasSociais.WinStoreApp
         {
             return valor.ToString(parametro, cultureInfo);
         }
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public override object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             if (value.GetType() != typeof(string) || (targetType != typeof(DateTime) && targetType != typeof(object)))
             {
@@ -57,7 +88,11 @@ namespace MultasSociais.WinStoreApp
 
         private static string ObterLingua()
         {
+#if WINDOWS_PHONE
+            return CultureInfo.CurrentCulture.ToString();
+#elif NETFX_CORE
             return Windows.Globalization.ApplicationLanguages.Languages.First();
+#endif
         }
 
         public DateTime Converter(string valor, CultureInfo cultureInfo)
@@ -71,9 +106,9 @@ namespace MultasSociais.WinStoreApp
             return date;
         }
     }
-    public class SumConverter : IValueConverter
+    public class SumConverter : BaseValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public override object Convert(object value, Type targetType, object parameter, string language)
         {
             if (parameter == null) 
                 throw new ArgumentNullException("parameter");
@@ -81,7 +116,7 @@ namespace MultasSociais.WinStoreApp
                 throw new ArgumentNullException("value");
             return (double)value + System.Convert.ToDouble(parameter);
         }
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public override object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             return value;
         }

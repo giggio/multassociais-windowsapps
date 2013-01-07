@@ -1,0 +1,10 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="using:MultasSociais.WinStoreApp.Common" 
+    xmlns:caliburn="using:Caliburn.Micro">
+    <Color x:Key="MSApplicationHeaderForegroundThemeBrush">Black</Color>
+    <Color x:Key="PageColor">White</Color>
+    <Color x:Key="InvalidBackgroundColor">Pink</Color>
+    <SolidColorBrush x:Key="InvalidBackgroundColorBrush" Color="{StaticResource InvalidBackgroundColor}"></SolidColorBrush>
+</ResourceDictionary>
