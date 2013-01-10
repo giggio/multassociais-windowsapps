@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="pt" />
   </Languages>
-  <App xmlns="" ProductID="{b6c1da1f-aa7d-4076-b4f2-71e4d9bf35df}" Title="Multas Sociais" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Giovanni Bassi" Description="O Multas Sociais é um site com fins estritamente educacionais e de conscientização da população. As multas sociais criadas aqui são fictícias. Este site ou a aplicação não possuem nenhum vínculo com os órgãos oficiais de controle de infrações de trânsito." Publisher="Lambda3" PublisherID="{449f63e4-14bc-4b13-a432-0b5720d39984}">
+  <App xmlns="" ProductID="{b6c1da1f-aa7d-4076-b4f2-71e4d9bf35df}" Title="Multas Sociais" RuntimeType="Silverlight" Version="1.1.0.0" Genre="apps.normal" Author="Giovanni Bassi" Description="O Multas Sociais é um site com fins estritamente educacionais e de conscientização da população. As multas sociais criadas aqui são fictícias. Este site ou a aplicação não possuem nenhum vínculo com os órgãos oficiais de controle de infrações de trânsito." Publisher="Lambda3" PublisherID="{449f63e4-14bc-4b13-a432-0b5720d39984}">
     <IconPath IsRelative="true" IsResource="false">Assets\logo-fundo-branco.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
