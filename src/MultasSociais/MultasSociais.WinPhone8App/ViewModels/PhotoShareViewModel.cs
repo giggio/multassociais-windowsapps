@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
@@ -102,11 +103,16 @@ namespace MultasSociais.WinPhone8App.ViewModels
                     MessageBox.Show("Não foi possível multar, favor tentar mais tarde.");
                 }
             }
+            catch (WebException)
+            {
+                Sharing = false; 
+                MessageBox.Show("Desconectado da internet. Tente novamente mais tarde.");
+            }
             catch (Exception ex)
             {
+                Sharing = false;
                 MessageBox.Show("Não foi possível multar, ocorreu um erro, favor tentar mais tarde.\nErro:" + ex.Message);
             }
-
         }
 
         private bool sharing;

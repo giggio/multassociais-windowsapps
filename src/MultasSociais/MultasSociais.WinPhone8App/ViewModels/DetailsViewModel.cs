@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using MultasSociais.Lib.Models;
 using MultasSociais.WinPhone8App.Models;
 
@@ -44,7 +46,14 @@ namespace MultasSociais.WinPhone8App.ViewModels
             {
                 multando = true;
                 NotifyOfPropertyChange("CanMultar");
-                multadoAgora = await talao.MarcarMultaAsync(Id);
+                try
+                {
+                    multadoAgora = await talao.MarcarMultaAsync(Id);
+                }
+                catch (WebException)
+                {
+                    MessageBox.Show("Desconectado da internet. Tente novamente mais tarde.");
+                }
                 if (multadoAgora)
                 {
                     NumeroDeMultas++;

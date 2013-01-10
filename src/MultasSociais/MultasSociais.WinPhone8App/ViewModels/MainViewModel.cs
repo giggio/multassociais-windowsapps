@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Windows;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
 
@@ -17,10 +20,19 @@ namespace MultasSociais.WinPhone8App.ViewModels
 
         protected async override void OnInitialize()
         {
-            var grupos = new BindableCollection<GrupoDeMultas> { await talao.ObterMaisNovos(), await talao.ObterMaisMultados() };
-            ConfigurarNumeroDeItensAExibir(grupos);
-            Grupos = grupos;
-            IsLoading = false;
+            try
+            {
+                var grupos = new BindableCollection<GrupoDeMultas> { await talao.ObterMaisNovos(), await talao.ObterMaisMultados() };
+                ConfigurarNumeroDeItensAExibir(grupos);
+                Grupos = grupos;
+                IsLoading = false;
+            }
+            catch (WebException)
+            {
+                //todo: remover messagebox
+                //todo: colocar botão de reload
+                MessageBox.Show("Você está desconectado. Tente novamente mais tarde.");
+            }
             base.OnInitialize();
         }
 

@@ -32,8 +32,8 @@ namespace MultasSociais.Lib
         {
             var request = WebRequest.CreateHttp(url);
             var responseContent = await request.GetResponseContentAsync();
-            var multas = JsonConvert.DeserializeObject<T>(responseContent);
-            return multas;
+            var obj = JsonConvert.DeserializeObject<T>(responseContent);
+            return obj;
         }
 
         public static async Task<HttpStatusCode> Postar(this string url)
