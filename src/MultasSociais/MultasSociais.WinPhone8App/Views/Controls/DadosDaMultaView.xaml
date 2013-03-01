@@ -15,7 +15,7 @@
         <TextBlock x:Name="textoPlaca" Text="Placa" Style="{StaticResource PhoneTextNormalStyle}" />
         <TextBox x:Name="Placa" IsEnabled="{Binding IsEnabled}" MaxLength="8" Width="200" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalContentAlignment="Top"/>
         <TextBlock x:Name="textoDescricao" Text="Descrição (obrigatória)" Style="{StaticResource PhoneTextNormalStyle}"/>
-        <TextBox x:Name="Descricao" IsEnabled="{Binding IsEnabled}" Height="120" AcceptsReturn="True" TextWrapping="Wrap" MaxLength="2500"
+        <TextBox x:Name="Descricao" InputScope="Text" IsEnabled="{Binding IsEnabled}" Height="120" AcceptsReturn="True" TextWrapping="Wrap" MaxLength="2500"
                          extensions:TextBoxValidationExtensions.IsValid="{Binding DescricaoIsValid, Mode=TwoWay}"
                          extensions:TextBoxValidationExtensions.ValidBrush="{StaticResource PhoneTextBoxBrush}"
                          extensions:TextBoxValidationExtensions.Format="NonEmpty" extensions:TextBoxValidationExtensions.InvalidBrush="{StaticResource InvalidBackgroundColorBrush}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
