@@ -8,8 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:caliburn="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
     xmlns:models="clr-namespace:MultasSociais.Lib.Models;assembly=MultasSociais.Lib"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:common="clr-namespace:MultasSociais.WinPhone8App.Common"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -22,11 +20,11 @@
             x:Name="groupedItemsViewSource"
             Source="{Binding Grupos}"
             d:Source="{Binding Grupos, Source={d:DesignInstance Type=models:Talao, IsDesignTimeCreatable=True}}"/>
-        <caliburn:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <common:BooleanToVisibilityReverseConverter x:Key="BooleanToVisibilityReverseConverter" />
     </phone:PhoneApplicationPage.Resources>
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="True" IsVisible="{Binding IsLoading}" />
+    </shell:SystemTray.ProgressIndicator>
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <toolkit:PerformanceProgressBar IsIndeterminate="True" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <phone:Pivot Title="MULTAS SOCIAIS" ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}">
             <phone:Pivot.HeaderTemplate>
                 <DataTemplate>
@@ -49,5 +47,4 @@
             </phone:Pivot.ItemTemplate>
         </phone:Pivot>
     </Grid>
-
 </phone:PhoneApplicationPage>
