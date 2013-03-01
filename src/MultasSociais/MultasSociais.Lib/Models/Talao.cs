@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -66,6 +67,7 @@ namespace MultasSociais.Lib.Models
             var numeroDePaginas = Math.Ceiling(Convert.ToDecimal(quantidade)/10);
             var urlBase = ObterUrl(grupo.TipoGrupo == TipoGrupo.MaisNovos ? urlMaisNovosComPaginacao : urlMaisMultadosComPaginacao);
             var novasMultas = new List<Multa>();
+            Debug.WriteLine("Adicionando novas multas: número de páginas={0}, iniciarEm={1}, quantidade={2}", numeroDePaginas, iniciarEm, quantidade);
             for (int i = 0; i < numeroDePaginas; i++)
             {
                 var urlConsulta = string.Format(urlBase, iniciarEm + (i*10));

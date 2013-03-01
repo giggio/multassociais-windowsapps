@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using MultasSociais.Lib.Models;
@@ -22,9 +23,13 @@ namespace MultasSociais.WinPhone8App.ViewModels
         {
             try
             {
-                var grupos = new BindableCollection<GrupoDeMultas> { await talao.ObterMaisNovos(), await talao.ObterMaisMultados() };
+                var maisNovos = await talao.ObterMaisNovos();
+                var maisMultados = await talao.ObterMaisMultados();
+                var grupos = new BindableCollection<GrupoDeMultas> { maisNovos, maisMultados };
                 ConfigurarNumeroDeItensAExibir(grupos);
                 Grupos = grupos;
+                await talao.PegarMaisMultas(maisNovos, 10, 50);
+                await talao.PegarMaisMultas(maisMultados, 10, 50);
                 IsLoading = false;
             }
             catch (WebException)
@@ -35,6 +40,13 @@ namespace MultasSociais.WinPhone8App.ViewModels
             }
             base.OnInitialize();
         }
+
+        public async Task CarregarMultas(GrupoDeMultas grupoDeMultas)
+        {
+            IsLoading = true;
+            await talao.PegarMaisMultas(grupoDeMultas, grupoDeMultas.Itens.Count, 50);
+            IsLoading = false;
+        } 
 
         private void ConfigurarNumeroDeItensAExibir(IEnumerable<GrupoDeMultas> grupos)
         {
