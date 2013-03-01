@@ -112,6 +112,8 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="BaseScreen.cs" />
+    <Compile Include="Common\BooleanNegationConverter.cs" />
+    <Compile Include="Common\BooleanToVisibilityReverseConverter.cs" />
     <Compile Include="DebugLogger.cs" />
     <Compile Include="DesignMode.cs" />
     <Compile Include="Infra\Mapeador.cs" />
